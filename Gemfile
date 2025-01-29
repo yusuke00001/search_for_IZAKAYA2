@@ -63,3 +63,4 @@ group :test do
 end
 
 gem "dotenv-rails"
+gem "devise"
