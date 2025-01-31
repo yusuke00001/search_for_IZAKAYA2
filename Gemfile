@@ -65,3 +65,5 @@ end
 gem "dotenv-rails"
 gem "devise"
 gem "rails-i18n"
+gem "pry-byebug"
+gem "pry"
