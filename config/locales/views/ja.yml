@@ -3,7 +3,7 @@ ja:
     label:
       email: メールアドレス
       password: パスワード
-    
+      remember_me: 保存する
   users:
     registrations:
       new:
@@ -12,3 +12,9 @@ ja:
     shared:
       links:
         login: ログインはこちら
+        submit: 新規登録はこちら
+        forget_password: パスワードを忘れた方はこちら
+    sessions:
+      new:
+        title: ログイン画面
+        login: ログイン

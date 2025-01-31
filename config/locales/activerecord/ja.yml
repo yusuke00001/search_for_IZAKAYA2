@@ -8,4 +8,5 @@ ja:
         name: ユーザー名
         password: パスワード
         password_confirmation: パスワード確認
+        remember_me: 次回から自動でログインする
         
