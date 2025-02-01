@@ -1,6 +1,6 @@
 <div class="card mx-auto" style="width:700px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);">
   <div class="card-body">
-    <h2 class="text-center"><%=t('.title') %></h2>
+    <h1 class="text-center mb-5"><%=t('.title') %></h1>
     <div class="d-flex justify-content-center">
       <div class="card me-5"style="width:150px; height:150px;">
         <div class="card-body">
@@ -15,31 +15,33 @@
         </div>
       </div>
     </div>
-    <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center mb-3">
       <div class="card me-5">
-        <div class="card-body ranking-size">
+        <div class="card-body card-size">
           <div class="text-center">
             <i class="fa-solid fa-crown fa-4x mb-3" style="color:yellow;"></i>
           </div>
-          <p class="text-center mb-3"><strong><%= t('.ranking')%></strong></p>
+          <p class="text-center mb-3"><%= link_to t('.ranking')%></p>
           <p class="ranking text-center">さまざまなランキングを見ることができるよ</p>
         </div>
       </div>
       <div class="card">
-        <div class="card-body bookmark-size">
+        <div class="card-body card-size">
           <div class="text-center mb-3">
            <i class="fa-solid fa-heart fa-4x" style="color:pink;"></i>
           </div>
-          <p class="text-center mb-3"><strong>お気に入りページ</strong></p>
+          <p class="text-center mb-3"><%= link_to t('.bookmark') %></p>
           <p class="bookmark text-center">いいねをつけたお店を確認できるよ</p>
         </div>
       </div>
     </div>
-    <div class="card">
-      <div class="card-body text-center search-size">
-        <i class="fa-brands fa-searchengin fa-4x mb-3 " style="color:blue;" ></i>
-        <p class="mb-3"><strong>検索ページ</strong></p>
-        <p class="mb-3">居酒屋を検索することができるよ</p>
+    <div class="d-flex justify-content-center mb-3">
+      <div class="card card-size">
+        <div class="card-body text-center">
+          <i class="fa-brands fa-searchengin fa-4x mb-3 " style="color:blue;" ></i>
+          <p class="mb-3"><%= link_to t('.search') %></p>
+          <p class="mb-3">居酒屋を検索することができるよ</p>
+        </div>
       </div>
     </div>
   </div>
