@@ -1,2 +1,46 @@
-<h1>マイページ</h1>
-<%= link_to 'ログアウト', destroy_user_session_path, data:{ turbo_method: :delete } %>
+<div class="card mx-auto" style="width:700px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);">
+  <div class="card-body">
+    <h2 class="text-center"><%=t('.title') %></h2>
+    <div class="d-flex justify-content-center">
+      <div class="card me-5"style="width:150px; height:150px;">
+        <div class="card-body">
+          <p class="text-center">画像</p>
+        </div>
+      </div>
+      <div class="card mb-3" style="width:350px; height: 150px;">
+        <div class="card-body">
+          <h3 class="text-center"><%= t('.user_date')%></h3>
+          <P class="mb-3"><%= User.human_attribute_name(:name) %>: <%= current_user.name%></p>
+          <p><%= User.human_attribute_name(:email) %>: <%= current_user.email%></p>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center">
+      <div class="card me-5">
+        <div class="card-body ranking-size">
+          <div class="text-center">
+            <i class="fa-solid fa-crown fa-4x mb-3" style="color:yellow;"></i>
+          </div>
+          <p class="text-center mb-3"><strong><%= t('.ranking')%></strong></p>
+          <p class="ranking text-center">さまざまなランキングを見ることができるよ</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body bookmark-size">
+          <div class="text-center mb-3">
+           <i class="fa-solid fa-heart fa-4x" style="color:pink;"></i>
+          </div>
+          <p class="text-center mb-3"><strong>お気に入りページ</strong></p>
+          <p class="bookmark text-center">いいねをつけたお店を確認できるよ</p>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body text-center search-size">
+        <i class="fa-brands fa-searchengin fa-4x mb-3 " style="color:blue;" ></i>
+        <p class="mb-3"><strong>検索ページ</strong></p>
+        <p class="mb-3">居酒屋を検索することができるよ</p>
+      </div>
+    </div>
+  </div>
+</div>
