@@ -2,3 +2,5 @@ ja:
   devise:
     failure:
       invalid: メールアドレスまたはパスワードが正しくありません
+    registrations:
+      updated: ユーザー情報を更新しました
