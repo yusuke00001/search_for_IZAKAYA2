@@ -3,7 +3,7 @@
     <h1 class="text-center mb-5"><%=t('.title') %></h1>
     <div class="d-flex justify-content-center align-items-center">
       <div class="me-5 mb-3">
-        <%= image_tag @user.get_user_avatar.variant(resize_to_fit: [180,180]), class:"rounded-circle" %>
+        <%= image_tag current_user.get_user_avatar.variant(resize_to_fit: [180,180]), class:"rounded-circle" %>
       </div>
       <div class="card mb-3"  style="width:350px;">
         <div class="card-body">
