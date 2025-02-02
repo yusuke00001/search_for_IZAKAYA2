@@ -9,4 +9,5 @@ ja:
         password: パスワード
         password_confirmation: パスワード確認
         remember_me: 次回から自動でログインする
-        
+        current_password: 新しいパスワード
+        avatar: プロフィール画像

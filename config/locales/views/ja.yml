@@ -9,6 +9,8 @@ ja:
       new:
         title: 新規登録画面
         submit: 登録
+      edit:
+        update: 更新
     shared:
       links:
         login: ログインはこちら
