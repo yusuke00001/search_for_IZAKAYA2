@@ -29,6 +29,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
    #   super
    # end
 
+   def image_delete
+    current_user.avatar.purge
+    redirect_to edit_user_registration_path
+   end
+
    # GET /resource/cancel
    # Forces the session data which is usually expired after sign
    # in to be expired now. This is useful if the user wants to
@@ -53,6 +58,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
    # The path used after sign up.
    def after_sign_up_path_for(resource)
     flash[:notice] = "ログインに成功しました"
+    homes_path
+   end
+
+   def after_update_path_for(resource)
     homes_path
    end
 
