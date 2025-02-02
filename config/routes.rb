@@ -3,6 +3,10 @@ Rails.application.routes.draw do
     sessions: "users/sessions",
     registrations: "users/registrations"
   }
+  devise_scope :user do
+    get "users/image_delete", to: "users/registrations#image_delete"
+  end
+
   get "homes", to: "homes#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
