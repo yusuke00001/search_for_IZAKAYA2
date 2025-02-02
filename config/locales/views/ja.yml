@@ -18,3 +18,10 @@ ja:
       new:
         title: ログイン画面
         login: ログイン
+  homes:
+    index:
+      title: マイページ
+      user_date: ユーザー情報
+      ranking: ランキングページ
+      bookmark: お気に入りページ
+      search: 検索ページ
