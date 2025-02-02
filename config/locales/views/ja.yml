@@ -10,7 +10,14 @@ ja:
         title: 新規登録画面
         submit: 登録
       edit:
+        title: 編集ページ
         update: 更新
+        delete: ユーザーの削除
+        delete_button: 削除
+        really: 本当に削除してよろしいですか？
+        back: マイページに戻る
+        image: 現在の画像
+        image_delete: 画像の削除
     shared:
       links:
         login: ログインはこちら
@@ -27,3 +34,4 @@ ja:
       ranking: ランキングページ
       bookmark: お気に入りページ
       search: 検索ページ
+      edit: 編集

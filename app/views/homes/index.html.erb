@@ -1,17 +1,16 @@
 <div class="card mx-auto" style="width:700px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);">
   <div class="card-body">
     <h1 class="text-center mb-5"><%=t('.title') %></h1>
-    <div class="d-flex justify-content-center">
-      <div class="card me-5"style="width:150px; height:150px;">
-        <div class="card-body">
-          <%= image_tag @user.get_user_avatar%>
-        </div>
+    <div class="d-flex justify-content-center align-items-center">
+      <div class="me-5 mb-3">
+        <%= image_tag @user.get_user_avatar.variant(resize_to_fit: [180,180]), class:"rounded-circle" %>
       </div>
-      <div class="card mb-3" style="width:350px; height: 150px;">
+      <div class="card mb-3"  style="width:350px;">
         <div class="card-body">
           <h3 class="text-center"><%= t('.user_date')%></h3>
           <P class="mb-3"><%= User.human_attribute_name(:name) %>: <%= current_user.name%></p>
           <p><%= User.human_attribute_name(:email) %>: <%= current_user.email%></p>
+          <%= link_to t('.edit'), edit_user_registration_path %>
         </div>
       </div>
     </div>
@@ -21,7 +20,7 @@
           <div class="text-center">
             <i class="fa-solid fa-crown fa-4x mb-3" style="color:yellow;"></i>
           </div>
-          <p class="text-center mb-3"><%= link_to t('.ranking')%></p>
+          <p class="text-center mb-3"><%= link_to t('.ranking') %></p>
           <p class="ranking text-center">さまざまなランキングを見ることができるよ</p>
         </div>
       </div>
@@ -46,4 +45,3 @@
     </div>
   </div>
 </div>
-<%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete} %>

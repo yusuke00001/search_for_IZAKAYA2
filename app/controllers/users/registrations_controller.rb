@@ -20,9 +20,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
    # end
 
    # PUT /resource
-   def update
-      super
-   end
+   # def update
+   #   super
+   # end
 
    # DELETE /resource
    # def destroy
@@ -53,6 +53,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
    # The path used after sign up.
    def after_sign_up_path_for(resource)
     flash[:notice] = "ログインに成功しました"
+    homes_path
+   end
+
+
+   def after_update_path_for(resource)
     homes_path
    end
 
