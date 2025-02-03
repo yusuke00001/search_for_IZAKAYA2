@@ -29,6 +29,24 @@
   </head>
 
   <body>
+    <header>
+      <nav class='navbar navbar-expand-lg navigation navbar-light' style="background-color: #99CCFF">
+        <div class="container-fluid d-flex align-items-center">
+          <div class='navbar-nav'>
+            <p class="mb-0">ようこそ！<strong><%= current_user.name %></strong> さん</p>
+          </div>
+          <div class="navbar-nav ms-auto">
+            <%= link_to homes_path do %>
+              <i class="fa-solid fa-user icon-size me-5"></i>
+            <% end %>
+
+            <%= link_to destroy_user_session_path data: { turbo_method: :delete } do %>
+              <i class="fa-solid fa-right-from-bracket icon-size me-3"></i>
+            <% end %>
+          </div>
+        </div>
+      </nav>
+    </header>
       <% flash.each do | key, message | %>
         <% if key == "notice" %>
           <div class="alert alert-success">
