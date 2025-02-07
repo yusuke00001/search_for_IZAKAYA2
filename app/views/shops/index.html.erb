@@ -1,5 +1,5 @@
 <div class="search-form">
- <h1 class="title">APIお試し検索</h1>
+ <h1 class="title"><%= t('.title') %></h1>
   <%= form_with url: shops_path, method: :get do |f| %>
     <%= f.text_field :keyword, placeholder: "検索キーワード" %>
     <%= button_to t('.search') %>
@@ -7,19 +7,19 @@
 </div>
 
 <div class="card-style">
-  <div class="card-body-style">
-      <% @shops.each do |shop| %>
-        <div class="shops-style overflow-wrap">
-          <div>
-            <%= image_tag shop["logo_image"], class:"image"%>
-          </div>
-          <div>
-            <p class="shops shops-name"><%=link_to shop["name"]%> <%#店舗名%></p>
-            <p class="shops"><%= shop["address"]%> <%#住所%></p>
-            <p class="shops">¥<%= shop["budget"]["name"]%> <%#平均予算%></p>
-          </div>
-        </div>
-      <% end %>
+  <% @shops.each do |shop| %>
+    <div class="container">
+      <div class="image">
+        <%= image_tag shop["logo_image"], class:"image"%>
+      </div>
+      <div class="shops">
+        <p class="shops-name"><%=link_to shop["name"]%> <%#店舗名%></p>
+        <p><%= shop["address"]%> <%#住所%></p>
+        <p>¥<%= shop["budget"]["name"]%> <%#平均予算%></p>
+      </div>
+      <div class="icon">
+       <i class="fa-solid fa-heart fa-3x icon"></i>
+      </div>
     </div>
-  </div>
+  <% end %>
 </div>
