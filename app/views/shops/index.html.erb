@@ -1,25 +1,11 @@
-<div class="search-form">
- <h1 class="title"><%= t('.title') %></h1>
-  <%= form_with url: shops_path, method: :get do |f| %>
-    <%= f.text_field :keyword, placeholder: "検索キーワード" %>
-    <%= button_to t('.search') %>
-  <% end %>
-</div>
-
-<div class="card-style">
-  <% @shops.each do |shop| %>
-    <div class="container">
-      <div class="image">
-        <%= image_tag shop["logo_image"], class:"image"%>
-      </div>
-      <div class="shops">
-        <p class="shops-name"><%=link_to shop["name"]%> <%#店舗名%></p>
-        <p><%= shop["address"]%> <%#住所%></p>
-        <p>¥<%= shop["budget"]["name"]%> <%#平均予算%></p>
-      </div>
-      <div class="icon">
-       <i class="fa-solid fa-heart fa-3x icon"></i>
-      </div>
-    </div>
-  <% end %>
-</div>
+<h1 class="title"><%= t('.title') %></h1>
+<%= form_with url: shops_path, method: :get do |f| %>
+  <%= f.text_field :keyword, placeholder: "検索キーワード" %>
+  <%= button_to t('.search') %>
+<% end %>
+<% @shops.each do |shop| %>
+  <%= image_tag shop["logo_image"]%>
+  <p><%=link_to shop["name"]%> <%#店舗名%></p>
+  <p><%= shop["address"]%> <%#住所%></p>
+  <p>¥<%= shop["budget"]["name"]%> <%#平均予算%></p>
+<% end %>
