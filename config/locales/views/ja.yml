@@ -39,3 +39,10 @@ ja:
     index:
       search: 検索
       title: 検索フォーム
+  views:
+    pagination:
+      first: "<<"
+      last: ">>"
+      previous: "<" 
+      next: ">" 
+      truncate: ...
