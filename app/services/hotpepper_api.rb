@@ -2,7 +2,7 @@ require "net/http"
 require "json"
 require "uri"
 
-class HotpepperAPI
+class HotpepperApi
   BASE_URL = "https://webservice.recruit.co.jp/hotpepper/gourmet/v1/"
 
   def self.search_shops(keyword, count = 10)
