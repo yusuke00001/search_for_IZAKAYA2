@@ -5,7 +5,7 @@ require "uri"
 class HotpepperApi
   BASE_URL = "https://webservice.recruit.co.jp/hotpepper/gourmet/v1/"
 
-  def self.search_shops(keyword, count = 10)
+  def self.search_shops(keyword, count = 100)
     uri = URI(BASE_URL)
     params = {
       key: ENV["HOTPEPPER_API_KEY"],
@@ -17,7 +17,7 @@ class HotpepperApi
 
     response = Net::HTTP.get_response(uri) # APIにリクエストを送信
 
-    if response.status == 200 # これで取得したデータをハッシュ形式に変換
+    if response.is_a?(Net::HTTPSuccess) # これで取得したデータをハッシュ形式に変換
       JSON.parse(response.body)["results"]["shop"]
     else
       []
