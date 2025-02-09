@@ -11,3 +11,5 @@ ja:
         remember_me: 次回から自動でログインする
         current_password: 新しいパスワード
         avatar: プロフィール画像
+      shop:
+        free_drink: 飲み放題
