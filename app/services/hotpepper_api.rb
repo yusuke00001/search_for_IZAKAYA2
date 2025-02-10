@@ -3,10 +3,12 @@ require "json"
 require "uri"
 
 class HotpepperApi
-  BASE_URL = "https://webservice.recruit.co.jp/hotpepper/gourmet/v1/"
+  BASE_URL_GOURMET = "https://webservice.recruit.co.jp/hotpepper/gourmet/v1/"
+  BASE_URL_SHOP = "https://webservice.recruit.co.jp/hotpepper/shop/v1/"
 
-  def self.search_shops(keyword, free_drink, free_food, private_room, course, midnight, non_smoking, sake, wine, cocktail, shochu, count = 100)
-    uri = URI(BASE_URL)
+  # グルメサーチAPI
+  def self.search_shops_gourmet(keyword, free_drink, free_food, private_room, course, midnight, non_smoking, sake, wine, cocktail, shochu, count = 100)
+    uri = URI(BASE_URL_GOURMET)
     params = {
       key: ENV["HOTPEPPER_API_KEY"],
       keyword: keyword, # 検索に使うキーワード
