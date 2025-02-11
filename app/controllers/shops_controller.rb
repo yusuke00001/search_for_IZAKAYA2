@@ -17,7 +17,7 @@ class ShopsController < ApplicationController
 
   def detail
     unless Shop.find_by(unique_number: params[:id])
-      shop = Shop.create(
+       Shop.create(
         unique_number: params[:id],
         name_of_shop: params[:name],
         address: params[:address],
