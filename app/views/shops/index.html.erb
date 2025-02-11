@@ -35,7 +35,7 @@
         <%= image_tag shop["logo_image"], class:"image"%>
       </div>
       <div class="shops">
-        <p class="shops-name"><%=link_to shop["name"]%> <%#店舗名%></p>
+        <p class="shops-name"><%=link_to shop["name"], shops_detail_path(shop)%> <%#店舗名%></p>
         <p><%= shop["address"]%> <%#住所%></p>
         <p>¥<%= shop["budget"]["name"]%> <%#平均予算%></p>
       </div>
