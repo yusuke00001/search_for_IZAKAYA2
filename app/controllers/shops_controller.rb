@@ -16,8 +16,9 @@ class ShopsController < ApplicationController
   end
 
   def detail
-    unless Shop.find_by(unique_number: params[:id])
-       Shop.create(
+    @shop = Shop.find_by(unique_number: params[:id])
+    unless @shop
+       @shop = Shop.create(
         unique_number: params[:id],
         name_of_shop: params[:name],
         address: params[:address],
@@ -25,7 +26,8 @@ class ShopsController < ApplicationController
         access: params[:access],
         opening_hours: params[:open],
         closing_day: params[:close],
-        budget: params[:budget]
+        budget: params[:budget],
+        image: params[:logo_image]
       )
     end
   end
