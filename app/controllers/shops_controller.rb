@@ -11,7 +11,7 @@ class ShopsController < ApplicationController
     wine = params[:wine]
     cocktail = params[:cocktail]
     shochu = params[:shochu]
-    @shops = HotpepperApi.search_shops_gourmet(keyword, free_drink, free_food, private_room, course, midnight, non_smoking, sake, wine, cocktail, shochu)
+    @shops = HotpepperApi.search_shops(keyword, free_drink, free_food, private_room, course, midnight, non_smoking, sake, wine, cocktail, shochu)
     @shops = Kaminari.paginate_array(@shops).page(params[:page]).per(Shop.page_number)
   end
 
