@@ -51,6 +51,7 @@ ja:
       budget: 予算
       number_of_seats: 席数
       url: ホームページ
+      back: 検索ページに戻る
       
 
   views:
