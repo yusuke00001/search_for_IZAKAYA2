@@ -1,0 +1,37 @@
+.title2 {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 50px;
+  border-bottom: 1px solid #ccc;
+}
+
+.image2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.shops-detail {
+  display: flex;
+  border: 1px solid #ddd;
+  align-items: center;
+}
+
+.label {
+  font-size: 25px;
+  width: 220px;
+  padding: 10px;
+}
+
+.data {
+  flex: 1;
+  text-align: left;
+}
+.card-style2 {
+  margin: 0 auto;
+  width: 700px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 9px rgba(0,0,0,0.1);
+  margin-top: 40px;
+  margin-bottom: 40px;
+}

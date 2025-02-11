@@ -40,8 +40,19 @@ ja:
       search: 検索
       title: 検索フォーム
       filter: 検索条件
-    show:
-      title: 店舗詳細
+    detail:
+      title: 店舗詳細ページ
+      name_of_shop: 店名
+      address: 住所
+      phone_number: 電話番号
+      access: アクセス方法
+      opening_hours: 営業時間
+      closing_day: 定休日
+      budget: 予算
+      number_of_seats: 席数
+      url: ホームページ
+      
+
   views:
     pagination:
       first: "<<"

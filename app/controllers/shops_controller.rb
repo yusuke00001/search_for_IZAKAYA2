@@ -27,6 +27,8 @@ class ShopsController < ApplicationController
         opening_hours: params[:open],
         closing_day: params[:close],
         budget: params[:budget],
+        number_of_seats: params[:capacity],
+        url: params[:urls],
         logo_image: params[:logo_image],
         image: params[:photo]
       )
