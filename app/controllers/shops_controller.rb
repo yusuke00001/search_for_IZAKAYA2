@@ -27,7 +27,8 @@ class ShopsController < ApplicationController
         opening_hours: params[:open],
         closing_day: params[:close],
         budget: params[:budget],
-        image: params[:logo_image]
+        logo_image: params[:logo_image],
+        image: params[:photo]
       )
     end
   end
