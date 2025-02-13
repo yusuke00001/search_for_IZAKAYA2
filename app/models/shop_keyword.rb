@@ -1,0 +1,2 @@
+class ShopKeyword < ApplicationRecord
+end
