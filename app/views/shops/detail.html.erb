@@ -1,73 +1,75 @@
-<div class="card-style2">
-  <p class="title2"><strong><%= @shop.name_of_shop %></strong></p>
-  <div class="image2">
-    <%= image_tag @shop.image["pc"]["l"] %>
+<div class="shops-detail">  
+  <div class="card-style">
+    <p class="title"><strong><%= @shop.name_of_shop %></strong></p>
+    <div class="image">
+      <%= image_tag @shop.image["pc"]["l"] %>
+    </div>
+    <div class="shop-detail">
+      <div class="label">
+        <%= t('.address') %>
+      </div>
+      <div class="data">
+        <%= @shop.address %>
+      </div>
+    </div>
+    <div class="shop-detail">
+      <div class="label">
+        <%= t('.phone_number') %>
+      </div>
+      <div class="data">
+        <%= @shop.phone_number %>
+      </div>
+    </div>
+    <div class="shop-detail">
+      <div class="label">
+       <%= t('.access') %>
+      </div>
+      <div class="data">
+        <%= @shop.access %>
+      </div>
+    </div>
+    <div class="shop-detail">
+      <div class="label">
+        <%= t('.opening_hours') %>
+      </div>
+      <div class="data">
+        <%= @shop.opening_hours %>
+      </div>
+    </div>
+    <div class="shop-detail">
+      <div class="label">
+        <%= t('.closing_day') %>
+      </div>
+      <div class="data">
+        <%= @shop.closing_day %>
+      </div>
+    </div>
+    <div class="shop-detail">
+      <div class="label">
+        <%= t('.budget') %>
+      </div>
+      <div class="data">
+        ¥<%= @shop.budget["average"] %>
+      </div>
+    </div>
+    <div class="shop-detail">
+      <div class="label">
+        <%= t('.number_of_seats') %>
+      </div>
+      <div class="data">
+        <%= @shop.number_of_seats %>席
+      </div>
+    </div>
+    <div class="shop-detail">
+      <div class="label">
+        <%= t('.url') %>
+      </div>
+      <div class="data">
+        <%=link_to @shop.url["pc"], @shop.url["pc"] %>
+      </div>
+    </div>
   </div>
-  <div class="shops-detail">
-    <div class="label">
-      <%= t('.address') %>
-    </div>
-    <div class="data">
-      <%= @shop.address %>
-    </div>
+  <div class="back-link">
+    <%= link_to t('.back'), shops_path %>
   </div>
-  <div class="shops-detail">
-    <div class="label">
-      <%= t('.phone_number') %>
-    </div>
-    <div class="data">
-      <%= @shop.phone_number %>
-    </div>
-  </div>
-  <div class="shops-detail">
-    <div class="label">
-     <%= t('.access') %>
-    </div>
-    <div class="data">
-      <%= @shop.access %>
-    </div>
-  </div>
-  <div class="shops-detail">
-    <div class="label">
-      <%= t('.opening_hours') %>
-    </div>
-    <div class="data">
-      <%= @shop.opening_hours %>
-    </div>
-  </div>
-  <div class="shops-detail">
-    <div class="label">
-      <%= t('.closing_day') %>
-    </div>
-    <div class="data">
-      <%= @shop.closing_day %>
-    </div>
-  </div>
-  <div class="shops-detail">
-    <div class="label">
-      <%= t('.budget') %>
-    </div>
-    <div class="data">
-      ¥<%= @shop.budget["average"] %>
-    </div>
-  </div>
-  <div class="shops-detail">
-    <div class="label">
-      <%= t('.number_of_seats') %>
-    </div>
-    <div class="data">
-      <%= @shop.number_of_seats %>席
-    </div>
-  </div>
-  <div class="shops-detail">
-    <div class="label">
-      <%= t('.url') %>
-    </div>
-    <div class="data">
-      <%=link_to @shop.url["pc"], @shop.url["pc"] %>
-    </div>
-  </div>
-</div>
-<div class="back-link">
-  <%= link_to t('.back'), shops_path %>
 </div>
