@@ -31,6 +31,16 @@ class ShopsController < ApplicationController
                   :midnight, :non_smoking, :sake, :wine, :cocktail, :shochu)
           .to_h # ハッシュ化
           .symbolize_keys # キーを文字列からキーに変更
-          .merge(keyword: params[:keyword].presence || "名古屋") # デフォルト値を設定
+          .merge(keyword: params[:keyword].presence || "名古屋",
+          free_drink: "0",
+          free_food: "0",
+          private_room: "0",
+          course: "0",
+          midnight: "0",
+          non_smoking: "0",
+          sake: "0",
+          wine: "0",
+          cocktail: "0",
+          shochu: "0") # デフォルト値を設定
   end
 end
