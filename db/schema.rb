@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_11_073012) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_15_082939) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -48,8 +48,23 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_11_073012) do
     t.index ["user_id"], name: "fk_rails_c1ff6fa4ac"
   end
 
+  create_table "keywords", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "word"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "shop_keywords", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "keyword_id", null: false
+    t.integer "shop_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["keyword_id"], name: "index_shop_keywords_on_keyword_id"
+    t.index ["shop_id"], name: "index_shop_keywords_on_shop_id"
+  end
+
   create_table "shops", id: :integer, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "name_of_shop"
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "address"
@@ -63,6 +78,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_11_073012) do
     t.string "unique_number"
     t.text "logo_image"
     t.json "image"
+    t.text "keywords"
+    t.integer "free_drink"
+    t.integer "free_food"
+    t.integer "private_room"
+    t.integer "course"
+    t.integer "midnight"
+    t.integer "non_smoking"
+    t.integer "wine"
+    t.integer "sake"
+    t.integer "cocktail"
+    t.integer "shochu"
   end
 
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -82,4 +108,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_11_073012) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "bookmarks", "shops"
   add_foreign_key "bookmarks", "users"
+  add_foreign_key "shop_keywords", "keywords", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "shop_keywords", "shops", on_update: :cascade, on_delete: :cascade
 end
