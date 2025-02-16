@@ -2,12 +2,9 @@ class ShopsController < ApplicationController
   def index
     keyword= Keyword.find_by(word: params[:keyword])
     if keyword.present?
-      @shops = keyword.shops.where(free_drink: params[:free_drink], free_food: params[:free_food], private_room: params[:private_room], course: params[:course], midnight: params[:midnight],
-                                   non_smoking: params[:non_smoking], wine: params[:wine], sake: params[:sake], cocktail: params[:cocktail], shochu: params[:shochu])
+      @shops = keyword.shops
     else
       @word = params[:keyword]
-      @filter = params.permit(:free_drink, :free_food, :private_room, :course,
-                              :midnight, :non_smoking, :sake, :wine, :cocktail, :shochu)
       @shops = HotpepperApi.search_shops(**search_params)
       shops_create
     end
@@ -58,16 +55,6 @@ class ShopsController < ApplicationController
         url: shop_data["urls"],
         logo_image: shop_data["logo_image"],
         image: shop_data["photo"],
-        free_drink: @filter[:free_drink],
-        free_food: @filter[:free_food],
-        private_room: @filter[:private_room],
-        course: @filter[:course],
-        midnight: @filter[:midnight],
-        non_smoking: @filter[:non_smoking],
-        sake: @filter[:sake],
-        wine: @filter[:wine],
-        cocktail: @filter[:cocktail],
-        shochu: @filter[:shochu]
     )
     ShopKeyword.create!(shop_id: shop.id, keyword_id: keyword.id)
     end
