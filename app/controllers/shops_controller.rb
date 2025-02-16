@@ -1,26 +1,23 @@
 class ShopsController < ApplicationController
   def index
-    @shops = HotpepperApi.search_shops(**search_params)
+    keyword= Keyword.find_by(word: params[:keyword])
+    if keyword.present?
+      @shops = keyword.shops.where(free_drink: params[:free_drink], free_food: params[:free_food], private_room: params[:private_room], course: params[:course], midnight: params[:midnight],
+                                   non_smoking: params[:non_smoking], wine: params[:wine], sake: params[:sake], cocktail: params[:cocktail], shochu: params[:shochu])
+    else
+      @word = params[:keyword]
+      @filter = params.permit(:free_drink, :free_food, :private_room, :course,
+                              :midnight, :non_smoking, :sake, :wine, :cocktail, :shochu)
+      @shops = HotpepperApi.search_shops(**search_params)
+      shops_create
+    end
     @shops = Kaminari.paginate_array(@shops).page(params[:page]).per(Shop::PAGE_NUMBER)
   end
 
   def detail
     @shop = Shop.find_by(unique_number: params[:id])
     unless @shop
-       @shop = Shop.create(
-        unique_number: params[:id],
-        name_of_shop: params[:name],
-        address: params[:address],
-        phone_number: params[:tel],
-        access: params[:access],
-        opening_hours: params[:open],
-        closing_day: params[:close],
-        budget: params[:budget],
-        number_of_seats: params[:capacity],
-        url: params[:urls],
-        logo_image: params[:logo_image],
-        image: params[:photo]
-      )
+      shops_create
     end
   end
 
@@ -42,5 +39,37 @@ class ShopsController < ApplicationController
           wine: "0",
           cocktail: "0",
           shochu: "0") # デフォルト値を設定
+  end
+
+  def shops_create
+    keyword = Keyword.create(word: @word)
+    @shops.each do |shop_data|
+      next if Shop.exists?(unique_number: shop_data["id"])
+
+      shop = Shop.create!(
+        unique_number: shop_data["id"],
+        name: shop_data["name"],
+        address: shop_data["address"],
+        phone_number: shop_data["tel"],
+        access: shop_data["access"],
+        closing_day: shop_data["close"],
+        budget: shop_data["budget"],
+        number_of_seats: shop_data["capacity"],
+        url: shop_data["urls"],
+        logo_image: shop_data["logo_image"],
+        image: shop_data["photo"],
+        free_drink: @filter[:free_drink],
+        free_food: @filter[:free_food],
+        private_room: @filter[:private_room],
+        course: @filter[:course],
+        midnight: @filter[:midnight],
+        non_smoking: @filter[:non_smoking],
+        sake: @filter[:sake],
+        wine: @filter[:wine],
+        cocktail: @filter[:cocktail],
+        shochu: @filter[:shochu]
+    )
+    ShopKeyword.create!(shop_id: shop.id, keyword_id: keyword.id)
+    end
   end
 end

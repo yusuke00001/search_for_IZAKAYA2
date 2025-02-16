@@ -1,7 +1,9 @@
 class Shop < ApplicationRecord
   has_many :bookmarks
+  has_many :shop_keywords
+  has_many :keywords, through: :shop_keywords
 
-  validates :name_of_shop, presence: true
+  validates :name, presence: true
   validates :unique_number, uniqueness: true
 
   PAGE_NUMBER = 10
