@@ -1,14 +1,15 @@
 class ShopsController < ApplicationController
   def index
+    params[:keyword] = "居酒屋" if params[:keyword].blank?
     keyword= Keyword.find_by(word: params[:keyword])
-    if keyword.present?
-      filter(keyword)
-    else
+    unless keyword.present?
+      @API_shop_data = HotpepperApi.search_shops(**search_params)
       word = params[:keyword]
-      @shops = HotpepperApi.search_shops(**search_params)
-      shops_create
-      filter(word)
+      keyword = Keyword.create!(word: word)
+      shops_create(keyword)
     end
+    @shops = keyword.shops.where("free_drink LIKE ? AND free_food LIKE ? AND private_room LIKE ? AND course LIKE ? AND midnight LIKE ? AND non_smoking LIKE ?",
+                                   "%#{params[:free_drink].presence || ""}%", "%#{params[:free_food].presence || ""}%", "%#{params[:private_room].presence || ""}%", "%#{params[:course].presence || ""}%", "%#{params[:midnight].presence || ""}%", "%#{params[:non_smoking].presence || ""}%")
     @shops = Kaminari.paginate_array(@shops).page(params[:page]).per(Shop::PAGE_NUMBER)
   end
 
@@ -25,12 +26,11 @@ class ShopsController < ApplicationController
     params.permit(:keyword)
           .to_h # ハッシュ化
           .symbolize_keys # キーを文字列からキーに変更
-          .merge(keyword: params[:keyword].presence || "居酒屋")
+          .merge(keyword: params[:keyword])
   end
 
-  def shops_create(word)
-    keyword = Keyword.create(word: word)
-    @shops.each do |shop_data|
+  def shops_create(keyword)
+    @API_shop_data.each do |shop_data|
       next if Shop.exists?(unique_number: shop_data["id"])
 
       shop = Shop.create!(
@@ -54,10 +54,5 @@ class ShopsController < ApplicationController
     )
     ShopKeyword.create!(shop_id: shop.id, keyword_id: keyword.id)
     end
-  end
-
-  def filter(keyword)
-    @shops = keyword.shops.where("free_drink LIKE ? AND free_food LIKE ? AND private_room LIKE ? AND course LIKE ? AND midnight LIKE ? AND non_smoking LIKE ?",
-                                   "%#{params[:free_drink]}%", "%#{params[:free_food]}%", "%#{params[:private_room]}%", "%#{params[:course]}%", "%#{params[:midnight]}%", "%#{params[:non_smoking]}%")
   end
 end
