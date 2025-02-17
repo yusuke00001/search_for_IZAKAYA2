@@ -2,12 +2,12 @@ class ShopsController < ApplicationController
   def index
     keyword= Keyword.find_by(word: params[:keyword])
     if keyword.present?
-      @shops = keyword.shops.where("free_drink LIKE ? AND free_food LIKE ? AND private_room LIKE ? AND course LIKE ? AND midnight LIKE ? AND non_smoking LIKE ?",
-                                   "%#{params[:free_drink]}%", "%#{params[:free_food]}%", "%#{params[:private_room]}%", "%#{params[:course]}%", "%#{params[:midnight]}%", "%#{params[:non_smoking]}%")
+      filter(keyword)
     else
-      @word = params[:keyword]
+      word = params[:keyword]
       @shops = HotpepperApi.search_shops(**search_params)
       shops_create
+      filter(word)
     end
     @shops = Kaminari.paginate_array(@shops).page(params[:page]).per(Shop::PAGE_NUMBER)
   end
@@ -22,16 +22,14 @@ class ShopsController < ApplicationController
   private
 
   def search_params
-    params.permit(:keyword, :free_drink, :free_food, :private_room, :course,
-                  :midnight, :non_smoking, :sake, :wine, :cocktail, :shochu)
+    params.permit(:keyword)
           .to_h # ハッシュ化
           .symbolize_keys # キーを文字列からキーに変更
-          .merge(check_box_params_convert)
           .merge(keyword: params[:keyword].presence || "居酒屋")
   end
 
-  def shops_create
-    keyword = Keyword.create(word: @word)
+  def shops_create(word)
+    keyword = Keyword.create(word: word)
     @shops.each do |shop_data|
       next if Shop.exists?(unique_number: shop_data["id"])
 
@@ -56,5 +54,10 @@ class ShopsController < ApplicationController
     )
     ShopKeyword.create!(shop_id: shop.id, keyword_id: keyword.id)
     end
+  end
+
+  def filter(keyword)
+    @shops = keyword.shops.where("free_drink LIKE ? AND free_food LIKE ? AND private_room LIKE ? AND course LIKE ? AND midnight LIKE ? AND non_smoking LIKE ?",
+                                   "%#{params[:free_drink]}%", "%#{params[:free_food]}%", "%#{params[:private_room]}%", "%#{params[:course]}%", "%#{params[:midnight]}%", "%#{params[:non_smoking]}%")
   end
 end
