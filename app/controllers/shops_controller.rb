@@ -9,7 +9,7 @@ class ShopsController < ApplicationController
       shops_create(keyword)
     end
     @shops = keyword.shops.where("free_drink LIKE ? AND free_food LIKE ? AND private_room LIKE ? AND course LIKE ? AND midnight LIKE ? AND non_smoking LIKE ?",
-                                   "%#{params[:free_drink].presence || ""}%", "%#{params[:free_food].presence || ""}%", "%#{params[:private_room].presence || ""}%", "%#{params[:course].presence || ""}%", "%#{params[:midnight].presence || ""}%", "%#{params[:non_smoking].presence || ""}%")
+                                   "%#{params[:free_drink]}%", "%#{params[:free_food]}%", "%#{params[:private_room]}%", "%#{params[:course]}%", "%#{params[:midnight]}%", "%#{params[:non_smoking]}%")
     @shops = Kaminari.paginate_array(@shops).page(params[:page]).per(Shop::PAGE_NUMBER)
   end
 
