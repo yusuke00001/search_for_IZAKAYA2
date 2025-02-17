@@ -1,13 +1,15 @@
 class ShopsController < ApplicationController
   def index
+    params[:keyword] = "居酒屋" if params[:keyword].blank?
     keyword= Keyword.find_by(word: params[:keyword])
-    if keyword.present?
-      @shops = keyword.shops
-    else
-      @word = params[:keyword]
-      @shops = HotpepperApi.search_shops(**search_params)
-      shops_create
+    unless keyword.present?
+      @API_shop_data = HotpepperApi.search_shops(**search_params)
+      word = params[:keyword]
+      keyword = Keyword.create!(word: word)
+      shops_create(keyword)
     end
+    @shops = keyword.shops.where("free_drink LIKE ? AND free_food LIKE ? AND private_room LIKE ? AND course LIKE ? AND midnight LIKE ? AND non_smoking LIKE ?",
+                                   "%#{params[:free_drink]}%", "%#{params[:free_food]}%", "%#{params[:private_room]}%", "%#{params[:course]}%", "%#{params[:midnight]}%", "%#{params[:non_smoking]}%")
     @shops = Kaminari.paginate_array(@shops).page(params[:page]).per(Shop::PAGE_NUMBER)
   end
 
@@ -21,26 +23,14 @@ class ShopsController < ApplicationController
   private
 
   def search_params
-    params.permit(:keyword, :free_drink, :free_food, :private_room, :course,
-                  :midnight, :non_smoking, :sake, :wine, :cocktail, :shochu)
+    params.permit(:keyword)
           .to_h # ハッシュ化
           .symbolize_keys # キーを文字列からキーに変更
-          .merge(keyword: params[:keyword].presence || "名古屋",
-          free_drink: "0",
-          free_food: "0",
-          private_room: "0",
-          course: "0",
-          midnight: "0",
-          non_smoking: "0",
-          sake: "0",
-          wine: "0",
-          cocktail: "0",
-          shochu: "0") # デフォルト値を設定
+          .merge(keyword: params[:keyword])
   end
 
-  def shops_create
-    keyword = Keyword.create(word: @word)
-    @shops.each do |shop_data|
+  def shops_create(keyword)
+    @API_shop_data.each do |shop_data|
       next if Shop.exists?(unique_number: shop_data["id"])
 
       shop = Shop.create!(
@@ -55,6 +45,12 @@ class ShopsController < ApplicationController
         url: shop_data["urls"],
         logo_image: shop_data["logo_image"],
         image: shop_data["photo"],
+        free_drink: shop_data["free_drink"],
+        free_food: shop_data["free_food"],
+        private_room: shop_data["private_room"],
+        course: shop_data["course"],
+        midnight: shop_data["midnight"],
+        non_smoking: shop_data["non_smoking"],
     )
     ShopKeyword.create!(shop_id: shop.id, keyword_id: keyword.id)
     end

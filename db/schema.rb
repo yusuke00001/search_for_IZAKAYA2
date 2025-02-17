@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_15_082939) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_16_033141) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -78,13 +78,12 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_15_082939) do
     t.string "unique_number"
     t.text "logo_image"
     t.json "image"
-    t.text "keywords"
-    t.integer "free_drink"
-    t.integer "free_food"
-    t.integer "private_room"
-    t.integer "course"
-    t.integer "midnight"
-    t.integer "non_smoking"
+    t.string "free_drink"
+    t.string "free_food"
+    t.string "private_room"
+    t.string "course"
+    t.string "midnight"
+    t.string "non_smoking"
     t.integer "wine"
     t.integer "sake"
     t.integer "cocktail"
