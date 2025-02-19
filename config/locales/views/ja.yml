@@ -40,6 +40,7 @@ ja:
       search: 検索
       title: 検索フォーム
       filter: 検索条件
+      next: 次の100件
     detail:
       title: 店舗詳細ページ
       name_of_shop: 店名
