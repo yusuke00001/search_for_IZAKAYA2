@@ -4,6 +4,7 @@
   </li>
 <% else %>
   <li class="page-item">
-    <%= link_to page, url, remote: remote, rel: page.rel, class: 'page-link' %>
+    <%= link_to page, url_for(request.query_parameters.except(:start).merge(page: page)), remote: remote, rel: page.rel, class: 'page-link' %>
   </li>
 <% end %>
+
