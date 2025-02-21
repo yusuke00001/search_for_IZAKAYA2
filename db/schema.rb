@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_20_031816) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_21_033632) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -75,15 +75,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_20_031816) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "shop_filters", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.integer "shop_id", null: false
-    t.bigint "filter_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["filter_id"], name: "index_shop_filters_on_filter_id"
-    t.index ["shop_id"], name: "index_shop_filters_on_shop_id"
-  end
-
   create_table "shop_keywords", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "shop_id", null: false
     t.bigint "keyword_id", null: false
@@ -108,6 +99,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_20_031816) do
     t.string "unique_number"
     t.text "logo_image"
     t.json "image"
+    t.bigint "filter_id"
+    t.index ["filter_id"], name: "fk_rails_2a05a1f881"
   end
 
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -129,8 +122,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_20_031816) do
   add_foreign_key "bookmarks", "users"
   add_foreign_key "keyword_filters", "filters", on_update: :cascade
   add_foreign_key "keyword_filters", "keywords", on_update: :cascade
-  add_foreign_key "shop_filters", "filters", on_update: :cascade
-  add_foreign_key "shop_filters", "shops", on_update: :cascade
   add_foreign_key "shop_keywords", "keywords", on_update: :cascade, on_delete: :cascade
   add_foreign_key "shop_keywords", "shops", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "shops", "filters", on_update: :cascade, on_delete: :cascade
 end
