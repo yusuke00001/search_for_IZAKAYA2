@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_16_033141) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_21_033632) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -48,6 +48,27 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_16_033141) do
     t.index ["user_id"], name: "fk_rails_c1ff6fa4ac"
   end
 
+  create_table "filters", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "free_drink"
+    t.integer "free_food"
+    t.integer "private_room"
+    t.integer "course"
+    t.integer "midnight"
+    t.integer "non_smoking"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["free_drink", "free_food", "private_room", "course", "midnight", "non_smoking"], name: "idx_on_free_drink_free_food_private_room_course_mid_6d361bf595", unique: true
+  end
+
+  create_table "keyword_filters", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "keyword_id", null: false
+    t.bigint "filter_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["filter_id"], name: "index_keyword_filters_on_filter_id"
+    t.index ["keyword_id"], name: "index_keyword_filters_on_keyword_id"
+  end
+
   create_table "keywords", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "word"
     t.datetime "created_at", null: false
@@ -55,8 +76,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_16_033141) do
   end
 
   create_table "shop_keywords", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "keyword_id", null: false
     t.integer "shop_id", null: false
+    t.bigint "keyword_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["keyword_id"], name: "index_shop_keywords_on_keyword_id"
@@ -78,16 +99,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_16_033141) do
     t.string "unique_number"
     t.text "logo_image"
     t.json "image"
-    t.string "free_drink"
-    t.string "free_food"
-    t.string "private_room"
-    t.string "course"
-    t.string "midnight"
-    t.string "non_smoking"
-    t.integer "wine"
-    t.integer "sake"
-    t.integer "cocktail"
-    t.integer "shochu"
+    t.bigint "filter_id"
+    t.index ["filter_id"], name: "fk_rails_2a05a1f881"
   end
 
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -107,6 +120,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_16_033141) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "bookmarks", "shops"
   add_foreign_key "bookmarks", "users"
+  add_foreign_key "keyword_filters", "filters", on_update: :cascade
+  add_foreign_key "keyword_filters", "keywords", on_update: :cascade
   add_foreign_key "shop_keywords", "keywords", on_update: :cascade, on_delete: :cascade
   add_foreign_key "shop_keywords", "shops", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "shops", "filters", on_update: :cascade, on_delete: :cascade
 end
