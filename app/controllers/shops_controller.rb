@@ -2,6 +2,7 @@ class ShopsController < ApplicationController
   def index
     params["keyword"] = "居酒屋" if params["keyword"].blank?
     params[:start] = params[:start].to_i
+    @keyword = Keyword.find_or_create_by!(word: params["keyword"])
     # Keyword_filtersテーブルにこのKeywordとFilterの組み合わせのデータがあるかどうかを確認したい
     keyword_filter = KeywordFilter.joins(:keyword, :filter)
                                   .find_by(keywords: { word: params[:keyword] },
@@ -16,7 +17,6 @@ class ShopsController < ApplicationController
     # params[:start] == 0(ページ遷移の時) または同じ条件で検索しているかつ次の100件じゃない時データベースから取得
     unless params[:start] == 0 || (params[:start] == 1 && keyword_filter.present?)
       @API_shop_data = HotpepperApi.search_shops(**search_params)
-      @keyword = Keyword.find_or_create_by!(word: params["keyword"])
       shops_create(@keyword)
       search_condition
     end
@@ -51,22 +51,7 @@ class ShopsController < ApplicationController
                  midnight: params[:midnight].presence || 0,
                  non_smoking: params[:non_smoking].presence || 0,
                  start: params[:start].to_i
-          ).tap { |search_params| }
-  end
-
-  def filter_params
-    params.permit(:keyword, :free_drink, :free_food, :private_room, :course, :midnight, :non_smoking)
-  end
-
-  def check_box_params_convert
-    {
-      free_drink: params[:free_drink] == "あり" ? 1 : 0,
-      free_food: params[:free_food] == "あり" ? 1 : 0,
-      private_room: params[:private_room] == "あり" ? 1 : 0,
-      course: params[:course] == "あり" ? 1 : 0,
-      midnight: params[:midnight] == "営業している" ? 1 : 0,
-      non_smoking: params[:non_smoking] == "なし" ? 0 : 1
-    }
+          )
   end
 
   def shops_create(keyword)
@@ -80,7 +65,7 @@ class ShopsController < ApplicationController
       non_smoking = shop_data["non_smoking"].to_s.include?("ない") ? 1 : 0
 
       # 条件にあうデータがfiltersテーブルにあったらfilterに格納、なかったら作成
-      @filter = Filter.find_or_create_by!(
+      filter = Filter.find_or_create_by!(
         free_drink: free_drink,
         free_food: free_food,
         private_room: private_room,
@@ -102,7 +87,6 @@ class ShopsController < ApplicationController
           logo_image: shop_data["logo_image"],
           image: shop_data["photo"]
         )
-        shop = Shop.find_by(unique_number: shop_data["id"])
       else
         shop = Shop.create!(
           unique_number: shop_data["id"],
@@ -116,7 +100,7 @@ class ShopsController < ApplicationController
           url: shop_data["urls"],
           logo_image: shop_data["logo_image"],
           image: shop_data["photo"],
-          filter_id: @filter.id
+          filter_id: filter.id
         )
       end
     # ShopsとKeywordsの組み合わせが存在しなかったら作成
