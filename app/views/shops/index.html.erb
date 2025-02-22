@@ -12,17 +12,9 @@
       <%= f.check_box :course, {}, "1", "0" %>
       <%= f.label :course, "コースあり" %>
       <%= f.check_box :midnight, {}, "1", "0" %>
-      <%= f.label :midnight, "23時以降も営業" %><br>
+      <%= f.label :midnight, "23時以降も営業" %>
       <%= f.check_box :non_smoking, {}, "1", "0" %>
       <%= f.label :non_smoking, "禁煙" %>
-      <%= f.check_box :wine %>
-      <%= f.label :wine, "ワイン充実" %>
-      <%= f.check_box :sake %>
-      <%= f.label :sake, "日本酒充実" %>
-      <%= f.check_box :cocktail %>
-      <%= f.label :cocktail, "カクテル充実" %>
-      <%= f.check_box :shochu %>
-      <%= f.label :shochu, "焼酎" %><br>
     </div>
     <div class="search">
     <%= f.text_field :keyword, placeholder: "検索キーワード" %>
@@ -46,13 +38,13 @@
         </div>
       </div>
     <% end %>
-    <div class="pagination"> 
-      <div class="page">
-        <%= paginate @shops %>
-      </div>
-      <% if @shops.last_page? %>
-        <%= link_to t('.next'),shops_path(start: @shops.current_page.to_i * 10 + 1, keyword: @keyword.word, page: @shops.current_page)%>
-      <% end %>
-    </div>
+    <%= link_to t('.first_page'), shops_path(page: @first_page, keyword: @keyword.word ) if @first_page %>
+    <%= link_to t('.previous'), shops_path(page: @previous_page, keyword: @keyword.word) if @previous_page  %>
+    <%= @current_page %>
+    <%= link_to t('.next'), shops_path(page: @next_page, keyword: @keyword.word) if @next_page %>
+    <%= link_to t('.last_page'), shops_path(page: @last_page, keyword: @keyword.word) if @last_page %>
+    <% if @current_page * 10 >= @total_shops %>
+      <%= link_to t('.next100'), shops_path(start: @current_page * 10 + 1, page: @current_page + 1, keyword: @keyword.word) %>
+    <% end %>
   </div>
 </div>

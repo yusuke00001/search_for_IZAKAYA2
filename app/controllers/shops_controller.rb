@@ -34,7 +34,14 @@ class ShopsController < ApplicationController
     @shops = Shop.joins(:filter, :keywords)
                     .where(filters: { id: filters.ids },
                            keywords: { word: params["keyword"] })
-    @shops = Kaminari.paginate_array(@shops).page(params[:page]).per(Shop::PAGE_NUMBER)
+
+    @current_page = (params[:page].to_i > 0) ? params[:page].to_i : 1
+    @total_shops = @shops.count
+    @shops = @shops.offset((@current_page - 1) * Shop::PAGE_NUMBER).limit(Shop::PAGE_NUMBER)
+    @previous_page = @current_page > 1 ? @current_page - 1 : nil
+    @next_page = @total_shops > @current_page * Shop::PAGE_NUMBER ? @current_page + 1 : nil
+    @first_page = @current_page > 1 ?  1 : nil
+    @last_page = @total_shops > @current_page * Shop::PAGE_NUMBER ? @total_shops / 10  : nil
   end
 
   private
