@@ -43,7 +43,7 @@ class ShopsController < ApplicationController
     @next_page = @total_shops > @current_page * Shop::PAGE_NUMBER ? @current_page + 1 : nil
     @first_page = @current_page > 1 ?  1 : nil
     @last_page = @total_shops > @current_page * Shop::PAGE_NUMBER ? @total_page : nil
-    @start_page = [ @current_page - 3, 1 ].max
+    @start_page = @current_page > @total_page - 4 ? @total_page - 6 : [ @current_page - 3, 1 ].max
     @final_page = @current_page < 5 ? 7 : [ @current_page + 3, @total_page ].min
   end
 
