@@ -40,11 +40,6 @@ ja:
       search: 検索
       title: 検索フォーム
       filter: 検索条件
-      next: 次ページへ
-      previous: 前ページへ
-      next100: 次の100件
-      first_page: 最初のページへ
-      last_page: 最後のページへ
     detail:
       title: 店舗詳細ページ
       name_of_shop: 店名
@@ -57,8 +52,12 @@ ja:
       number_of_seats: 席数
       url: ホームページ
       back: 検索ページに戻る
-      
-
+    shop:
+      next: ">"
+      previous: "<"
+      next100: 次の100件
+      first_page: "<<"
+      last_page: ">>"
   views:
     pagination:
       first: "<<"

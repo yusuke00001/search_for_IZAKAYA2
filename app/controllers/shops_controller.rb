@@ -34,14 +34,17 @@ class ShopsController < ApplicationController
     @shops = Shop.joins(:filter, :keywords)
                     .where(filters: { id: filters.ids },
                            keywords: { word: params["keyword"] })
-
+    # ページネーション
     @current_page = (params[:page].to_i > 0) ? params[:page].to_i : 1
     @total_shops = @shops.count
+    @total_page = (@total_shops.to_f / 10).ceil
     @shops = @shops.offset((@current_page - 1) * Shop::PAGE_NUMBER).limit(Shop::PAGE_NUMBER)
     @previous_page = @current_page > 1 ? @current_page - 1 : nil
     @next_page = @total_shops > @current_page * Shop::PAGE_NUMBER ? @current_page + 1 : nil
     @first_page = @current_page > 1 ?  1 : nil
-    @last_page = @total_shops > @current_page * Shop::PAGE_NUMBER ? @total_shops / 10  : nil
+    @last_page = @total_shops > @current_page * Shop::PAGE_NUMBER ? @total_page : nil
+    @start_page = [ @current_page - 3, 1 ].max
+    @final_page = @current_page < 5 ? 7 : [ @current_page + 3, @total_page ].min
   end
 
   private

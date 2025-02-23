@@ -1,3 +1,0 @@
-<li class="page-item">
-  <%= link_to_unless current_page.first?, raw(t 'views.pagination.first'), url_for(request.query_parameters.except(:start).merge(page: 1)) , remote: remote, class: 'page-link' %>
-</li>
