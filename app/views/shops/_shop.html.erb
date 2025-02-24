@@ -1,0 +1,56 @@
+<div class="card-style">
+  <% @shops.each do |shop| %>
+    <div class="container">
+      <div class="image">
+        <%= image_tag shop["logo_image"], class:"image"%>
+      </div>
+      <div class="shops">
+        <p class="shops-name"><%=link_to shop["name"], shops_detail_path(shop)%> <%#店舗名%></p>
+        <p><%= shop["address"]%> <%#住所%></p>
+        <p>¥<%= shop["budget"]["name"]%> <%#平均予算%></p>
+      </div>
+      <div class="icon">
+      <i class="fa-solid fa-heart fa-3x icon"></i>
+      </div>
+    </div>
+  <% end %>
+  <div class="pagination">
+    <% if @first_page%>
+      <div class="page_link">
+        <%= link_to t('.first_page'), shops_path(page: @first_page, keyword: @keyword.word, free_drink: @filter_conditions[:free_drink], free_food: @filter_conditions[:free_food], private_room: @filter_conditions[:private_room], course: @filter_conditions[:course], midnight: @filter_conditions[:midnight], non_smoking: @filter_conditions[:non_smoking] ), data: { turbo_frame: "_top" },class:"no-underline"  %>
+      </div>
+    <% end %>
+    <% if @previous_page%>
+      <div class="page_link">
+        <%= link_to t('.previous'), shops_path(page: @previous_page, keyword: @keyword.word, free_drink: @filter_conditions[:free_drink], free_food: @filter_conditions[:free_food], private_room: @filter_conditions[:private_room], course: @filter_conditions[:course], midnight: @filter_conditions[:midnight], non_smoking: @filter_conditions[:non_smoking]), data: { turbo_frame: "_top" },class:"no-underline"  %>
+      </div>
+    <% end %>
+
+    <% (@start_page..@final_page).each do |page| %>
+      <% if page != @current_page %>
+        <div class="page_link">
+          <%= link_to page, shops_path(page: page, keyword: @keyword.word, free_drink: @filter_conditions[:free_drink], free_food: @filter_conditions[:free_food], private_room: @filter_conditions[:private_room], course: @filter_conditions[:course], midnight: @filter_conditions[:midnight], non_smoking: @filter_conditions[:non_smoking]), data: { turbo_frame: "_top" },class:"no-underline"  %>
+        </div>
+      <% else %>
+        <div class="current_page">
+          <%= @current_page %>
+        </div>
+      <% end %>
+    <% end %>
+    <% if @next_page %>
+      <div class="page_link">
+        <%= link_to t('.next'), shops_path(page: @next_page, keyword: @keyword.word, free_drink: @filter_conditions[:free_drink], free_food: @filter_conditions[:free_food], private_room: @filter_conditions[:private_room], course: @filter_conditions[:course], midnight: @filter_conditions[:midnight], non_smoking: @filter_conditions[:non_smoking]), data: { turbo_frame: "_top" },class:"no-underline" %>
+      </div>
+    <% end %>
+    <% if @last_page %>
+      <div class="page_link">
+        <%= link_to t('.last_page'), shops_path(page: @last_page, keyword: @keyword.word, free_drink: @filter_conditions[:free_drink], free_food: @filter_conditions[:free_food], private_room: @filter_conditions[:private_room], course: @filter_conditions[:course], midnight: @filter_conditions[:midnight], non_smoking: @filter_conditions[:non_smoking]), data: { turbo_frame: "_top" },class:"no-underline"  %>
+      </div>
+    <% end %>
+    <% if @current_page * 10 >= @total_shops %>
+      <div class="next-100">    
+        <%= link_to t('.next100'), shops_path(start: @current_page * 10 + 1, page: @current_page + 1, keyword: @keyword.word, free_drink: @filter_conditions[:free_drink], free_food: @filter_conditions[:free_food], private_room: @filter_conditions[:private_room], course: @filter_conditions[:course], midnight: @filter_conditions[:midnight], non_smoking: @filter_conditions[:non_smoking]), data: { turbo_frame: "_top" },class:"no-underline"  %>
+      </div>
+    <% end %>
+  </div>
+</div>

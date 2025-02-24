@@ -1,3 +1,0 @@
-<li class="page-item">
-<%= link_to_unless current_page.last?, raw(t('views.pagination.next')), url_for(request.query_parameters.except(:start).merge(page: current_page + 1)), rel: 'next', remote: remote, class: 'page-link' %>
-</li>

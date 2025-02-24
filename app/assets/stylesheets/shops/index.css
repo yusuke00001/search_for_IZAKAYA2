@@ -27,7 +27,7 @@
 .filter {
   margin-left: 30em;
   margin: 0 auto;
-  width: 600px;
+  width: 650px;
   border: 1px solid #ddd;
   border-radius: 8px;
   box-shadow: 0 4px 9px rgba(0,0,0,0.1);
@@ -62,9 +62,38 @@
 .pagination {
   display: flex;
   justify-content: space-between;
+  font-size: 15px;
+  margin: 20px;
+  
 }
-
 .page {
   margin: 0 auto;
+}
+
+.current_page {
+  padding-top: 4px;
+  font-weight: bold;
+  color: white;
+  background: #007bff;
+  width: 35px;
+  height: 35px;
+}
+.page_link{
+  padding-top: 4px;
+  color: blue;
+  background: #FFF;
+  border: 1px solid #ddd;
+  width: 35px;
+  height: 35px;
+}
+
+.next-100{
+  padding: 5px 10px;
+  color: blue;
+  background: #FFF;
+  border: 1px solid #ddd;
+}
+.no-underline {
+  text-decoration: none;
 }
 }

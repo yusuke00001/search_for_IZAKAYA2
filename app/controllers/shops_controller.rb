@@ -21,20 +21,30 @@ class ShopsController < ApplicationController
       search_condition
     end
 
-    filter_conditions = {}
-    filter_conditions[:free_drink] = 1 if params["free_drink"].to_i == 1
-    filter_conditions[:free_food] = 1 if params["free_food"].to_i == 1
-    filter_conditions[:private_room] = 1 if params["private_room"].to_i == 1
-    filter_conditions[:course] = 1 if params["course"].to_i == 1
-    filter_conditions[:midnight] = 1 if params["midnight"].to_i == 1
-    filter_conditions[:non_smoking] = 1 if params["non_smoking"].to_i == 1
+    @filter_conditions = {}
+    @filter_conditions[:free_drink] = 1 if params["free_drink"].to_i == 1
+    @filter_conditions[:free_food] = 1 if params["free_food"].to_i == 1
+    @filter_conditions[:private_room] = 1 if params["private_room"].to_i == 1
+    @filter_conditions[:course] = 1 if params["course"].to_i == 1
+    @filter_conditions[:midnight] = 1 if params["midnight"].to_i == 1
+    @filter_conditions[:non_smoking] = 1 if params["non_smoking"].to_i == 1
 
-    filters = Filter.where(filter_conditions)
+    filters = Filter.where(@filter_conditions)
 
     @shops = Shop.joins(:filter, :keywords)
                     .where(filters: { id: filters.ids },
                            keywords: { word: params["keyword"] })
-    @shops = Kaminari.paginate_array(@shops).page(params[:page]).per(Shop::PAGE_NUMBER)
+    # ページネーション
+    @current_page = (params[:page].to_i > 0) ? params[:page].to_i : 1
+    @total_shops = @shops.count
+    @total_page = (@total_shops.to_f / 10).ceil
+    @shops = @shops.offset((@current_page - 1) * Shop::PAGE_NUMBER).limit(Shop::PAGE_NUMBER)
+    @previous_page = @current_page > 1 ? @current_page - 1 : nil
+    @next_page = @total_page > @current_page ? @current_page + 1 : nil
+    @first_page = @current_page > 1 ?  1 : nil
+    @last_page = @total_page > @current_page ? @total_page : nil
+    @start_page = @current_page > @total_page - 4 ? @total_page - 6 : [ @current_page - 3, 1 ].max
+    @final_page = @current_page < 5 ? 7 : [ @current_page + 3, @total_page ].min
   end
 
   private
