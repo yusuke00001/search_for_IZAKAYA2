@@ -47,6 +47,10 @@ class ShopsController < ApplicationController
     @final_page = @current_page < 5 ? 7 : [ @current_page + 3, @total_page ].min
   end
 
+  def show
+    @shop = Shop.find(params[:id])
+  end
+
   private
 
   def search_params
