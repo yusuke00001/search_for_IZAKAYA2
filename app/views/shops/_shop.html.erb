@@ -17,12 +17,12 @@
   <div class="pagination">
     <% if @first_page%>
       <div class="page_link">
-        <%= link_to t('.first_page'), shops_path(page: @first_page, keyword: @keyword.word ), data: { turbo_frame: "shops_data" },class:"no-underline"  %>
+        <%= link_to t('.first_page'), shops_path(page: @first_page, keyword: @keyword.word ), data: { turbo_frame: "_top" },class:"no-underline"  %>
       </div>
     <% end %>
     <% if @previous_page%>
       <div class="page_link">
-        <%= link_to t('.previous'), shops_path(page: @previous_page, keyword: @keyword.word), data: { turbo_frame: "shops_data" },class:"no-underline"  %>
+        <%= link_to t('.previous'), shops_path(page: @previous_page, keyword: @keyword.word), data: { turbo_frame: "_top" },class:"no-underline"  %>
       </div>
     <% end %>
 
@@ -39,7 +39,7 @@
     <% end %>
     <% if @next_page %>
       <div class="page_link">
-        <%= link_to t('.next'), shops_path(page: @next_page, keyword: @keyword.word), data: { turbo_frame: "shops_data" },class:"no-underline" %>
+        <%= link_to t('.next'), shops_path(page: @next_page, keyword: @keyword.word), data: { turbo_frame: "_top" },class:"no-underline" %>
       </div>
     <% end %>
     <% if @last_page %>

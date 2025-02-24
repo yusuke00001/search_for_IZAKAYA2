@@ -21,7 +21,7 @@
     <%= f.hidden_field :start, value: 1 %>
     <%= f.submit t('.search') %>
   <% end %>
-  <turbo-frame id ="shops_data">
+  <turbo-frame>
     <%= render partial: 'shop', colletion: @shops %>
   </turbo-frame>
 </div>
