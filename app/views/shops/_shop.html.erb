@@ -2,11 +2,11 @@
   <% @shops.each do |shop| %>
     <div class="container">
       <div class="image">
-        <%= image_tag shop["logo_image"], class:"image"%>
+        <%= image_tag shop.logo_image, class:"image"%>
       </div>
       <div class="shops">
-        <p class="shops-name"><%=link_to shop["name"], shops_detail_path(shop)%> <%#店舗名%></p>
-        <p><%= shop["address"]%> <%#住所%></p>
+        <p class="shops-name"><%=link_to shop.name , shop_path(shop), data: { turbo_frame: "_top" }%> <%#店舗名%></p>
+        <p><%= shop.address%> <%#住所%></p>
         <p>¥<%= shop["budget"]["name"]%> <%#平均予算%></p>
       </div>
       <div class="icon">
