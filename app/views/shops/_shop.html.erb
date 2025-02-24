@@ -48,7 +48,7 @@
       </div>
     <% end %>
     <% if @current_page * 10 >= @total_shops %>
-      <div class="page_link">    
+      <div class="next-100">    
         <%= link_to t('.next100'), shops_path(start: @current_page * 10 + 1, page: @current_page + 1, keyword: @keyword.word), data: { turbo_frame: "_top" },class:"no-underline"  %>
       </div>
     <% end %>
