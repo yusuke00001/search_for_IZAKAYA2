@@ -65,7 +65,7 @@
         <%= t('.url') %>
       </div>
       <div class="data">
-        <% if @shop.url.present? && @shop.url.match?(/\Ahttps?:\/\//) %>
+        <% if @shop.url.present? && URI.parse(@shop.url).is_a?(URI::HTTP) %>
           <%= link_to @shop.url, @shop.url, target: "_blank", rel: "noopener noreferrer" %>
         <% end %>
       </div>
