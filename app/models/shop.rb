@@ -6,7 +6,6 @@ class Shop < ApplicationRecord
 
   validates :name, presence: true
   validates :unique_number, uniqueness: true
-  validates :url, format: { with: /\Ahttps?:\/\/[\S]+\z/ }
 
   PAGE_NUMBER = 10
 end
