@@ -65,7 +65,7 @@
         <%= t('.url') %>
       </div>
       <div class="data">
-        <%= link_to @shop.url, @shop.url %>
+        <%= link_to @shop.url, @shop.url if @shops.url.presdent? %>
       </div>
     </div>
   </div>
