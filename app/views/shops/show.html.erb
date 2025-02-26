@@ -65,8 +65,8 @@
         <%= t('.url') %>
       </div>
       <div class="data">
-        <% safe_url = CGI.escapeHTML(@shop.url) %>
-        <%= link_to safe_url, safe_url, target: "_blank", rel: "noopener noreferrer" %>
+        <% url = CGI.escapeHTML(@shop.url) %>
+        <%= link_to url, url, target: "_blank", rel: "noopener noreferrer" %>
       </div>
     </div>
   </div>
