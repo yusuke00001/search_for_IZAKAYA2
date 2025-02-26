@@ -79,46 +79,17 @@ class ShopsController < ApplicationController
       non_smoking = shop_data["non_smoking"].to_s.include?("ない") ? 1 : 0
 
       # 条件にあうデータがfiltersテーブルにあったらfilterに格納、なかったら作成
-      filter = Filter.find_or_create_by!(
-        free_drink: free_drink,
-        free_food: free_food,
-        private_room: private_room,
-        course: course,
-        midnight: midnight,
-        non_smoking: non_smoking
-      )
+      filter = Filter.filter_create(free_drink, free_food, private_room, course, midnight, non_smoking)
+
       shop = Shop.find_by(unique_number: shop_data["id"])
+
       if shop
-        shop.update!(
-          name: shop_data["name"],
-          address: shop_data["address"],
-          phone_number: shop_data["tel"],
-          access: shop_data["access"],
-          closing_day: shop_data["close"],
-          budget: shop_data.dig("budget", "average"),
-          number_of_seats: shop_data["capacity"],
-          url: shop_data.dig("urls", "pc"),
-          logo_image: shop_data["logo_image"],
-          image: shop_data.dig("photo", "pc", "l")
-        )
+        Shop.update_data(shop_data)
       else
-        shop = Shop.create!(
-          unique_number: shop_data["id"],
-          name: shop_data["name"],
-          address: shop_data["address"],
-          phone_number: shop_data["tel"],
-          access: shop_data["access"],
-          closing_day: shop_data["close"],
-          budget: shop_data.dig("budget", "average"),
-          number_of_seats: shop_data["capacity"],
-          url: shop_data.dig("urls", "pc"),
-          logo_image: shop_data["logo_image"],
-          image: shop_data.dig("photo", "pc", "l"),
-          filter_id: filter.id
-        )
+        shop = Shop.create_data(shop_data, filter)
       end
     # ShopsとKeywordsの組み合わせが存在しなかったら作成
-    ShopKeyword.find_or_create_by!(shop_id: shop.id, keyword_id: keyword.id)
+    Shop_keyword.find_or_create_association
     end
   end
 
@@ -132,8 +103,8 @@ class ShopsController < ApplicationController
     search_condition[:midnight] = params[:midnight].to_i
     search_condition[:non_smoking] = params[:smoking].to_i
 
-    filter = Filter.find_or_create_by!(search_condition)
+    Filter.find_or_create(search_condition)
     # KeywordsとFiltersの組み合わせが存在しなかったら作成
-    KeywordFilter.find_or_create_by!(keyword_id: @keyword.id, filter_id: filter.id)
+    Keyword_filter.find_or_create_association(@keyword, filter)
   end
 end

@@ -8,4 +8,35 @@ class Shop < ApplicationRecord
   validates :unique_number, uniqueness: true
 
   PAGE_NUMBER = 10
+
+  def self.create_data(shop_data, filter)
+    create!(
+      unique_number: shop_data["id"],
+      name: shop_data["name"],
+      address: shop_data["address"],
+      phone_number: shop_data["tel"],
+      access: shop_data["access"],
+      closing_day: shop_data["close"],
+      budget: shop_data.dig("budget", "average"),
+      number_of_seats: shop_data["capacity"],
+      url: shop_data.dig("urls", "pc"),
+      logo_image: shop_data["logo_image"],
+      image: shop_data.dig("photo", "pc", "l"),
+      filter_id: filter.id
+    )
+  end
+  def self.update_data(shop_data)
+    update!(
+      name: shop_data["name"],
+      address: shop_data["address"],
+      phone_number: shop_data["tel"],
+      access: shop_data["access"],
+      closing_day: shop_data["close"],
+      budget: shop_data.dig("budget", "average"),
+      number_of_seats: shop_data["capacity"],
+      url: shop_data.dig("urls", "pc"),
+      logo_image: shop_data["logo_image"],
+      image: shop_data.dig("photo", "pc", "l")
+    )
+  end
 end
