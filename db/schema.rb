@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_21_033632) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_24_083749) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -57,7 +57,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_21_033632) do
     t.integer "non_smoking"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["free_drink", "free_food", "private_room", "course", "midnight", "non_smoking"], name: "idx_on_free_drink_free_food_private_room_course_mid_6d361bf595", unique: true
+    t.integer "wine"
+    t.integer "sake"
+    t.integer "cocktail"
+    t.integer "shochu"
+    t.index ["free_drink", "free_food", "private_room", "course", "midnight", "non_smoking", "wine", "sake", "cocktail", "shochu"], name: "idx_on_free_drink_free_food_private_room_course_mid_ade071a3ac", unique: true
   end
 
   create_table "keyword_filters", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -93,12 +97,12 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_21_033632) do
     t.string "access"
     t.string "opening_hours"
     t.string "closing_day"
-    t.json "budget"
+    t.string "budget"
     t.string "number_of_seats"
-    t.json "url"
+    t.text "url"
     t.string "unique_number"
     t.text "logo_image"
-    t.json "image"
+    t.text "image"
     t.bigint "filter_id"
     t.index ["filter_id"], name: "fk_rails_2a05a1f881"
   end

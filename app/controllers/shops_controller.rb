@@ -95,11 +95,11 @@ class ShopsController < ApplicationController
           phone_number: shop_data["tel"],
           access: shop_data["access"],
           closing_day: shop_data["close"],
-          budget: shop_data["budget"],
+          budget: shop_data.dig("budget", "average"),
           number_of_seats: shop_data["capacity"],
-          url: shop_data["urls"],
+          url: shop_data.dig("urls", "pc"),
           logo_image: shop_data["logo_image"],
-          image: shop_data["photo"]
+          image: shop_data.dig("photo", "pc", "l")
         )
       else
         shop = Shop.create!(
@@ -109,11 +109,11 @@ class ShopsController < ApplicationController
           phone_number: shop_data["tel"],
           access: shop_data["access"],
           closing_day: shop_data["close"],
-          budget: shop_data["budget"],
+          budget: shop_data.dig("budget", "average"),
           number_of_seats: shop_data["capacity"],
-          url: shop_data["urls"],
+          url: shop_data.dig("urls", "pc"),
           logo_image: shop_data["logo_image"],
-          image: shop_data["photo"],
+          image: shop_data.dig("photo", "pc", "l"),
           filter_id: filter.id
         )
       end
