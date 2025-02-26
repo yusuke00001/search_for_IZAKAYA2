@@ -2,7 +2,7 @@
   <div class="card-style">
     <p class="title"><strong><%= @shop.name %></strong></p>
     <div class="image">
-      <%= image_tag @shop.image["pc"]["l"] %>
+      <%= image_tag @shop.image %>
     </div>
     <div class="shops-detail">
       <div class="label">
@@ -49,7 +49,7 @@
         <%= t('.budget') %>
       </div>
       <div class="data">
-        ¥<%= @shop.budget["average"] %>
+        ¥<%= @shop.budget %>
       </div>
     </div>
     <div class="shops-detail">
@@ -65,7 +65,7 @@
         <%= t('.url') %>
       </div>
       <div class="data">
-        <%=link_to @shop.url["pc"], @shop.url["pc"] %>
+        <%=link_to @shop.url, @shop.url %>
       </div>
     </div>
   </div>
