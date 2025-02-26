@@ -65,8 +65,12 @@
         <%= t('.url') %>
       </div>
       <div class="data">
-        <% if @shop.url.present? && URI.parse(@shop.url).is_a?(URI::HTTP) %>
-          <%= link_to @shop.url, @shop.url, target: "_blank", rel: "noopener noreferrer" %>
+        <% if @shop.url.present? %>
+          <% parsed_url = URI.parse(@shop.url) rescue nil %>
+          <% if parsed_url.is_a?(URI::HTTP) || parsed_url.is_a?(URI::HTTPS) %>
+            <% safe_url = CGI.escapeHTML(@shop.url) %>
+            <%= link_to safe_url, safe_url, target: "_blank", rel: "noopener noreferrer" %>
+          <% end %>
         <% end %>
       </div>
     </div>
