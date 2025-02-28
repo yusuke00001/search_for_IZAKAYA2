@@ -3,17 +3,17 @@
   <%= form_with url: shops_path, method: :get do |f| %>
     <div class="filter">
       <strong><%= t('.filter')%></strong><br>
-      <%= f.check_box :free_drink,{}, "1", "0" %>
+      <%= f.check_box :free_drink,{ include_hidden: false }, "1" %>
       <%= f.label :free_drink, "飲み放題あり" %>
-      <%= f.check_box :free_food, {}, "1" , "0" %>
+      <%= f.check_box :free_food, { include_hidden: false }, "1" %>
       <%= f.label :free_food, "食べ放題あり" %>
-      <%= f.check_box :private_room, {}, "1", "0" %>
+      <%= f.check_box :private_room, { include_hidden: false }, "1" %>
       <%= f.label :private_room, "個室あり" %>
-      <%= f.check_box :course, {}, "1", "0" %>
+      <%= f.check_box :course, { include_hidden: false }, "1" %>
       <%= f.label :course, "コースあり" %>
-      <%= f.check_box :midnight, {}, "1", "0" %>
+      <%= f.check_box :midnight, { include_hidden: false }, "1" %>
       <%= f.label :midnight, "23時以降も営業" %>
-      <%= f.check_box :non_smoking, {}, "1", "0" %>
+      <%= f.check_box :non_smoking, { include_hidden: false }, "1" %>
       <%= f.label :non_smoking, "禁煙" %>
     </div>
     <div class="search">

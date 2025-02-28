@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_24_083749) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_28_033115) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -49,12 +49,12 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_24_083749) do
   end
 
   create_table "filters", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.integer "free_drink"
-    t.integer "free_food"
-    t.integer "private_room"
-    t.integer "course"
-    t.integer "midnight"
-    t.integer "non_smoking"
+    t.boolean "free_drink", default: false, null: false
+    t.boolean "free_food", default: false, null: false
+    t.boolean "private_room", default: false, null: false
+    t.boolean "course", default: false, null: false
+    t.boolean "midnight", default: false, null: false
+    t.boolean "non_smoking", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "wine"
