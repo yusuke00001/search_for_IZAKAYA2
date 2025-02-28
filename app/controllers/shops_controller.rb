@@ -1,7 +1,7 @@
 class ShopsController < ApplicationController
   def index
     keyword = params[:keyword].presence || "居酒屋"
-    params[:start] = params[:start].to_i
+    params[:record_start_index] = params[:record_start_index].to_i
     @keyword = Keyword.find_or_create_keyword(keyword)
     filter_condition = {
       free_drink: params[:free_drink].to_i,
@@ -15,7 +15,7 @@ class ShopsController < ApplicationController
     # Keyword_filtersテーブルにこのKeywordとFilterの組み合わせのデータがあるかどうかを確認したい
     keyword_filter = KeywordFilter.find_association(@keyword, filter)
     # params[:start] == 0(ページ遷移の時) または同じ条件で検索しているかつ次の100件じゃない時データベースから取得
-    unless params[:start] == 0 || (params[:start] == 1 && keyword_filter.present?)
+    unless params[:record_start_index] == 0 || (params[:record_start_index] == 1 && keyword_filter.present?)
       @API_shop_data = HotpepperApi.search_shops(**search_params(keyword))
       shops_create(@keyword)
       KeywordFilter.find_or_create_association(@keyword, filter)
@@ -53,7 +53,7 @@ class ShopsController < ApplicationController
   private
 
   def search_params(keyword)
-    params.permit(:keyword, :start, :free_drink, :free_food, :private_room, :course, :midnight, :non_smoking)
+    params.permit(:keyword, :record_start_index, :free_drink, :free_food, :private_room, :course, :midnight, :non_smoking)
           .to_h # ハッシュ化
           .symbolize_keys # キーを文字列からキーに変更
           .merge(keyword: keyword,
@@ -63,7 +63,7 @@ class ShopsController < ApplicationController
                  course: params[:course].presence || 0,
                  midnight: params[:midnight].presence || 0,
                  non_smoking: params[:non_smoking].presence || 0,
-                 start: params[:start].to_i
+                 record_start_index: params[:record_start_index].to_i
           )
   end
 
