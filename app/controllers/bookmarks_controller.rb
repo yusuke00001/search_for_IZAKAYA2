@@ -1,4 +1,7 @@
 class BookmarksController < ApplicationController
+  def index
+    @shops = Shop.joins(:bookmarks).where(bookmarks: { user_id: current_user.id })
+  end
   def create
     bookmark = Bookmark.new(bookmark_params)
     if bookmark.save
