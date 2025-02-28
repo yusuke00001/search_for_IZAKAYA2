@@ -5,17 +5,7 @@ class Filter < ApplicationRecord
 
   validates :free_drink, uniqueness: { scope: [ :free_food, :private_room, :course, :midnight, :non_smoking ] }
 
-  def self.filter_find_or_create
-    Filter.find_or_create_by!(search_condition)
-  end
-  def self.filter_create(free_drink, free_food, private_room, course, midnight, non_smoking)
-    Filter.find_or_create_by!(
-        free_drink: free_drink,
-        free_food: free_food,
-        private_room: private_room,
-        course: course,
-        midnight: midnight,
-        non_smoking: non_smoking
-    )
+  def self.find_or_create(filter)
+    find_or_create_by!(filter)
   end
 end
