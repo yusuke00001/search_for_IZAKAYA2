@@ -3,9 +3,21 @@
 .title {
   text-align: center;
   margin-top: 10px;
+  margin-left: 50px;
   font-size: 45px;
-  border-bottom: 1px solid #ccc;
   padding: 10px;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 30px;
+}
+
+.icon {
+  margin-left: 40px;
+  color: pink;
 }
 
 .image {

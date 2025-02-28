@@ -3,7 +3,7 @@ class BookmarksController < ApplicationController
     bookmark = Bookmark.new(bookmark_params)
     if bookmark.save
       flash[:notice] = "お気に入り登録しました"
-      redirect_to shops_path
+      redirect_back fallback_location: shops_path
     end
   end
 
@@ -11,7 +11,7 @@ class BookmarksController < ApplicationController
     bookmark = Bookmark.find(params[:id])
     bookmark.destroy
     flash[:alert] = "お気に入りを解除しました"
-    redirect_to shops_path
+    redirect_back fallback_location: shops_path
   end
 
   private
