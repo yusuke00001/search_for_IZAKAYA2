@@ -1,6 +1,23 @@
 <div class="shops-show">  
   <div class="card-style">
-    <p class="title"><strong><%= @shop.name %></strong></p>
+    <div class="container">
+      <div class="title">
+        <strong><%= @shop.name %></strong>
+      </div>
+      <% if bookmark = Bookmark.find_by(shop_id: @shop.id, user_id: current_user.id) %>
+          <%= link_to bookmark_path(bookmark), data: { turbo_method: :delete } do %>
+            <div class="icon">
+              <i class="fa-solid fa-heart fa-3x"></i>
+            </div>
+          <% end %>
+        <% else %>
+          <%= link_to bookmarks_path(shop_id: @shop.id, user_id: current_user.id), data: { turbo_method: :post } do %>
+            <div class="icon">
+              <i class="fa-regular fa-heart fa-3x"></i>
+            </div>
+          <% end %>
+        <% end %>
+    </div>
     <div class="image">
       <%= image_tag @shop.image %>
     </div>
