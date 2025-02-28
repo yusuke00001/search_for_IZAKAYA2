@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_28_033115) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_28_043803) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -57,11 +57,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_28_033115) do
     t.boolean "non_smoking", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "wine"
-    t.integer "sake"
-    t.integer "cocktail"
-    t.integer "shochu"
-    t.index ["free_drink", "free_food", "private_room", "course", "midnight", "non_smoking", "wine", "sake", "cocktail", "shochu"], name: "idx_on_free_drink_free_food_private_room_course_mid_ade071a3ac", unique: true
+    t.index ["free_drink", "free_food", "private_room", "course", "midnight", "non_smoking"], name: "idx_on_free_drink_free_food_private_room_course_mid_ade071a3ac", unique: true
   end
 
   create_table "keyword_filters", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
