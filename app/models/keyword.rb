@@ -5,4 +5,8 @@ class Keyword < ApplicationRecord
   has_many :shops, through: :shop_keywords, dependent: :destroy
 
   validates :word, uniqueness: true
+
+  def self.find_or_create_keyword(keyword)
+    find_or_create_by!(word: keyword)
+  end
 end
