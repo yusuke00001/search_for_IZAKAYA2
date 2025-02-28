@@ -12,7 +12,6 @@ class ShopsController < ApplicationController
       non_smoking: params[:non_smoking].to_i
     }
     filter = Filter.find_or_create(filter_condition)
-
     # Keyword_filtersテーブルにこのKeywordとFilterの組み合わせのデータがあるかどうかを確認したい
     keyword_filter = KeywordFilter.find_association(@keyword, filter)
     # params[:start] == 0(ページ遷移の時) または同じ条件で検索しているかつ次の100件じゃない時データベースから取得
@@ -24,12 +23,12 @@ class ShopsController < ApplicationController
 
     # データベース内検索の条件
     @filter_conditions = {}
-    @filter_conditions[:free_drink] = 1 if params["free_drink"].to_i == 1
-    @filter_conditions[:free_food] = 1 if params["free_food"].to_i == 1
-    @filter_conditions[:private_room] = 1 if params["private_room"].to_i == 1
-    @filter_conditions[:course] = 1 if params["course"].to_i == 1
-    @filter_conditions[:midnight] = 1 if params["midnight"].to_i == 1
-    @filter_conditions[:non_smoking] = 1 if params["non_smoking"].to_i == 1
+    @filter_conditions[:free_drink] = params[:free_drink] if params[:free_drink]
+    @filter_conditions[:free_food] = params[:free_food] if params[:free_food]
+    @filter_conditions[:private_room] = params[:private_room] if params[:private_room]
+    @filter_conditions[:course] = params[:course] if params[:course]
+    @filter_conditions[:midnight] = params[:midnight] if params[:midnight]
+    @filter_conditions[:non_smoking] = params[:non_smoking] if params[:non_smoking]
 
     filters = Filter.where(@filter_conditions)
     # @shopにデータベース内検索結果を格納
@@ -70,18 +69,17 @@ class ShopsController < ApplicationController
 
   def shops_create(keyword)
     @API_shop_data.each do |shop_data|
-      # APIから取得した絞り込み条件に対応するデータを0 or 1 に変換
+      # APIから取得した絞り込み条件に対応するデータをtrue/falseに変換
       filter_condition = {
-      free_drink: shop_data["free_drink"].to_s.include?("あり") ? 1 : 0,
-      free_food: shop_data["free_food"].to_s.include?("あり") ? 1 : 0,
-      private_room: shop_data["private_room"].to_s.include?("あり") ? 1 : 0,
-      course: shop_data["course"].to_s.include?("あり") ? 1 : 0,
-      midnight: shop_data["midnight"].to_s.include?("営業している") ? 1 : 0,
-      non_smoking: shop_data["non_smoking"].to_s.include?("ない") ? 1 : 0
+      free_drink: shop_data["free_drink"].to_s.include?("あり"),
+      free_food: shop_data["free_food"].to_s.include?("あり"),
+      private_room: shop_data["private_room"].to_s.include?("あり"),
+      course: shop_data["course"].to_s.include?("あり"),
+      midnight: shop_data["midnight"].to_s.include?("営業している"),
+      non_smoking: shop_data["non_smoking"].to_s.include?("ない")
       }
       # 条件にあうデータがfiltersテーブルにあったらfilterに格納、なければ作成
       filter = Filter.find_or_create(filter_condition)
-
       # shopsテーブルにすでに保存してある場合は更新、なければ作成
       shop = Shop.create_or_update_from_API_data(shop_data, filter)
       # ShopsとKeywordsの組み合わせが存在しなかったら作成
