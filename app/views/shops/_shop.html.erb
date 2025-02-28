@@ -49,7 +49,7 @@
     <% end %>
     <% if @current_page * 10 >= @total_shops %>
       <div class="next-100">    
-        <%= link_to t('.next100'), shops_path(start: @current_page * 10 + 1, page: @current_page + 1, keyword: @keyword.word, free_drink: @filter_conditions[:free_drink], free_food: @filter_conditions[:free_food], private_room: @filter_conditions[:private_room], course: @filter_conditions[:course], midnight: @filter_conditions[:midnight], non_smoking: @filter_conditions[:non_smoking]), data: { turbo_frame: "_top" },class:"no-underline"  %>
+        <%= link_to t('.next100'), shops_path(record_start_index: @current_page * 10 + 1, page: @current_page + 1, keyword: @keyword.word, free_drink: @filter_conditions[:free_drink], free_food: @filter_conditions[:free_food], private_room: @filter_conditions[:private_room], course: @filter_conditions[:course], midnight: @filter_conditions[:midnight], non_smoking: @filter_conditions[:non_smoking]), data: { turbo_frame: "_top" },class:"no-underline"  %>
       </div>
     <% end %>
   </div>

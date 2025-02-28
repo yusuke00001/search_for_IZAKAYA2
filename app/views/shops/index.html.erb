@@ -18,7 +18,7 @@
     </div>
     <div class="search">
     <%= f.text_field :keyword, placeholder: "検索キーワード" %>
-    <%= f.hidden_field :start, value: 1 %>
+    <%= f.hidden_field :record_start_index, value: 1 %>
     <%= f.submit t('.search') %>
   <% end %>
   <turbo-frame>
