@@ -58,10 +58,9 @@ ja:
       next100: 次の100件
       first_page: "<<"
       last_page: ">>"
-  views:
-    pagination:
-      first: "<<"
-      last: ">>"
-      previous: "<" 
-      next: ">" 
-      truncate: ...
+  bookmarks:
+    index:
+      next: ">"
+      previous: "<"
+      first_page: "<<"
+      last_page: ">>"
