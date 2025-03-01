@@ -17,4 +17,19 @@ class ApplicationController < ActionController::Base
     flash[:notice] = "ログアウトしました"
     user_session_path
   end
+
+  PAGE_NUMBER = 10
+
+  def pagination(shops)
+    @current_page = (params[:page].to_i > 0) ? params[:page].to_i : 1
+    @total_shops = shops.count
+    @total_page = (@total_shops.to_f / 10).ceil
+    @shops = shops.offset((@current_page - 1) * PAGE_NUMBER).limit(PAGE_NUMBER)
+    @previous_page = @current_page > 1 ? @current_page - 1 : nil
+    @next_page = @total_page > @current_page ? @current_page + 1 : nil
+    @first_page = @current_page > 1 ?  1 : nil
+    @last_page = @total_page > @current_page ? @total_page : nil
+    @start_page = [ @current_page - 3, 1 ].max
+    @final_page = [ @current_page + 3, @total_page ].min
+  end
 end

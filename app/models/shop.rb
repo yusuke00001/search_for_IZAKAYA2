@@ -7,8 +7,6 @@ class Shop < ApplicationRecord
   validates :name, presence: true
   validates :unique_number, uniqueness: true
 
-  PAGE_NUMBER = 10
-
   def self.create_or_update_from_API_data(shop_data, filter)
     shop = find_by(unique_number: shop_data["id"])
     if shop
