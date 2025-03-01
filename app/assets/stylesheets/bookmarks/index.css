@@ -58,4 +58,36 @@
   margin-left: 40px;
   color: pink;
 }
+
+.pagination {
+ display: flex;
+ justify-content: space-between;
+ font-size: 15px;
+ margin: 20px;
+ 
+}
+.page {
+ margin: 0 auto;
+}
+
+.current_page {
+ padding-top: 4px;
+ font-weight: bold;
+ color: white;
+ background: #007bff;
+ width: 35px;
+ height: 35px;
+}
+.page_link{
+ padding-top: 4px;
+ color: blue;
+ background: #FFF;
+ border: 1px solid #ddd;
+ width: 35px;
+ height: 35px;
+}
+
+.no-underline {
+ text-decoration: none;
+}
 }

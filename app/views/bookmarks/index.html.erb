@@ -3,24 +3,24 @@
     <h1><strong>お気に入り一覧</strong></h1>
    <div>
   <div class="card-style">
-    <% @shops.each do |shop| %>
+    <% @bookmark_shops.each do |bookmark| %>
       <div class="container">
         <div class="image">
-          <%= image_tag shop.logo_image, class:"image"%>
+          <%= image_tag bookmark.logo_image, class:"image"%>
         </div>
         <div class="shops">
-          <p class="shops-name"><%=link_to shop.name , shop_path(shop), data: { turbo_frame: "_top" }%> <%#店舗名%></p>
-          <p><%= shop.address%> <%#住所%></p>
-          <p>¥<%= shop[:budget]%> <%#平均予算%></p>
+          <p class="shops-name"><%=link_to bookmark.name , shop_path(bookmark), data: { turbo_frame: "_top" }%> <%#店舗名%></p>
+          <p><%= bookmark.address%> <%#住所%></p>
+          <p>¥<%= bookmark[:budget]%> <%#平均予算%></p>
         </div>
-        <% if bookmark = Bookmark.find_by(shop_id: shop.id, user_id: current_user.id) %>
+        <% if bookmark = Bookmark.find_by(shop_id: bookmark.id, user_id: current_user.id) %>
           <%= link_to bookmark_path(bookmark), data: { turbo_method: :delete } do %>
             <div class="icon">
               <i class="fa-solid fa-heart fa-3x"></i>
             </div>
           <% end %>
         <% else %>
-          <%= link_to bookmarks_path(shop_id: shop.id, user_id: current_user.id), data: { turbo_method: :post } do %>
+          <%= link_to bookmarks_path(shop_id: bookmark.id, user_id: current_user.id), data: { turbo_method: :post } do %>
             <div class="icon">
               <i class="fa-regular fa-heart fa-3x"></i>
             </div>
@@ -28,5 +28,38 @@
         <% end %>
       </div>
     <% end %>
+    <div class="pagination">
+      <% if @first_page %>
+        <div class="page_link">
+          <%= link_to t('.first_page'), bookmarks_path(page: @first_page), data: { turbo_frame: "_top" },class:"no-underline"  %>
+        </div>
+      <% end %>
+      <% if @previous_page%>
+        <div class="page_link">
+          <%= link_to t('.previous'), bookmarks_path(page: @previous_page), data: { turbo_frame: "_top" },class:"no-underline"  %>
+        </div>
+      <% end %>
+      <% (@start_page..@final_page).each do |page| %>
+        <% if page != @current_page %>
+          <div class="page_link">
+            <%= link_to page, bookmarks_path(page: page), data: { turbo_frame: "_top" },class:"no-underline"  %>
+          </div>
+        <% else %>
+          <div class="current_page">
+            <%= @current_page %>
+          </div>
+        <% end %>
+      <% end %>
+      <% if @next_page %>
+        <div class="page_link">
+          <%= link_to t('.next'), bookmarks_path(page: @next_page), data: { turbo_frame: "_top" },class:"no-underline" %>
+        </div>
+      <% end %>
+      <% if @last_page %>
+        <div class="page_link">
+          <%= link_to t('.last_page'), bookmarks_path(page: @last_page), data: { turbo_frame: "_top" },class:"no-underline"  %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
