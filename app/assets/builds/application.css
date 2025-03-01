@@ -1,0 +1,233 @@
+/*
+ * This is a manifest file that'll be compiled into application.css.
+ *
+ * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
+ * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
+ * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
+ * depending on specificity.
+ *
+ * Consider organizing styles into separate files for maintainability.
+ */
+.shops-show .title {
+  text-align: center;
+  margin-top: 10px;
+  margin-left: 50px;
+  font-size: 45px;
+  padding: 10px;
+}
+.shops-show .shop-container {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 30px;
+}
+.shops-show .icon {
+  margin-left: 40px;
+  color: pink;
+}
+.shops-show .image {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.shops-show .shops-detail {
+  display: flex;
+  border: 1px solid #ddd;
+  align-items: center;
+  padding: 10px;
+}
+.shops-show .label {
+  font-size: 25px;
+  width: 220px;
+  padding: 10px;
+}
+.shops-show .data {
+  flex: 1;
+  text-align: left;
+}
+.shops-show .card-style {
+  margin: 0 auto;
+  width: 700px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 9px rgba(0, 0, 0, 0.1);
+  margin-top: 40px;
+}
+.shops-show .back-link {
+  margin: 0 auto;
+  width: 700px;
+  text-align: right;
+  margin-bottom: 40px;
+  margin-top: 10px;
+}
+
+.shops-index .title {
+  margin-top: 50px;
+  text-align: center;
+}
+.shops-index .card-style {
+  margin: 0 auto;
+  width: 800px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 9px rgba(0, 0, 0, 0.1);
+  margin-top: 40px;
+  padding: 16px;
+  margin-bottom: 50px;
+}
+.shops-index .shop-container {
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 9px rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+}
+.shops-index .filter {
+  margin-left: 30em;
+  margin: 0 auto;
+  width: 650px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 9px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  padding: 13px;
+  margin-bottom: 20px;
+}
+.shops-index .search {
+  text-align: center;
+}
+.shops-index .shops {
+  width: 400px;
+  overflow-wrap: break-word;
+}
+.shops-index .shops-name {
+  font-size: 30px;
+}
+.shops-index .image {
+  width: 130px;
+  height: 130px;
+  margin-right: 100px;
+  margin-left: 10px;
+}
+.shops-index .icon {
+  margin-left: 40px;
+  color: pink;
+}
+.shops-index .pagination {
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+  margin: 20px;
+}
+.shops-index .page {
+  margin: 0 auto;
+}
+.shops-index .current_page {
+  padding-top: 4px;
+  font-weight: bold;
+  color: white;
+  background: #007bff;
+  width: 35px;
+  height: 35px;
+}
+.shops-index .page_link {
+  padding-top: 4px;
+  color: blue;
+  background: #FFF;
+  border: 1px solid #ddd;
+  width: 35px;
+  height: 35px;
+}
+.shops-index .next-100 {
+  padding: 5px 10px;
+  color: blue;
+  background: #FFF;
+  border: 1px solid #ddd;
+}
+.shops-index .no-underline {
+  text-decoration: none;
+}
+
+.bookmarks-index .title {
+  margin-top: 50px;
+  text-align: center;
+}
+.bookmarks-index .card-style {
+  margin: 0 auto;
+  width: 800px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 9px rgba(0, 0, 0, 0.1);
+  margin-top: 40px;
+  padding: 16px;
+  margin-bottom: 50px;
+}
+.bookmarks-index .bookmark-container {
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 9px rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+}
+.bookmarks-index .filter {
+  margin-left: 30em;
+  margin: 0 auto;
+  width: 650px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 9px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  padding: 13px;
+  margin-bottom: 20px;
+}
+.bookmarks-index .search {
+  text-align: center;
+}
+.bookmarks-index .shops {
+  width: 400px;
+  overflow-wrap: break-word;
+}
+.bookmarks-index .shops-name {
+  font-size: 20px;
+}
+.bookmarks-index .image {
+  width: 130px;
+  height: 130px;
+  margin-right: 100px;
+}
+.bookmarks-index .icon {
+  margin-left: 40px;
+  color: pink;
+}
+.bookmarks-index .pagination {
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+  margin: 20px;
+}
+.bookmarks-index .page {
+  margin: 0 auto;
+}
+.bookmarks-index .current_page {
+  padding-top: 4px;
+  font-weight: bold;
+  color: white;
+  background: #007bff;
+  width: 35px;
+  height: 35px;
+}
+.bookmarks-index .page_link {
+  padding-top: 4px;
+  color: blue;
+  background: #FFF;
+  border: 1px solid #ddd;
+  width: 35px;
+  height: 35px;
+}
+.bookmarks-index .no-underline {
+  text-decoration: none;
+}
+.bookmarks-index .bookmark-nil {
+  margin-top: 200px;
+}
+
+/*# sourceMappingURL=application.css.map */

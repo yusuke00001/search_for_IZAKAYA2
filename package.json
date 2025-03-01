@@ -1,0 +1,25 @@
+{
+  "name": "search_for_izakaya2",
+  "version": "1.0.0",
+  "description": "This README would normally document whatever steps are necessary to get the application up and running.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:css": "sass app/assets/stylesheets/application.scss app/assets/builds/application.css --no-source-map"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yusuke00001/search_for_IZAKAYA2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yusuke00001/search_for_IZAKAYA2/issues"
+  },
+  "homepage": "https://github.com/yusuke00001/search_for_IZAKAYA2#readme"
+}
