@@ -8,8 +8,13 @@ Rails.application.routes.draw do
   end
 
   get "homes", to: "homes#index"
-  get "shops", to: "shops#index"
-  get "shops/:id", to: "shops#show", as: "shop"
+  resources :shops do
+    resources :comments do
+      collection do
+        get :value
+      end
+    end
+  end
 
   resources :bookmarks
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

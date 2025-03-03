@@ -39,6 +39,7 @@ class ShopsController < ApplicationController
 
   def show
     @shop = Shop.find(params[:id])
+    @comment = @shop.comments.new
   end
 
   private
