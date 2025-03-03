@@ -1,0 +1,27 @@
+<div class="shops-list">
+  <% @shops.each do |shop| %>
+    <div class="shops-list-container">
+      <div class="image">
+        <%= image_tag shop.logo_image, class:"image"%>
+      </div>
+      <div class="shops">
+        <p class="shops-name"><%=link_to shop.name , shop_path(shop), data: { turbo_frame: "_top" }%> <%#店舗名%></p>
+        <p><%= shop.address%> <%#住所%></p>
+        <p>¥<%= shop[:budget]%> <%#平均予算%></p>
+      </div>
+      <% if bookmark = Bookmark.find_by(shop_id: shop.id, user_id: current_user.id) %>
+        <%= link_to bookmark_path(bookmark), data: { turbo_method: :delete } do %>
+          <div class="icon">
+            <i class="fa-solid fa-heart fa-3x"></i>
+          </div>
+        <% end %>
+      <% else %>
+        <%= link_to bookmarks_path(shop_id: shop.id, user_id: current_user.id), data: { turbo_method: :post } do %>
+          <div class="icon">
+            <i class="fa-regular fa-heart fa-3x"></i>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

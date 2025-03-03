@@ -161,24 +161,6 @@
   padding: 16px;
   margin-bottom: 50px;
 }
-.bookmarks-index .bookmark-container {
-  border: 1px solid #ddd;
-  box-shadow: 0 4px 9px rgba(0, 0, 0, 0.1);
-  margin-bottom: 40px;
-  display: flex;
-  align-items: center;
-}
-.bookmarks-index .filter {
-  margin-left: 30em;
-  margin: 0 auto;
-  width: 650px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 4px 9px rgba(0, 0, 0, 0.1);
-  margin-top: 20px;
-  padding: 13px;
-  margin-bottom: 20px;
-}
 .bookmarks-index .search {
   text-align: center;
 }
@@ -228,6 +210,30 @@
 }
 .bookmarks-index .bookmark-nil {
   margin-top: 200px;
+}
+
+.shops-list .shops-list-container {
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 9px rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+}
+.shops-list .shops {
+  width: 400px;
+  overflow-wrap: break-word;
+}
+.shops-list .shops-name {
+  font-size: 20px;
+}
+.shops-list .image {
+  width: 130px;
+  height: 130px;
+  margin-right: 100px;
+}
+.shops-list .icon {
+  margin-left: 40px;
+  color: pink;
 }
 
 /*# sourceMappingURL=application.css.map */
