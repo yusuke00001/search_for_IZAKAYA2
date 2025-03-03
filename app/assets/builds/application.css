@@ -79,14 +79,21 @@
   height: 100px;
 }
 .comment .submit {
-  text-align: right;
+  margin-left: auto;
 }
-.comment .submit_botton {
+.comment .submit-visit-day {
+  display: flex;
+  margin-bottom: 50px;
+}
+.comment .submit-botton {
   background-color: #007bff;
   color: white;
   border: 1px solid #007bff;
   border-radius: 4px;
   font-size: 20px;
+}
+.comment .visit-day {
+  text-align: left;
 }
 
 .shops-index .title {

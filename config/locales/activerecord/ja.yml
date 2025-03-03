@@ -13,3 +13,6 @@ ja:
         avatar: プロフィール画像
       shop:
         free_drink: 飲み放題
+      comment:
+        visit_day: 来店日
+        content: コメント

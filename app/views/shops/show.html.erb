@@ -105,9 +105,15 @@
         <% end %>
       </div>
       <%= form.text_field :content, placeholder: "コメントを入力してください", class:"content" %>
-      <div class="submit">
-        <%= form.submit t('.submit'), class:"submit_botton" %>
-      <div>
+      <div class="submit-visit-day">
+        <div class="visit-day">
+          <%= form.label :visit_day %>
+          <%= form.date_select :visit_day %>
+        </div>
+        <div class="submit">
+          <%= form.submit t('.submit'), class:"submit-botton" %>
+        <div>
+      </div>
     <% end %>
   </div>
 </div>

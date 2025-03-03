@@ -81,14 +81,22 @@
 }
 
 .submit{
-  text-align: right;
+  margin-left: auto;
 }
 
-.submit_botton{
+.submit-visit-day{
+  display: flex;
+  margin-bottom: 50px;
+}
+.submit-botton{
   background-color: #007bff;
   color: white;
   border: 1px solid #007bff;
   border-radius: 4px;
   font-size: 20px;
+}
+
+.visit-day {
+  text-align: left;
 }
 }
