@@ -6,6 +6,9 @@ class CommentsController < ApplicationController
     if comment.save
       flash[:notice] = "コメントが作成されました"
       redirect_to shop_path(shop)
+    else
+      flash[:alert] = comment.errors.full_messages
+      redirect_to shop_path(shop)
     end
   end
 
