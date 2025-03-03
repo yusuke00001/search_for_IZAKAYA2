@@ -40,6 +40,7 @@ class ShopsController < ApplicationController
   def show
     @shop = Shop.find(params[:id])
     @comment = @shop.comments.new
+    @comments = Comment.where(shop_id: params[:id])
   end
 
   private
