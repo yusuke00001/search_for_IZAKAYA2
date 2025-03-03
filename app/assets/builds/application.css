@@ -65,6 +65,15 @@
   width: 700px;
   margin: 0 auto;
 }
+.comment .a {
+  display: flex;
+}
+.comment .icon-gray i {
+  color: gray;
+}
+.comment .icon-yellow i {
+  color: yellow;
+}
 .comment .content {
   width: 700px;
   height: 100px;

@@ -60,12 +60,21 @@
   margin-top: 10px;
 }
 }
-.comment{
-.comment-style{
+.comment {
+.comment-style {
   width: 700px;
   margin: 0 auto;
 }
+.a {
+  display: flex;
+}
 
+.icon-gray i {
+  color: gray;
+}
+.icon-yellow i {
+  color: yellow;
+}
 .content {
   width: 700px;
   height: 100px;
@@ -81,6 +90,5 @@
   border: 1px solid #007bff;
   border-radius: 4px;
   font-size: 20px;
-
 }
 }

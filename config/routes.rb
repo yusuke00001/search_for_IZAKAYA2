@@ -9,7 +9,11 @@ Rails.application.routes.draw do
 
   get "homes", to: "homes#index"
   resources :shops do
-    resources :comments
+    resources :comments do
+      collection do
+        get :value
+      end
+    end
   end
 
   resources :bookmarks

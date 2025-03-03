@@ -3,7 +3,6 @@ class CommentsController < ApplicationController
     shop = Shop.find(params[:shop_id])
     comment = shop.comments.new(comment_params)
     comment.user = current_user
-    binding.pry
     if comment.save
       flash[:notice] = "コメントが作成されました"
       redirect_to shop_path(shop)
