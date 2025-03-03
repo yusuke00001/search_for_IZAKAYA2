@@ -61,6 +61,25 @@
   margin-top: 10px;
 }
 
+.comment .comment-style {
+  width: 700px;
+  margin: 0 auto;
+}
+.comment .content {
+  width: 700px;
+  height: 100px;
+}
+.comment .submit {
+  text-align: right;
+}
+.comment .submit_botton {
+  background-color: #007bff;
+  color: white;
+  border: 1px solid #007bff;
+  border-radius: 4px;
+  font-size: 20px;
+}
+
 .shops-index .title {
   margin-top: 50px;
   text-align: center;

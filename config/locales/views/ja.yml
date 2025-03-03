@@ -41,7 +41,6 @@ ja:
       title: 検索フォーム
       filter: 検索条件
     show:
-      title: 店舗詳細ページ
       name_of_shop: 店名
       address: 住所
       phone_number: 電話番号
@@ -52,6 +51,8 @@ ja:
       number_of_seats: 席数
       url: ホームページ
       back: 検索ページに戻る
+      post_title: コメント投稿
+      submit: 送信
     shop:
       next: ">"
       previous: "<"

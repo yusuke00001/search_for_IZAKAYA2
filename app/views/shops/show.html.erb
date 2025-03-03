@@ -91,3 +91,16 @@
     <%= link_to t('.back'), shops_path %>
   </div>
 </div>
+<div class="comment">
+  <div class="comment-style">
+    <div class="post-title">
+      <h1><strong><%= t('.post_title')%></strong></h1>
+    </div>
+    <%= form_with(model: [@shop, @comment]) do |form| %>
+      <%= form.text_field :content, placeholder: "コメントを入力してください", class:"content" %>
+      <div class="submit">
+        <%= form.submit t('.submit'), class:"submit_botton" %>
+      <div>
+    <% end %>
+  </div>
+</div>
