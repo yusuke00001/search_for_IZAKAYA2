@@ -16,14 +16,16 @@
             </div>
           </div>
         </div>
-        <div class="edit-delete-link">
-          <%= link_to edit_shop_comment_path(shop_id: comment.shop.id, id: comment.id), class:"edit" do %>
-            <i class="fa-solid fa-pen"></i>
-          <% end %>
-          <%= link_to shop_comment_path(shop_id: comment.shop.id, id: comment.id), data:{ turbo_method: :delete } do %>
-            <i class="fa-solid fa-trash"></i>
-          <% end %>
-        </div>
+        <% if comment.user.id == current_user.id %>
+          <div class="edit-delete-link">
+            <%= link_to edit_shop_comment_path(shop_id: comment.shop.id, id: comment.id), class:"edit" do %>
+              <i class="fa-solid fa-pen"></i>
+            <% end %>
+            <%= link_to shop_comment_path(shop_id: comment.shop.id, id: comment.id), data:{ turbo_method: :delete } do %>
+              <i class="fa-solid fa-trash"></i>
+            <% end %>
+          </div>
+        <% end %>
       </div>
       <div class="comment-style">
         <%= comment.content %>
