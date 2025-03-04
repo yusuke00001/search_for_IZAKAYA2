@@ -65,27 +65,39 @@
   text-align: center;
   margin-bottom: 30px;
 }
-.comment-list .user-data-card-style {
-  margin-left: 265px;
+.comment-list .user-data-edit-delete {
+  margin: 0 auto;
+  width: 700px;
+  display: flex;
+}
+.comment-list .user-data-edit-delete .user-data-card-style {
   width: 400px;
   height: 60px;
-  border-top: 1px solid #ddd;
-  border-right: 1px solid #ddd;
-  border-left: 1px solid #ddd;
+  border-top: 1px solid black;
+  border-right: 1px solid black;
+  border-left: 1px solid black;
   border-radius: 8px;
   box-shadow: 0 4px 9px rgba(0, 0, 0, 0.1);
   padding: 5px;
 }
-.comment-list .user-data-card-style .user-data-container {
+.comment-list .user-data-edit-delete .user-data-card-style .user-data-container {
   display: flex;
 }
-.comment-list .user-data-card-style .user-data-container .user {
+.comment-list .user-data-edit-delete .user-data-card-style .user-data-container .user {
   margin-left: 20px;
+}
+.comment-list .user-data-edit-delete .edit-delete-link {
+  margin-left: auto;
+  margin-top: auto;
+  margin-right: 10px;
+}
+.comment-list .user-data-edit-delete .edit-delete-link .edit {
+  margin-right: 10px;
 }
 .comment-list .comment-style {
   margin: 0 auto;
   width: 700px;
-  border: 1px solid #ddd;
+  border: 1px solid black;
   border-radius: 8px;
   padding: 20px;
   margin-bottom: 20px;
@@ -254,6 +266,10 @@
 .shops-list .shops-list-container .icon {
   margin-left: 40px;
   color: pink;
+}
+
+.comment-edit .create-form {
+  margin-top: 200px;
 }
 
 /*# sourceMappingURL=application.css.map */

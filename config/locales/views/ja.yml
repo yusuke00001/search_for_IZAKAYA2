@@ -51,11 +51,6 @@ ja:
       number_of_seats: 席数
       url: ホームページ
       back: 検索ページに戻る
-      comment_title: コメント一覧
-      comment_create_title: コメント投稿
-      submit: 送信
-      visit_day: 来店日
-      user_name: ユーザー名
     shop:
       next: ">"
       previous: "<"
@@ -68,3 +63,14 @@ ja:
       previous: "<"
       first_page: "<<"
       last_page: ">>"
+  comments:
+    list:
+      comment_title: コメント一覧
+      update: 更新
+      visit_day: 来店日
+      user_name: ユーザー名
+      edit: 編集
+      delete: 削除
+    create_form:
+      comment_create_title: コメント投稿
+      submit: 送信
