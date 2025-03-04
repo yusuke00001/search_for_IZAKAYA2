@@ -1,6 +1,6 @@
 class ShopsController < ApplicationController
   def index
-    keyword = params[:keyword].presence || "居酒屋"
+    keyword = params[:keyword] || "居酒屋"
     params[:record_start_index] = params[:record_start_index].to_i
     @keyword = Keyword.find_or_create_keyword(keyword)
     filter_condition = {
@@ -32,7 +32,7 @@ class ShopsController < ApplicationController
 
     filters = Filter.where(@filter_conditions)
     # @shopにデータベース内検索結果を格納
-    shops = Shop.filter_or_keyword_association(filters, @keyword)
+    shops = Shop.filter_and_keyword_association(filters, @keyword)
     # ページネーション
     pagination(shops)
   end
@@ -40,7 +40,7 @@ class ShopsController < ApplicationController
   def show
     @shop = Shop.find(params[:id])
     @comment = @shop.comments.new
-    @comments = Comment.where(shop_id: params[:id])
+    @comments = @shop.comments.includes(:user)
   end
 
   private

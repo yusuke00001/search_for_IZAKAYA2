@@ -8,6 +8,7 @@ class Shop < ApplicationRecord
   validates :name, presence: true
   validates :unique_number, uniqueness: true
 
+
   def self.create_or_update_from_API_data(shop_data, filter)
     shop = find_by(unique_number: shop_data["id"])
     if shop
@@ -41,7 +42,7 @@ class Shop < ApplicationRecord
       )
     end
   end
-  def self.filter_or_keyword_association(filters, keyword)
+  def self.filter_and_keyword_association(filters, keyword)
     joins(:filter, :keywords)
     .where(filters: { id: filters.ids },
            keywords: { id: keyword.id })

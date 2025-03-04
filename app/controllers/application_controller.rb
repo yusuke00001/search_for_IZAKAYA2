@@ -19,6 +19,7 @@ class ApplicationController < ActionController::Base
   end
 
   PAGE_NUMBER = 10
+  DISPLAY_PAGE_RANGE = 3
 
   def pagination(shops)
     @current_page = (params[:page].to_i > 0) ? params[:page].to_i : 1
@@ -29,7 +30,7 @@ class ApplicationController < ActionController::Base
     @next_page = @total_page > @current_page ? @current_page + 1 : nil
     @first_page = @current_page > 1 ?  1 : nil
     @last_page = @total_page > @current_page ? @total_page : nil
-    @start_page = [ @current_page - 3, 1 ].max
-    @final_page = [ @current_page + 3, @total_page ].min
+    @start_page = [ @current_page - DISPLAY_PAGE_RANGE, 1 ].max
+    @final_page = [ @current_page + DISPLAY_PAGE_RANGE, @total_page ].min
   end
 end
