@@ -92,40 +92,34 @@
   </div>
 </div>
 <div class="comment-list">
-  <div class="comment-list-container">
-    <div class="title">
-      <h1><strong><%= t('.comment_title') %></strong></h1>
-    </div>
-    <% if @comments.present? %>
-      <% @comments.each do |comment| %>
-        <div class="user-data-card-style">
-            <div class="user-data-container">
-              <div class="image">
-                <%= image_tag comment.user.get_user_avatar.variant(resize_to_fit: [50,50]) %>
-              </div>
-              <div class="user">
-                <div class="user-name">
-                  <%= t('.user_name') %>:<%= comment.user.name %>
-                </div>
-                <%= t('.visit_day') %>:<%= comment.visit_day %>
-              </div>
-            </div>
+  <div class="title">
+    <h1><strong><%= t('.comment_title') %></strong></h1>
+  </div>
+  <% if @comments.present? %>
+    <% @comments.each do |comment| %>
+      <div class="user-data-card-style">
+        <div class="user-data-container">
+          <%= image_tag comment.user.get_user_avatar.variant(resize_to_fit: [50,50]) %>
+          <div class="user">
+              <%= t('.user_name') %>:<%= comment.user.name %><br>
+            <%= t('.visit_day') %>:<%= comment.visit_day %>
           </div>
-        <div class="comment-style">
-          <%= comment.content %>
         </div>
-      <% end %>
-    <% else %>
-      <div class="no-comment">
-        <strong>まだコメントはついていません</strong>
+      </div>
+      <div class="comment-style">
+        <%= comment.content %>
       </div>
     <% end %>
-  </div>
+  <% else %>
+    <div class="no-comment">
+      <strong>まだコメントはついていません</strong>
+    </div>
+  <% end %>
 </div>
 <div class="comment-create">
   <div class="comment-style">
     <%= form_with(model: [@shop, @comment]) do |form| %>
-      <div class="a">
+      <div class="comment-create-container">
         <h1><strong><%= t('.comment_create_title')%></strong></h1>
         <% 5.times do |i| %>
           <%= link_to do %>

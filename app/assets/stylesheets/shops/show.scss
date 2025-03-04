@@ -1,145 +1,150 @@
 .shops-show {
 
-.title {
-  text-align: center;
-  margin-top: 10px;
-  margin-left: 50px;
-  padding: 10px;
-  width: 550px;
-  overflow-wrap: break-word;
+  .card-style {
+    margin: 0 auto;
+    width: 700px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 9px rgba(0,0,0,0.1);
+    margin-top: 40px;
+  
+    .shop-container {
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #ccc;
+      margin-bottom: 30px;
+    
+      .title {
+        text-align: center;
+        margin-top: 10px;
+        margin-left: 50px;
+        padding: 10px;
+        width: 550px;
+        overflow-wrap: break-word;
+      }
+
+      .icon {
+        margin-left: 20px;
+        color: pink;
+      }
+    }
+
+    .image {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .shops-detail {
+      display: flex;
+      border: 1px solid #ddd;
+      align-items: center;
+      padding: 10px;
+
+      .label {
+        font-size: 25px;
+        width: 220px;
+        padding: 10px;
+      }
+
+      .data {
+        flex: 1;
+        text-align: left;
+      }
+    }
+  }
+  .back-link {
+    margin: 0 auto;
+    width:700px;
+    text-align: right;
+    margin-bottom: 40px;
+    margin-top: 10px;
+  }
 }
 
-.shop-container {
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid #ccc;
-  margin-bottom: 30px;
+.comment-list {
+
+  .title {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .user-data-card-style {
+    margin-left: 265px;
+    width: 400px;
+    height: 60px;
+    border-top: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 9px rgba(0,0,0,0.1);
+    padding: 5px;
+  
+    .user-data-container{
+      display: flex;
+
+      .user {
+        margin-left: 20px;
+      }
+    }
+  }
+
+  .comment-style {
+    margin: 0 auto;
+    width: 700px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+
+  .no-comment {
+    margin: 50px;
+    text-align: center;
+  }
 }
 
-.icon {
-  margin-left: 20px;
-  color: pink;
-}
-
-.image {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.shops-detail {
-  display: flex;
-  border: 1px solid #ddd;
-  align-items: center;
-  padding: 10px;
-}
-
-.label {
-  font-size: 25px;
-  width: 220px;
-  padding: 10px;
-}
-
-.data {
-  flex: 1;
-  text-align: left;
-}
-.card-style {
-  margin: 0 auto;
-  width: 700px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 4px 9px rgba(0,0,0,0.1);
-  margin-top: 40px;
-}
-
-.back-link {
-  margin: 0 auto;
-  width:700px;
-  text-align: right;
-  margin-bottom: 40px;
-  margin-top: 10px;
-}
-}
-
-.comment-list{
-.title{
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-.comment-style{
-  margin: 0 auto;
-  width: 700px;
-  height: auto;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 20px;
-  margin-bottom: 20px;
-}
-
-.user-data-container{
-  display: flex;
-}
-
-.user-data-card-style{
-  margin-left: 31.5ex;
-  width: 400px;
-  height: 60px;
-  border-top: 1px solid #ddd;
-  border-right: 1px solid #ddd;
-  border-left: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 4px 9px rgba(0,0,0,0.1);
-  padding: 5px;
-}
-
-.user {
-  margin-left: 20px;
-}
-
-.no-comment {
-  margin: 50px;
-  text-align: center;
-}
-}
 .comment-create {
 
-.comment-style {
-  width: 700px;
-  margin: 0 auto;
-}
-.a {
-  display: flex;
-}
+  .comment-style {
+    width: 700px;
+    margin: 0 auto;
 
-.icon-gray i {
-  color: gray;
-}
-.icon-yellow i {
-  color: yellow;
-}
-.content {
-  width: 700px;
-  height: 100px;
-}
+    .comment-create-container {
+      display: flex;
 
-.submit{
-  margin-left: auto;
-}
+      .icon-gray i {
+        color: gray;
+      }
 
-.submit-visit-day{
-  display: flex;
-  margin-bottom: 50px;
-}
-.submit-botton{
-  background-color: #007bff;
-  color: white;
-  border: 1px solid #007bff;
-  border-radius: 4px;
-  font-size: 20px;
-}
+      .icon-yellow i {
+        color: yellow;
+      }
+    }
 
-.visit-day {
-  text-align: left;
-}
+    .content {
+      width: 100%;
+      height: 100px;
+    }
+
+    .submit-visit-day{
+      display: flex;
+      margin-bottom: 50px;
+    
+      .visit-day {
+        text-align: left;
+      }
+
+      .submit{
+        margin-left: auto;
+
+        .submit-botton{
+          background-color: #007bff;
+          color: white;
+          border: 1px solid #007bff;
+          border-radius: 4px;
+          font-size: 20px;
+        }
+      }
+    }
+  }
 }

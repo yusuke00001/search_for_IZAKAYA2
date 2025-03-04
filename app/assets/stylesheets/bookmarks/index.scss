@@ -1,77 +1,51 @@
 .bookmarks-index {
 
-.title {
-  margin-top: 50px;
-  text-align: center;
-}
+  .title {
+    margin-top: 50px;
+    text-align: center;
+  }
 
-.card-style {
-  margin: 0 auto;
-  width: 800px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 4px 9px rgba(0,0,0,0.1);
-  margin-top: 40px;
-  padding: 16px;
-  margin-bottom: 50px;
-}
+  .card-style {
+    margin: 0 auto;
+    width: 800px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 9px rgba(0,0,0,0.1);
+    margin-top: 40px;
+    padding: 16px;
+    margin-bottom: 50px;
 
-.search {
-  text-align: center;
-}
-.shops {
-  width: 400px;
-  overflow-wrap: break-word;
-}
+    .pagination {
+      display: flex;
+      justify-content: space-between;
+      font-size: 15px;
+      margin: 20px;
 
-.shops-name {
-  font-size: 20px;
-}
+      .page_link{
+        padding-top: 4px;
+        color: blue;
+        background: #FFF;
+        border: 1px solid #ddd;
+        width: 35px;
+        height: 35px;
 
-.image {
-  width: 130px;
-  height: 130px;
-  margin-right: 100px;
-}
+        .no-underline {
+          text-decoration: none;
+        }
+      }
 
-.icon {
-  margin-left: 40px;
-  color: pink;
-}
+      .current_page {
+        padding-top: 4px;
+        font-weight: bold;
+        color: white;
+        background: #007bff;
+        width: 35px;
+        height: 35px;
+      }
+    }
 
-.pagination {
-  display: flex;
-  justify-content: space-between;
-  font-size: 15px;
-  margin: 20px;
- 
-}
-.page {
-  margin: 0 auto;
-}
-
-.current_page {
-  padding-top: 4px;
-  font-weight: bold;
-  color: white;
-  background: #007bff;
-  width: 35px;
-  height: 35px;
-}
-.page_link{
-  padding-top: 4px;
-  color: blue;
-  background: #FFF;
-  border: 1px solid #ddd;
-  width: 35px;
-  height: 35px;
-}
-
-.no-underline {
-  text-decoration: none;
-}
-
-.bookmark-nil {
-  margin-top: 200px;
-}
+    .bookmark-nil {
+      margin-top: 200px;
+    }
+  }
 }

@@ -8,43 +8,6 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
-.shops-show .title {
-  text-align: center;
-  margin-top: 10px;
-  margin-left: 50px;
-  padding: 10px;
-  width: 550px;
-  overflow-wrap: break-word;
-}
-.shops-show .shop-container {
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid #ccc;
-  margin-bottom: 30px;
-}
-.shops-show .icon {
-  margin-left: 20px;
-  color: pink;
-}
-.shops-show .image {
-  text-align: center;
-  margin-bottom: 20px;
-}
-.shops-show .shops-detail {
-  display: flex;
-  border: 1px solid #ddd;
-  align-items: center;
-  padding: 10px;
-}
-.shops-show .label {
-  font-size: 25px;
-  width: 220px;
-  padding: 10px;
-}
-.shops-show .data {
-  flex: 1;
-  text-align: left;
-}
 .shops-show .card-style {
   margin: 0 auto;
   width: 700px;
@@ -52,6 +15,43 @@
   border-radius: 8px;
   box-shadow: 0 4px 9px rgba(0, 0, 0, 0.1);
   margin-top: 40px;
+}
+.shops-show .card-style .shop-container {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 30px;
+}
+.shops-show .card-style .shop-container .title {
+  text-align: center;
+  margin-top: 10px;
+  margin-left: 50px;
+  padding: 10px;
+  width: 550px;
+  overflow-wrap: break-word;
+}
+.shops-show .card-style .shop-container .icon {
+  margin-left: 20px;
+  color: pink;
+}
+.shops-show .card-style .image {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.shops-show .card-style .shops-detail {
+  display: flex;
+  border: 1px solid #ddd;
+  align-items: center;
+  padding: 10px;
+}
+.shops-show .card-style .shops-detail .label {
+  font-size: 25px;
+  width: 220px;
+  padding: 10px;
+}
+.shops-show .card-style .shops-detail .data {
+  flex: 1;
+  text-align: left;
 }
 .shops-show .back-link {
   margin: 0 auto;
@@ -65,20 +65,8 @@
   text-align: center;
   margin-bottom: 30px;
 }
-.comment-list .comment-style {
-  margin: 0 auto;
-  width: 700px;
-  height: auto;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 20px;
-  margin-bottom: 20px;
-}
-.comment-list .user-data-container {
-  display: flex;
-}
 .comment-list .user-data-card-style {
-  margin-left: 31.5ex;
+  margin-left: 265px;
   width: 400px;
   height: 60px;
   border-top: 1px solid #ddd;
@@ -88,8 +76,19 @@
   box-shadow: 0 4px 9px rgba(0, 0, 0, 0.1);
   padding: 5px;
 }
-.comment-list .user {
+.comment-list .user-data-card-style .user-data-container {
+  display: flex;
+}
+.comment-list .user-data-card-style .user-data-container .user {
   margin-left: 20px;
+}
+.comment-list .comment-style {
+  margin: 0 auto;
+  width: 700px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
 }
 .comment-list .no-comment {
   margin: 50px;
@@ -100,60 +99,42 @@
   width: 700px;
   margin: 0 auto;
 }
-.comment-create .a {
+.comment-create .comment-style .comment-create-container {
   display: flex;
 }
-.comment-create .icon-gray i {
+.comment-create .comment-style .comment-create-container .icon-gray i {
   color: gray;
 }
-.comment-create .icon-yellow i {
+.comment-create .comment-style .comment-create-container .icon-yellow i {
   color: yellow;
 }
-.comment-create .content {
-  width: 700px;
+.comment-create .comment-style .content {
+  width: 100%;
   height: 100px;
 }
-.comment-create .submit {
-  margin-left: auto;
-}
-.comment-create .submit-visit-day {
+.comment-create .comment-style .submit-visit-day {
   display: flex;
   margin-bottom: 50px;
 }
-.comment-create .submit-botton {
+.comment-create .comment-style .submit-visit-day .visit-day {
+  text-align: left;
+}
+.comment-create .comment-style .submit-visit-day .submit {
+  margin-left: auto;
+}
+.comment-create .comment-style .submit-visit-day .submit .submit-botton {
   background-color: #007bff;
   color: white;
   border: 1px solid #007bff;
   border-radius: 4px;
   font-size: 20px;
 }
-.comment-create .visit-day {
-  text-align: left;
-}
 
 .shops-index .title {
   margin-top: 50px;
   text-align: center;
 }
-.shops-index .card-style {
-  margin: 0 auto;
-  width: 800px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 4px 9px rgba(0, 0, 0, 0.1);
-  margin-top: 40px;
-  padding: 16px;
-  margin-bottom: 50px;
-}
-.shops-index .shop-container {
-  border: 1px solid #ddd;
-  box-shadow: 0 4px 9px rgba(0, 0, 0, 0.1);
-  margin-bottom: 40px;
-  display: flex;
-  align-items: center;
-}
 .shops-index .filter {
-  margin-left: 30em;
   margin: 0 auto;
   width: 650px;
   border: 1px solid #ddd;
@@ -166,33 +147,34 @@
 .shops-index .search {
   text-align: center;
 }
-.shops-index .shops {
-  width: 400px;
-  overflow-wrap: break-word;
+.shops-index .card-style {
+  margin: 0 auto;
+  width: 800px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 9px rgba(0, 0, 0, 0.1);
+  margin-top: 40px;
+  padding: 16px;
+  margin-bottom: 50px;
 }
-.shops-index .shops-name {
-  font-size: 30px;
-}
-.shops-index .image {
-  width: 130px;
-  height: 130px;
-  margin-right: 100px;
-  margin-left: 10px;
-}
-.shops-index .icon {
-  margin-left: 40px;
-  color: pink;
-}
-.shops-index .pagination {
+.shops-index .card-style .pagination {
   display: flex;
   justify-content: space-between;
   font-size: 15px;
   margin: 20px;
 }
-.shops-index .page {
-  margin: 0 auto;
+.shops-index .card-style .pagination .page_link {
+  padding-top: 4px;
+  color: blue;
+  background: #FFF;
+  border: 1px solid #ddd;
+  width: 35px;
+  height: 35px;
 }
-.shops-index .current_page {
+.shops-index .card-style .pagination .no-underline {
+  text-decoration: none;
+}
+.shops-index .card-style .pagination .current_page {
   padding-top: 4px;
   font-weight: bold;
   color: white;
@@ -200,22 +182,11 @@
   width: 35px;
   height: 35px;
 }
-.shops-index .page_link {
-  padding-top: 4px;
-  color: blue;
-  background: #FFF;
-  border: 1px solid #ddd;
-  width: 35px;
-  height: 35px;
-}
-.shops-index .next-100 {
+.shops-index .card-style .pagination .next-100 {
   padding: 5px 10px;
   color: blue;
   background: #FFF;
   border: 1px solid #ddd;
-}
-.shops-index .no-underline {
-  text-decoration: none;
 }
 
 .bookmarks-index .title {
@@ -232,43 +203,13 @@
   padding: 16px;
   margin-bottom: 50px;
 }
-.bookmarks-index .search {
-  text-align: center;
-}
-.bookmarks-index .shops {
-  width: 400px;
-  overflow-wrap: break-word;
-}
-.bookmarks-index .shops-name {
-  font-size: 20px;
-}
-.bookmarks-index .image {
-  width: 130px;
-  height: 130px;
-  margin-right: 100px;
-}
-.bookmarks-index .icon {
-  margin-left: 40px;
-  color: pink;
-}
-.bookmarks-index .pagination {
+.bookmarks-index .card-style .pagination {
   display: flex;
   justify-content: space-between;
   font-size: 15px;
   margin: 20px;
 }
-.bookmarks-index .page {
-  margin: 0 auto;
-}
-.bookmarks-index .current_page {
-  padding-top: 4px;
-  font-weight: bold;
-  color: white;
-  background: #007bff;
-  width: 35px;
-  height: 35px;
-}
-.bookmarks-index .page_link {
+.bookmarks-index .card-style .pagination .page_link {
   padding-top: 4px;
   color: blue;
   background: #FFF;
@@ -276,10 +217,18 @@
   width: 35px;
   height: 35px;
 }
-.bookmarks-index .no-underline {
+.bookmarks-index .card-style .pagination .page_link .no-underline {
   text-decoration: none;
 }
-.bookmarks-index .bookmark-nil {
+.bookmarks-index .card-style .pagination .current_page {
+  padding-top: 4px;
+  font-weight: bold;
+  color: white;
+  background: #007bff;
+  width: 35px;
+  height: 35px;
+}
+.bookmarks-index .card-style .bookmark-nil {
   margin-top: 200px;
 }
 
@@ -290,19 +239,19 @@
   display: flex;
   align-items: center;
 }
-.shops-list .shops {
-  width: 400px;
-  overflow-wrap: break-word;
-}
-.shops-list .shops-name {
-  font-size: 20px;
-}
-.shops-list .image {
+.shops-list .shops-list-container .image {
   width: 130px;
   height: 130px;
   margin-right: 100px;
 }
-.shops-list .icon {
+.shops-list .shops-list-container .shops {
+  width: 400px;
+  overflow-wrap: break-word;
+}
+.shops-list .shops-list-container .shops .shops-name {
+  font-size: 20px;
+}
+.shops-list .shops-list-container .icon {
   margin-left: 40px;
   color: pink;
 }
