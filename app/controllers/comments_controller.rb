@@ -12,6 +12,35 @@ class CommentsController < ApplicationController
     end
   end
 
+  def edit
+    @shop = Shop.find(params[:shop_id])
+    @comment = Comment.find(params[:id])
+  end
+
+  def update
+    @comment = Comment.find(params[:id])
+    @shop = @comment.shop
+    if @comment.update(comment_params)
+      flash[:notice] = "コメントを編集しました"
+      redirect_to shop_path(@shop)
+    else
+      flash.now[:alert] = @comment.errors.full_messages
+      render :edit
+    end
+  end
+
+  def destroy
+    shop = Shop.find(params[:shop_id])
+    comment = Comment.find(params[:id])
+    if comment.delete
+      flash[:notice] = "コメントを削除しました"
+      redirect_to shop_path(shop)
+    else
+      flash[:alert] = comment.errors.full_messages
+      redirect_to shop_path(shop)
+    end
+  end
+
   private
 
   def comment_params
