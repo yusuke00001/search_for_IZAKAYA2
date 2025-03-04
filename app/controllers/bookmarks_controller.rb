@@ -7,14 +7,19 @@ class BookmarksController < ApplicationController
     bookmark = Bookmark.new(bookmark_params)
     if bookmark.save
       flash[:notice] = "お気に入り登録しました"
-      redirect_back fallback_location: shops_path
+    else
+      flash[:alert] = "お気に入り登録に失敗しました: #{ bookmark.errors.full_messages }"
     end
+    redirect_back fallback_location: shops_path
   end
 
   def destroy
     bookmark = Bookmark.find(params[:id])
-    bookmark.destroy
-    flash[:alert] = "お気に入りを解除しました"
+    if bookmark.destroy
+      flash[:alert] = "お気に入りを解除しました"
+    else
+      flash[:alert] = "お気に入り登録の解除に失敗しました: #{bookmark.errors.full_messages }"
+    end
     redirect_back fallback_location: shops_path
   end
 
