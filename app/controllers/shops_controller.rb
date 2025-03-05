@@ -41,6 +41,7 @@ class ShopsController < ApplicationController
     @shop = Shop.find(params[:id])
     @comment = @shop.comments.new
     @comments = @shop.comments.includes(:user)
+    @bookmark = @shop.bookmarks.find_by(user_id: current_user.id)
   end
 
   private
