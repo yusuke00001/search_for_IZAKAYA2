@@ -4,17 +4,31 @@
   </div>
   <% if @comments.present? %>
     <% @comments.each do |comment| %>
-      <div class="user-data-edit-delete">
+      <div class="user-data-value-form">
         <div class="user-data-card-style">
-          <div class="user-data-edit-delete">
-            <div class="user-data-container">
-              <%= image_tag comment.user.get_user_avatar.variant(resize_to_fit: [50,50]) %>
-              <div class="user">
-                  <%= t('.user_name') %>:<%= comment.user.name %><br>
-                <%= t('.visit_day') %>:<%= comment.visit_day %>
-              </div>
+          <div class="user-data-container">
+            <%= image_tag comment.user.get_user_avatar.variant(resize_to_fit: [50,50]) %>
+            <div class="user">
+                <%= t('.user_name') %>:<%= comment.user.name %><br>
+              <%= t('.visit_day') %>:<%= comment.visit_day %>
             </div>
           </div>
+        </div>
+        <% 5.times do |i| %>
+          <% if i < comment.value %>
+            <div class="icon-yellow">
+              <i class="fa-solid fa-star fa-3x"></i>
+            </div>
+          <% else %>
+            <div class="icon-gray">
+              <i class="fa-regular fa-star fa-3x"></i>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="comment-form-container">
+        <div class="comment-style">
+          <%= comment.content %>
         </div>
         <% if comment.user.id == current_user.id %>
           <div class="edit-delete-link">
@@ -26,9 +40,6 @@
             <% end %>
           </div>
         <% end %>
-      </div>
-      <div class="comment-style">
-        <%= comment.content %>
       </div>
     <% end %>
   <% else %>

@@ -65,12 +65,12 @@
   text-align: center;
   margin-bottom: 30px;
 }
-.comment-list .user-data-edit-delete {
+.comment-list .user-data-value-form {
   margin: 0 auto;
   width: 700px;
   display: flex;
 }
-.comment-list .user-data-edit-delete .user-data-card-style {
+.comment-list .user-data-value-form .user-data-card-style {
   width: 400px;
   height: 60px;
   border-top: 1px solid black;
@@ -80,21 +80,24 @@
   box-shadow: 0 4px 9px rgba(0, 0, 0, 0.1);
   padding: 5px;
 }
-.comment-list .user-data-edit-delete .user-data-card-style .user-data-container {
+.comment-list .user-data-value-form .user-data-card-style .user-data-container {
   display: flex;
 }
-.comment-list .user-data-edit-delete .user-data-card-style .user-data-container .user {
+.comment-list .user-data-value-form .user-data-card-style .user-data-container .user {
   margin-left: 20px;
 }
-.comment-list .user-data-edit-delete .edit-delete-link {
-  margin-left: auto;
-  margin-top: auto;
-  margin-right: 10px;
+.comment-list .user-data-value-form .icon-gray {
+  color: gray;
 }
-.comment-list .user-data-edit-delete .edit-delete-link .edit {
-  margin-right: 10px;
+.comment-list .user-data-value-form .icon-yellow {
+  color: yellow;
 }
-.comment-list .comment-style {
+.comment-list .comment-form-container {
+  display: flex;
+  width: 700px;
+  margin: 0 auto;
+}
+.comment-list .comment-form-container .comment-style {
   margin: 0 auto;
   width: 700px;
   border: 1px solid black;
@@ -102,9 +105,16 @@
   padding: 20px;
   margin-bottom: 20px;
 }
-.comment-list .no-comment {
+.comment-list .comment-form-container .no-comment {
   margin: 50px;
   text-align: center;
+}
+.comment-list .comment-form-container .edit-delete-link {
+  margin-left: auto;
+  margin-left: 10px;
+}
+.comment-list .comment-form-container .edit-delete-link .edit {
+  margin-right: 10px;
 }
 
 .comment-create .comment-style {
