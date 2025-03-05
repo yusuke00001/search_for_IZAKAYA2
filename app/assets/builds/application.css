@@ -70,6 +70,12 @@
   width: 700px;
   display: flex;
 }
+.comment-list .user-data-edit-delete .icon-gray {
+  color: gray;
+}
+.comment-list .user-data-edit-delete .icon-yellow {
+  color: yellow;
+}
 .comment-list .user-data-edit-delete .user-data-card-style {
   width: 400px;
   height: 60px;

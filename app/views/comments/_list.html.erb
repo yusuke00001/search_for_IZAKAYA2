@@ -16,6 +16,17 @@
             </div>
           </div>
         </div>
+        <% 5.times do |i| %>
+          <% if i < comment.value %>
+            <div class="icon-yellow">
+              <i class="fa-solid fa-star fa-3x"></i>
+            </div>
+          <% else %>
+            <div class="icon-gray">
+              <i class="fa-regular fa-star fa-3x"></i>
+            </div>
+          <% end %>
+        <% end %>
         <% if comment.user.id == current_user.id %>
           <div class="edit-delete-link">
             <%= link_to edit_shop_comment_path(shop_id: comment.shop.id, id: comment.id), class:"edit" do %>
