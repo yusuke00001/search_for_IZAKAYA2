@@ -111,12 +111,6 @@
       padding: 20px;
       margin-bottom: 20px;
     }
-
-    .no-comment {
-      margin: 50px;
-      text-align: center;
-    }
-
     .edit-delete-link {
       margin-left: auto;
       margin-left: 10px;
@@ -125,6 +119,10 @@
         margin-right: 10px;
       }
     }
+  }
+  .no-comment {
+    margin: 50px;
+    text-align: center;
   }
 }
 .comment-create {

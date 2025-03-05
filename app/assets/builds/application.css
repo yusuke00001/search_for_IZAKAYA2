@@ -105,16 +105,16 @@
   padding: 20px;
   margin-bottom: 20px;
 }
-.comment-list .comment-form-container .no-comment {
-  margin: 50px;
-  text-align: center;
-}
 .comment-list .comment-form-container .edit-delete-link {
   margin-left: auto;
   margin-left: 10px;
 }
 .comment-list .comment-form-container .edit-delete-link .edit {
   margin-right: 10px;
+}
+.comment-list .no-comment {
+  margin: 50px;
+  text-align: center;
 }
 
 .comment-create .comment-style {
