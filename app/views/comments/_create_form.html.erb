@@ -3,13 +3,7 @@
     <%= form_with(model: [@shop, @comment]) do |form| %>
       <div class="comment-create-container">
         <h1><strong><%= t('.comment_create_title')%></strong></h1>
-        <% 5.times do |i| %>
-          <%= link_to do %>
-            <div class="icon-gray">
-              <i class="fa-regular fa-star fa-3x"></i>
-            </div>
-          <% end %>
-        <% end %>
+        <%= render "comments/value" %>
       </div>
       <%= form.text_field :content, placeholder: "コメントを入力してください", class:"content" %>
       <div class="submit-visit-day">
@@ -18,7 +12,8 @@
           <%= form.date_select :visit_day %>
         </div>
         <div class="submit">
-          <%= form.submit t('.submit'), class:"submit-botton" %>
+          <%= form.hidden_field :value, value: (@value || 0 ) + 1 %>
+          <%= form.submit t('.submit'), data: { turbo_frame: "_top" }, class:"submit-botton" %>
         <div>
       </div>
     <% end %>
