@@ -92,4 +92,6 @@
   </div>
 </div>
 <%= render 'comments/list' %>
-<%= render 'comments/create_form'%>
+<turbo-frame id="value-frame">
+  <%= render 'comments/create_form' %>
+</turbo-frame>
