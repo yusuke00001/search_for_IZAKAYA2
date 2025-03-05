@@ -21,7 +21,13 @@
     <%= f.hidden_field :record_start_index, value: 1 %>
     <%= f.submit t('.search') %>
   <% end %>
-  <turbo-frame>
-    <%= render partial: 'shop', colletion: @shops %>
-  </turbo-frame>
+  <% if @shops.present? %>
+    <turbo-frame>
+      <%= render partial: 'shop', colletion: @shops %>
+    </turbo-frame>
+  <% else %>
+    <div class="no-search">
+      <strong>条件に合う居酒屋は見つかりませんでした</strong>
+    </div>
+  <% end %>
 </div>

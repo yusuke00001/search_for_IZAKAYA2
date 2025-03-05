@@ -210,6 +210,9 @@
   background: #FFF;
   border: 1px solid #ddd;
 }
+.shops-index .no-search {
+  margin-top: 50px;
+}
 
 .bookmarks-index .title {
   margin-top: 50px;
