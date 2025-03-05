@@ -114,10 +114,10 @@
 .comment-create .comment-style .comment-create-container {
   display: flex;
 }
-.comment-create .comment-style .comment-create-container .icon-gray i {
+.comment-create .comment-style .comment-create-container .icon-gray {
   color: gray;
 }
-.comment-create .comment-style .comment-create-container .icon-yellow i {
+.comment-create .comment-style .comment-create-container .icon-yellow {
   color: yellow;
 }
 .comment-create .comment-style .content {
@@ -270,6 +270,10 @@
 
 .comment-edit .create-form {
   margin-top: 200px;
+}
+
+.comments-value .value-container {
+  display: flex;
 }
 
 /*# sourceMappingURL=application.css.map */

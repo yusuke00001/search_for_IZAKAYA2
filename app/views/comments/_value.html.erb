@@ -1,0 +1,19 @@
+<div class="comments-value">
+  <div class="value-container">
+    <% 5.times do |i| %>
+      <% if @value.present? && @value >= i %>
+        <%= link_to value_shop_comments_path(shop_id: @shop.id, value: i) do %>
+          <div class="icon-yellow">
+            <i class="fa-solid fa-star fa-3x"></i>
+          </div>
+        <% end %>
+      <% else %>
+        <%= link_to value_shop_comments_path(shop_id: @shop.id, id: @comment.id, value: i) do %>
+          <div class="icon-gray">
+            <i class="fa-regular fa-star fa-3x"></i>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
