@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   def create
+    binding.pry
     shop = Shop.find(params[:shop_id])
     comment = shop.comments.new(comment_params)
     comment.user = current_user
@@ -47,12 +48,7 @@ class CommentsController < ApplicationController
     @comment = @shop.comments.new
     @comments = @shop.comments.includes(:user)
 
-    respond_to do |format|
-      format.turbo_stream do
-        render turbo_stream: turbo_stream.replace("value-frame", partial: "comments/create_form")
-      end
-      format.html { render "shops/show" }
-    end
+    render "shops/show"
   end
 
   private
