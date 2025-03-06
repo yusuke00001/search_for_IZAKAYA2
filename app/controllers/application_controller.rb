@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
     @shops = shops.offset((@current_page - 1) * PAGE_NUMBER).limit(PAGE_NUMBER)
 
     if @shops.empty? && @current_page > 1
-      @current_page -= 1
+      @current_page = @total_page
       @shops = shops.offset((@current_page - 1) * PAGE_NUMBER).limit(PAGE_NUMBER)
       flash[:alert] = "検索結果はこれ以上ありません"
     end
