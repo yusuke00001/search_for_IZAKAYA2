@@ -1,6 +1,6 @@
 class ShopsController < ApplicationController
   def index
-    keyword = params[:keyword] || "居酒屋"
+    keyword = params[:keyword].presence || "居酒屋"
     params[:record_start_index] = params[:record_start_index].to_i
     @keyword = Keyword.find_or_create_keyword(keyword)
     filter_condition = {
@@ -47,17 +47,19 @@ class ShopsController < ApplicationController
   private
 
   def search_params(keyword)
-    params.permit(:keyword, :record_start_index, :free_drink, :free_food, :private_room, :course, :midnight, :non_smoking)
+    params.permit(:keyword, :record_start_index, :free_drink, :free_food, :private_room, :course, :midnight, :non_smoking, :lat, :lng)
           .to_h # ハッシュ化
           .symbolize_keys # キーを文字列からキーに変更
           .merge(keyword: keyword,
-                 free_drink: params[:free_drink].presence || 0,
-                 free_food: params[:free_food].presence || 0,
-                 private_room: params[:private_room].presence || 0,
-                 course: params[:course].presence || 0,
-                 midnight: params[:midnight].presence || 0,
-                 non_smoking: params[:non_smoking].presence || 0,
-                 record_start_index: params[:record_start_index].to_i
+                 free_drink: params[:free_drink].to_i,
+                 free_food: params[:free_food].to_i,
+                 private_room: params[:private_room].to_i,
+                 course: params[:course].to_i,
+                 midnight: params[:midnight].to_i,
+                 non_smoking: params[:non_smoking].to_i,
+                 record_start_index: params[:record_start_index].to_i,
+                 lat: params[:latitude].to_i,
+                 lng: params[:longitude].to_i
           )
   end
 

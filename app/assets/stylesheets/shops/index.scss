@@ -15,9 +15,18 @@
     padding: 13px;
     margin-bottom: 20px;
   }
+  .current-location-search-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
 
-  .search {
-    text-align: center;
+    .current-location {
+      font-size: 18px;
+    }
+
+    .search {
+      width: 400px;
+    }
   }
 
   .card-style {
@@ -35,6 +44,7 @@
       justify-content: space-between;
       font-size: 15px;
       margin: 20px;
+      text-align: center;
 
       .page_link{
         padding-top: 4px;

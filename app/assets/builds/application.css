@@ -166,8 +166,16 @@
   padding: 13px;
   margin-bottom: 20px;
 }
-.shops-index .search {
-  text-align: center;
+.shops-index .current-location-search-container {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+.shops-index .current-location-search-container .current-location {
+  font-size: 18px;
+}
+.shops-index .current-location-search-container .search {
+  width: 400px;
 }
 .shops-index .card-style {
   margin: 0 auto;
@@ -184,6 +192,7 @@
   justify-content: space-between;
   font-size: 15px;
   margin: 20px;
+  text-align: center;
 }
 .shops-index .card-style .pagination .page_link {
   padding-top: 4px;
@@ -272,6 +281,7 @@
 .shops-list .shops-list-container .shops {
   width: 400px;
   overflow-wrap: break-word;
+  text-align: center;
 }
 .shops-list .shops-list-container .shops .shops-name {
   font-size: 20px;
