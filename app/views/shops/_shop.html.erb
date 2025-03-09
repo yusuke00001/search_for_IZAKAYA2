@@ -1,7 +1,7 @@
 <div class="card-style">
   <%= render "shared/shops_list" %>
   <div class="pagination">
-    <% keyword_filter_params = @filter_conditions.merge(keyword: @keyword.word) %>
+    <% keyword_filter_params = @filter_conditions.merge(keyword: @keyword.word, current_location: @current_location_search, shop_ids: @shop_ids, latitude: @current_latitude, longitude: @current_longitude) %>
     <% if @first_page %>
       <div class="page_link">
         <%= link_to t('.first_page'), shops_path(keyword_filter_params.merge(page: @first_page) ), data: { turbo_frame: "_top" },class:"no-underline"  %>

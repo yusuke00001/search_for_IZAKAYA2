@@ -9,7 +9,6 @@ class HotpepperApi
     lat = nil if lat == 0
     lng = nil if lng == 0
     uri = URI(BASE_URL)
-    binding.pry
     params = {
       key: ENV["HOTPEPPER_API_KEY"],
       keyword:, # 検索に使うキーワード
@@ -23,11 +22,11 @@ class HotpepperApi
       non_smoking: non_smoking,
       lat: lat,
       lng: lng,
+      range: 5,
 
       count: count = 100
   }.compact
-
-    binding.pry
+binding.pry
     uri.query = URI.encode_www_form(params)
 
     response = Net::HTTP.get_response(uri) # APIにリクエストを送信
