@@ -19,7 +19,8 @@ class ShopsController < ApplicationController
     # Keyword_filtersテーブルにこのKeywordとFilterの組み合わせのデータがあるかどうかを確認したい
     keyword_filter = KeywordFilter.find_association(@keyword, filter)
     # params[:start] == 0(ページ遷移の時) または同じ条件で検索しているかつ次の100件じゃない時または現在地検索がONの時データベースから取得
-    unless params[:record_start_index] == 0 || params[:record_start_index] == 1 && keyword_filter.present? && @current_location_search == 0
+    binding.pry
+    unless params[:record_start_index] == 0 || params[:record_start_index] == 1 && keyword_filter.present? && current_location_search == 0
       @API_shop_data = HotpepperApi.search_shops(**search_params(keyword))
       shops_create(@keyword, shop_ids)
       KeywordFilter.find_or_create_association(@keyword, filter)

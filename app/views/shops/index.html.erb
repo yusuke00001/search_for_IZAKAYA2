@@ -71,8 +71,6 @@ document.addEventListener("turbo:load", function() {
               console.error("位置情報の取得に失敗", error);
             }
           );
-        } else {
-          console.error("このブラウザではGeolocationAPIを利用できません");
         }
       } else {
         latitudeField.value = "";
