@@ -1,22 +1,21 @@
 <div class="card-style">
   <%= render "shared/shops_list" %>
   <div class="pagination">
-    <% keyword_filter_params = @filter_conditions.merge(keyword: @keyword.word, current_location: @current_location_search, shop_ids: @shop_ids, latitude: @current_latitude, longitude: @current_longitude) %>
     <% if @first_page %>
       <div class="page_link">
-        <%= link_to t('.first_page'), shops_path(keyword_filter_params.merge(page: @first_page) ), data: { turbo_frame: "_top" },class:"no-underline"  %>
+        <%= link_to t('.first_page'), shops_path(@keyword_filter_params.merge(page: @first_page) ), data: { turbo_frame: "_top" },class:"no-underline"  %>
       </div>
     <% end %>
     <% if @previous_page%>
       <div class="page_link">
-        <%= link_to t('.previous'), shops_path(keyword_filter_params.merge(page: @previous_page)), data: { turbo_frame: "_top" },class:"no-underline"  %>
+        <%= link_to t('.previous'), shops_path(@keyword_filter_params.merge(page: @previous_page)), data: { turbo_frame: "_top" },class:"no-underline"  %>
       </div>
     <% end %>
 
     <% (@start_page..@final_page).each do |page| %>
       <% if page != @current_page %>
         <div class="page_link">
-          <%= link_to page, shops_path(keyword_filter_params.merge(page: page)), data: { turbo_frame: "_top" },class:"no-underline"  %>
+          <%= link_to page, shops_path(@keyword_filter_params.merge(page: page)), data: { turbo_frame: "_top" },class:"no-underline"  %>
         </div>
       <% else %>
         <div class="current_page">
@@ -26,17 +25,17 @@
     <% end %>
     <% if @next_page %>
       <div class="page_link">
-        <%= link_to t('.next'), shops_path(keyword_filter_params.merge(page: @next_page)), data: { turbo_frame: "_top" },class:"no-underline" %>
+        <%= link_to t('.next'), shops_path(@keyword_filter_params.merge(page: @next_page)), data: { turbo_frame: "_top" },class:"no-underline" %>
       </div>
     <% end %>
     <% if @last_page %>
       <div class="page_link">
-        <%= link_to t('.last_page'), shops_path(keyword_filter_params.merge(page: @last_page)), data: { turbo_frame: "_top" },class:"no-underline"  %>
+        <%= link_to t('.last_page'), shops_path(@keyword_filter_params.merge(page: @last_page)), data: { turbo_frame: "_top" },class:"no-underline"  %>
       </div>
     <% end %>
     <% if @current_page * 10 >= @total_shops %>
       <div class="next-100">    
-        <%= link_to t('.next100'), shops_path(keyword_filter_params.merge(record_start_index: @current_page * 10 + 1, page: @current_page + 1)), data: { turbo_frame: "_top" },class:"no-underline"  %>
+        <%= link_to t('.next100'), shops_path(@keyword_filter_params.merge(record_start_index: @current_page * 10 + 1, page: @current_page + 1)), data: { turbo_frame: "_top" },class:"no-underline"  %>
       </div>
     <% end %>
   </div>
