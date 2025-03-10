@@ -44,7 +44,13 @@ class ShopsController < ApplicationController
       shops = Shop.filter_and_keyword_association(filters, @keyword)
     end
     # ページネーション
-    pagination(shops, current_location_search, shop_ids,  current_latitude, current_longitude)
+    pagination(
+      shops: shops,
+      current_location_search: current_location_search,
+      shop_ids: shop_ids,
+      current_latitude: current_latitude,
+      current_longitude: current_longitude,
+    )
   end
 
   def show

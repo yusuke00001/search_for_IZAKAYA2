@@ -1,7 +1,7 @@
 class BookmarksController < ApplicationController
   def index
     shops = Shop.joins(:bookmarks).where(bookmarks: { user_id: current_user.id })
-    pagination(shops)
+    pagination(shops: shops)
   end
   def create
     bookmark = Bookmark.new(bookmark_params)
