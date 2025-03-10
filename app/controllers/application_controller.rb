@@ -21,7 +21,8 @@ class ApplicationController < ActionController::Base
   PAGE_NUMBER = 10
   DISPLAY_PAGE_RANGE = 3
 
-  def pagination(shops)
+  def pagination(shops, current_location_search, shop_ids, current_latitude, current_longitude)
+    @keyword_filter_params = @filter_conditions.merge(keyword: @keyword.word, current_location: current_location_search, shop_ids: shop_ids, latitude: current_latitude, longitude: current_longitude)
     @current_page = (params[:page].to_i > 0) ? params[:page].to_i : 1
     @total_shops = shops.count
     @total_page = (@total_shops.to_f / 10).ceil

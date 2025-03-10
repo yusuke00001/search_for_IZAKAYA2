@@ -1,6 +1,6 @@
 <div class="shops-index">
   <h1 class="title"><%= t('.title') %></h1>
-  <%= form_with url: shops_path, method: :get do |f| %>
+  <%= form_with url: shops_path, method: :get, id: "shops-search-form" do |f| %>
     <div class="filter">
       <strong><%= t('.filter')%></strong><br>
       <%= f.check_box :free_drink,{ include_hidden: false }, "1" %>
@@ -16,10 +16,19 @@
       <%= f.check_box :non_smoking, { include_hidden: false }, "1" %>
       <%= f.label :non_smoking, "禁煙" %>
     </div>
-    <div class="search">
-    <%= f.text_field :keyword, placeholder: "検索キーワード" %>
-    <%= f.hidden_field :record_start_index, value: 1 %>
-    <%= f.submit t('.search') %>
+    <div class="current-location-search-container">
+      <div class="current-location">
+        <%= f.label :current_location, "現在地周辺検索ON" %>
+        <%= f.check_box :current_location%>
+      </div>
+      <div class="search">
+        <%= f.text_field :keyword, placeholder: "検索キーワード" %>
+        <%= f.hidden_field :record_start_index, value: 1 %>
+        <%= f.hidden_field :latitude, id: "latitude_field" %>
+        <%= f.hidden_field :longitude, id: "longitude_field" %>
+        <%= f.submit t('.search') %>
+      </div>
+    </div>
   <% end %>
   <% if @shops.present? %>
     <turbo-frame>
@@ -31,3 +40,46 @@
     </div>
   <% end %>
 </div>
+<%# ここからgeolocationAPIの処理%>
+<script>
+document.addEventListener("turbo:load", function() {
+  const form = document.getElementById("shops-search-form");
+  const checkbox = document.getElementById("current_location");
+  const latitudeField = document.getElementById("latitude_field");
+  const longitudeField = document.getElementById("longitude_field");
+
+  console.log("latitudeField:", latitudeField);
+  console.log("longitudeField:", longitudeField);
+
+  if (checkbox) {
+    checkbox.addEventListener("change", function() {
+      if (this.checked) {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+            function(position) {
+              let latitude = position.coords.latitude;
+              let longitude = position.coords.longitude;
+
+              console.log("緯度:", latitude, "経度:", longitude);
+
+              latitudeField.value = latitude;
+              longitudeField.value = longitude;
+
+              console.log("緯度パラメータ:", latitudeField, "経度パラメータ:", longitudeField);
+            },
+            function(error) {
+              console.error("位置情報の取得に失敗", error);
+            }
+          );
+        }
+      } else {
+        latitudeField.value = "";
+        longitudeField.value = "";
+      };
+    })
+  }
+   form.addEventListener("submit", function(event) {
+    console.log("フォーム送信時の緯度:", latitudeField.value, "経度:", longitudeField.value);
+  });
+});
+</script>

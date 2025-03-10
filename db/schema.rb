@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_04_021701) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_08_050442) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -43,7 +43,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_04_021701) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
-    t.integer "shop_id", null: false
+    t.integer "shop_id"
     t.index ["shop_id"], name: "fk_rails_e693edfdd5"
     t.index ["user_id"], name: "fk_rails_c1ff6fa4ac"
   end
@@ -112,6 +112,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_04_021701) do
     t.text "logo_image"
     t.text "image"
     t.bigint "filter_id"
+    t.integer "order"
     t.index ["filter_id"], name: "fk_rails_2a05a1f881"
   end
 
@@ -130,8 +131,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_04_021701) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "bookmarks", "shops"
-  add_foreign_key "bookmarks", "users"
+  add_foreign_key "bookmarks", "shops", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "bookmarks", "users", on_update: :cascade, on_delete: :cascade
   add_foreign_key "comments", "shops", on_update: :cascade, on_delete: :cascade
   add_foreign_key "comments", "users", on_update: :cascade, on_delete: :cascade
   add_foreign_key "keyword_filters", "filters", on_update: :cascade

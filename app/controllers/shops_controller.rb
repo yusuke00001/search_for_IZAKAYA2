@@ -1,7 +1,11 @@
 class ShopsController < ApplicationController
   def index
-    keyword = params[:keyword] || "居酒屋"
+    shop_ids = params[:shop_ids].presence || []
+    keyword = params[:keyword].presence || "居酒屋"
     params[:record_start_index] = params[:record_start_index].to_i
+    current_location_search = params[:current_location].to_i
+    current_latitude = params[:latitude].to_f
+    current_longitude = params[:longitude].to_f
     @keyword = Keyword.find_or_create_keyword(keyword)
     filter_condition = {
       free_drink: params[:free_drink].to_i,
@@ -14,10 +18,10 @@ class ShopsController < ApplicationController
     filter = Filter.find_or_create(filter_condition)
     # Keyword_filtersテーブルにこのKeywordとFilterの組み合わせのデータがあるかどうかを確認したい
     keyword_filter = KeywordFilter.find_association(@keyword, filter)
-    # params[:start] == 0(ページ遷移の時) または同じ条件で検索しているかつ次の100件じゃない時データベースから取得
-    unless params[:record_start_index] == 0 || (params[:record_start_index] == 1 && keyword_filter.present?)
+    # params[:start] == 0(ページ遷移の時) または同じ条件で検索しているかつ次の100件じゃない時または現在地検索がONの時データベースから取得
+    unless params[:record_start_index] == 0 || params[:record_start_index] == 1 && keyword_filter.present? && current_location_search == 0
       @API_shop_data = HotpepperApi.search_shops(**search_params(keyword))
-      shops_create(@keyword)
+      shops_create(@keyword, shop_ids)
       KeywordFilter.find_or_create_association(@keyword, filter)
     end
 
@@ -32,9 +36,15 @@ class ShopsController < ApplicationController
 
     filters = Filter.where(@filter_conditions)
     # @shopにデータベース内検索結果を格納
-    shops = Shop.filter_and_keyword_association(filters, @keyword)
+    if current_location_search == 1
+      placeholders = shop_ids.map { "?" }.join(", ")
+      query = ActiveRecord::Base.sanitize_sql_array([ "FIELD(unique_number, #{placeholders})", *shop_ids ])
+      shops = Shop.where(unique_number: shop_ids).order(Arel.sql(query))
+    else
+      shops = Shop.filter_and_keyword_association(filters, @keyword)
+    end
     # ページネーション
-    pagination(shops)
+    pagination(shops, current_location_search, shop_ids,  current_latitude, current_longitude)
   end
 
   def show
@@ -47,21 +57,23 @@ class ShopsController < ApplicationController
   private
 
   def search_params(keyword)
-    params.permit(:keyword, :record_start_index, :free_drink, :free_food, :private_room, :course, :midnight, :non_smoking)
+    params.permit(:keyword, :record_start_index, :free_drink, :free_food, :private_room, :course, :midnight, :non_smoking, :lat, :lng)
           .to_h # ハッシュ化
           .symbolize_keys # キーを文字列からキーに変更
           .merge(keyword: keyword,
-                 free_drink: params[:free_drink].presence || 0,
-                 free_food: params[:free_food].presence || 0,
-                 private_room: params[:private_room].presence || 0,
-                 course: params[:course].presence || 0,
-                 midnight: params[:midnight].presence || 0,
-                 non_smoking: params[:non_smoking].presence || 0,
-                 record_start_index: params[:record_start_index].to_i
+                 free_drink: params[:free_drink].to_i,
+                 free_food: params[:free_food].to_i,
+                 private_room: params[:private_room].to_i,
+                 course: params[:course].to_i,
+                 midnight: params[:midnight].to_i,
+                 non_smoking: params[:non_smoking].to_i,
+                 record_start_index: params[:record_start_index].to_i,
+                 lat: params[:latitude].to_f,
+                 lng: params[:longitude].to_f
           )
   end
 
-  def shops_create(keyword)
+  def shops_create(keyword, shop_ids)
     @API_shop_data.each do |shop_data|
       # APIから取得した絞り込み条件に対応するデータをtrue/falseに変換
       filter_condition = {
@@ -78,6 +90,7 @@ class ShopsController < ApplicationController
       shop = Shop.create_or_update_from_API_data(shop_data, filter)
       # ShopsとKeywordsの組み合わせが存在しなかったら作成
       ShopKeyword.find_or_create_association(shop, keyword)
+      shop_ids << shop.unique_number
     end
   end
 end

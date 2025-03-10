@@ -22,7 +22,7 @@ class Shop < ApplicationRecord
         number_of_seats: shop_data["capacity"],
         url: shop_data.dig("urls", "pc"),
         logo_image: shop_data["logo_image"],
-        image: shop_data.dig("photo", "pc", "l")
+        image: shop_data.dig("photo", "pc", "l"),
       )
       shop
     else
@@ -38,7 +38,7 @@ class Shop < ApplicationRecord
         url: shop_data.dig("urls", "pc"),
         logo_image: shop_data["logo_image"],
         image: shop_data.dig("photo", "pc", "l"),
-        filter_id: filter.id
+        filter_id: filter.id,
       )
     end
   end
