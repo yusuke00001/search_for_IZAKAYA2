@@ -21,8 +21,11 @@ class ApplicationController < ActionController::Base
   PAGE_NUMBER = 10
   DISPLAY_PAGE_RANGE = 3
 
-  def pagination(shops, current_location_search, shop_ids, current_latitude, current_longitude)
-    @keyword_filter_params = @filter_conditions.merge(keyword: @keyword.word, current_location: current_location_search, shop_ids: shop_ids, latitude: current_latitude, longitude: current_longitude)
+  def pagination(shops:, current_location_search: nil, shop_ids: nil, current_latitude: nil, current_longitude: nil)
+    # @keywordがtrue→shopsコントローラからの処理 false→bookmarksコントローラからの処理
+    if @keyword
+      @keyword_filter_params = @filter_conditions.merge(keyword: @keyword.word, current_location: current_location_search, shop_ids: shop_ids, latitude: current_latitude, longitude: current_longitude)
+    end
     @current_page = (params[:page].to_i > 0) ? params[:page].to_i : 1
     @total_shops = shops.count
     @total_page = (@total_shops.to_f / 10).ceil
