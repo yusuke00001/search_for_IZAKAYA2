@@ -44,15 +44,25 @@ class ShopsController < ApplicationController
       shops = Shop.filter_and_keyword_association(filters, @keyword)
     end
     # ページネーション
-    pagination(
-      shops: shops,
-      current_location_search: current_location_search,
-      shop_ids: shop_ids,
-      current_latitude: current_latitude,
-      current_longitude: current_longitude,
-    )
-  end
+    @keyword_filter_params = @filter_conditions.merge(keyword: @keyword.word, current_location: current_location_search, shop_ids: shop_ids, latitude: current_latitude, longitude: current_longitude)
+    @current_page = (params[:page].to_i > 0) ? params[:page].to_i : 1
+    @total_shops = shops.count
+    @total_page = (@total_shops.to_f / 10).ceil
+    @shops = shops.offset((@current_page - 1) * Shop::PAGE_NUMBER).limit(Shop::PAGE_NUMBER)
 
+    if @shops.empty? && @current_page > 1
+      @current_page = @total_page
+      @shops = shops.offset((@current_page - 1) * Shop::PAGE_NUMBER).limit(Shop::PAGE_NUMBER)
+      flash[:alert] = "検索結果はこれ以上ありません"
+    end
+
+    @previous_page = @current_page > 1 ? @current_page - 1 : nil
+    @next_page = @total_page > @current_page ? @current_page + 1 : nil
+    @first_page = @current_page > 1 ?  1 : nil
+    @last_page = @total_page > @current_page ? @total_page : nil
+    @start_page = [ @current_page - Shop::DISPLAY_PAGE_RUNGE, 1 ].max
+    @final_page = [ @current_page + Shop::DISPLAY_PAGE_RUNGE, @total_page ].min
+  end
   def show
     @shop = Shop.find(params[:id])
     @comment = @shop.comments.new
