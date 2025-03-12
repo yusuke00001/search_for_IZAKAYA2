@@ -1,9 +1,9 @@
 <div class="comment-create">
   <div class="comment-style">
-    <%= form_with(model: [@shop, @comment]) do |form| %>
+    <%= form_with(model: [shop, comment]) do |form| %>
       <div class="comment-create-container">
         <h1><strong><%= t('.comment_create_title')%></strong></h1>
-        <%= render "comments/value", value: @value %>
+        <%= render "comments/value", value: value, shop: shop, comment: comment %>
       </div>
       <%= form.text_field :content, placeholder: "コメントを入力してください", class:"content" %>
       <div class="submit-visit-day">

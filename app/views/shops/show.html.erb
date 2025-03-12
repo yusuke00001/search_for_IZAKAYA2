@@ -91,7 +91,7 @@
     <%= link_to t('.back'), shops_path %>
   </div>
 </div>
-<%= render 'comments/list' %>
+<%= render 'comments/list', shops: @shops, bookmark: @boookmark %>
 <turbo-frame id="value-frame">
-  <%= render 'comments/create_form' %>
+  <%= render 'comments/create_form', shop: @shop, comment: @comment, value: @value %>
 </turbo-frame>
