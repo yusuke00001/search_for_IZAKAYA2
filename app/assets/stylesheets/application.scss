@@ -10,8 +10,11 @@
  */
  @use "shops/show";
  @use "shops/index";
+ @use "shops/_shop";
  @use "bookmarks/index" as bookmarks;
  @use "shared/shops_list";
  @use "comments/edit";
  @use "comments/value";
+ @use "comments/list";
+ @use "comments/create_form";
  @use "homes/index" as homes;

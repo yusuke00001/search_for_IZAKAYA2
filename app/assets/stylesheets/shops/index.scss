@@ -1,5 +1,4 @@
 .shops-index {
-
   .title {
     margin-top: 50px;
     text-align: center;
@@ -15,6 +14,7 @@
     padding: 13px;
     margin-bottom: 20px;
   }
+
   .current-location-search-container {
     display: flex;
     justify-content: center;
@@ -26,54 +26,6 @@
 
     .search {
       width: 400px;
-    }
-  }
-
-  .card-style {
-    margin: 0 auto;
-    width: 800px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 4px 9px rgba(0,0,0,0.1);
-    margin-top: 40px;
-    padding: 16px;
-    margin-bottom: 50px;
-
-    .pagination {
-      display: flex;
-      justify-content: space-between;
-      font-size: 15px;
-      margin: 20px;
-      text-align: center;
-
-      .page_link{
-        padding-top: 4px;
-        color: blue;
-        background: #FFF;
-        border: 1px solid #ddd;
-        width: 35px;
-        height: 35px;
-      }
-
-      .no-underline {
-        text-decoration: none;
-      }
-      
-      .current_page {
-        padding-top: 4px;
-        font-weight: bold;
-        color: white;
-        background: #007bff;
-        width: 35px;
-        height: 35px;
-      }
-
-      .next-100{
-        padding: 5px 10px;
-        color: blue;
-        background: #FFF;
-        border: 1px solid #ddd;
-      }
     }
   }
   .no-search {
