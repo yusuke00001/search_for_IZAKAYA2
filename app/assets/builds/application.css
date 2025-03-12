@@ -61,6 +61,154 @@
   margin-top: 10px;
 }
 
+.shops-index .title {
+  margin-top: 50px;
+  text-align: center;
+}
+.shops-index .filter {
+  margin: 0 auto;
+  width: 650px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 9px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  padding: 13px;
+  margin-bottom: 20px;
+}
+.shops-index .current-location-search-container {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+.shops-index .current-location-search-container .current-location {
+  font-size: 18px;
+}
+.shops-index .current-location-search-container .search {
+  width: 400px;
+}
+.shops-index .no-search {
+  margin-top: 50px;
+}
+
+.shops-shop .card-style {
+  margin: 0 auto;
+  width: 800px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 9px rgba(0, 0, 0, 0.1);
+  margin-top: 40px;
+  padding: 16px;
+  margin-bottom: 50px;
+}
+.shops-shop .pagination {
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+  margin: 20px;
+  text-align: center;
+}
+.shops-shop .pagination .page_link {
+  padding-top: 4px;
+  color: blue;
+  background: #FFF;
+  border: 1px solid #ddd;
+  width: 35px;
+  height: 35px;
+}
+.shops-shop .pagination .no-underline {
+  text-decoration: none;
+}
+.shops-shop .pagination .current_page {
+  padding-top: 4px;
+  font-weight: bold;
+  color: white;
+  background: #007bff;
+  width: 35px;
+  height: 35px;
+}
+.shops-shop .pagination .next-100 {
+  padding: 5px 10px;
+  color: blue;
+  background: #FFF;
+  border: 1px solid #ddd;
+}
+
+.bookmarks-index .title {
+  margin-top: 50px;
+  text-align: center;
+}
+.bookmarks-index .card-style {
+  margin: 0 auto;
+  width: 800px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 9px rgba(0, 0, 0, 0.1);
+  margin-top: 40px;
+  padding: 16px;
+  margin-bottom: 50px;
+}
+.bookmarks-index .card-style .pagination {
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+  margin: 20px;
+}
+.bookmarks-index .card-style .pagination .page_link {
+  padding-top: 4px;
+  color: blue;
+  background: #FFF;
+  border: 1px solid #ddd;
+  width: 35px;
+  height: 35px;
+}
+.bookmarks-index .card-style .pagination .page_link .no-underline {
+  text-decoration: none;
+}
+.bookmarks-index .card-style .pagination .current_page {
+  padding-top: 4px;
+  font-weight: bold;
+  color: white;
+  background: #007bff;
+  width: 35px;
+  height: 35px;
+}
+.bookmarks-index .card-style .bookmark-nil {
+  margin-top: 200px;
+}
+
+.shops-list .shops-list-container {
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 9px rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+}
+.shops-list .shops-list-container .image {
+  width: 130px;
+  height: 130px;
+  margin-right: 100px;
+}
+.shops-list .shops-list-container .shops {
+  width: 400px;
+  overflow-wrap: break-word;
+  text-align: center;
+}
+.shops-list .shops-list-container .shops .shops-name {
+  font-size: 20px;
+}
+.shops-list .shops-list-container .icon {
+  margin-left: 40px;
+  color: pink;
+}
+
+.comment-edit .edit-form {
+  margin-top: 200px;
+}
+
+.comments-value .value-container {
+  display: flex;
+}
+
 .comment-list .title {
   text-align: center;
   margin-bottom: 30px;
@@ -150,153 +298,6 @@
   border: 1px solid #007bff;
   border-radius: 4px;
   font-size: 20px;
-}
-
-.shops-index .title {
-  margin-top: 50px;
-  text-align: center;
-}
-.shops-index .filter {
-  margin: 0 auto;
-  width: 650px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 4px 9px rgba(0, 0, 0, 0.1);
-  margin-top: 20px;
-  padding: 13px;
-  margin-bottom: 20px;
-}
-.shops-index .current-location-search-container {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-}
-.shops-index .current-location-search-container .current-location {
-  font-size: 18px;
-}
-.shops-index .current-location-search-container .search {
-  width: 400px;
-}
-.shops-index .card-style {
-  margin: 0 auto;
-  width: 800px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 4px 9px rgba(0, 0, 0, 0.1);
-  margin-top: 40px;
-  padding: 16px;
-  margin-bottom: 50px;
-}
-.shops-index .card-style .pagination {
-  display: flex;
-  justify-content: space-between;
-  font-size: 15px;
-  margin: 20px;
-  text-align: center;
-}
-.shops-index .card-style .pagination .page_link {
-  padding-top: 4px;
-  color: blue;
-  background: #FFF;
-  border: 1px solid #ddd;
-  width: 35px;
-  height: 35px;
-}
-.shops-index .card-style .pagination .no-underline {
-  text-decoration: none;
-}
-.shops-index .card-style .pagination .current_page {
-  padding-top: 4px;
-  font-weight: bold;
-  color: white;
-  background: #007bff;
-  width: 35px;
-  height: 35px;
-}
-.shops-index .card-style .pagination .next-100 {
-  padding: 5px 10px;
-  color: blue;
-  background: #FFF;
-  border: 1px solid #ddd;
-}
-.shops-index .no-search {
-  margin-top: 50px;
-}
-
-.bookmarks-index .title {
-  margin-top: 50px;
-  text-align: center;
-}
-.bookmarks-index .card-style {
-  margin: 0 auto;
-  width: 800px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 4px 9px rgba(0, 0, 0, 0.1);
-  margin-top: 40px;
-  padding: 16px;
-  margin-bottom: 50px;
-}
-.bookmarks-index .card-style .pagination {
-  display: flex;
-  justify-content: space-between;
-  font-size: 15px;
-  margin: 20px;
-}
-.bookmarks-index .card-style .pagination .page_link {
-  padding-top: 4px;
-  color: blue;
-  background: #FFF;
-  border: 1px solid #ddd;
-  width: 35px;
-  height: 35px;
-}
-.bookmarks-index .card-style .pagination .page_link .no-underline {
-  text-decoration: none;
-}
-.bookmarks-index .card-style .pagination .current_page {
-  padding-top: 4px;
-  font-weight: bold;
-  color: white;
-  background: #007bff;
-  width: 35px;
-  height: 35px;
-}
-.bookmarks-index .card-style .bookmark-nil {
-  margin-top: 200px;
-}
-
-.shops-list .shops-list-container {
-  border: 1px solid #ddd;
-  box-shadow: 0 4px 9px rgba(0, 0, 0, 0.1);
-  margin-bottom: 40px;
-  display: flex;
-  align-items: center;
-}
-.shops-list .shops-list-container .image {
-  width: 130px;
-  height: 130px;
-  margin-right: 100px;
-}
-.shops-list .shops-list-container .shops {
-  width: 400px;
-  overflow-wrap: break-word;
-  text-align: center;
-}
-.shops-list .shops-list-container .shops .shops-name {
-  font-size: 20px;
-}
-.shops-list .shops-list-container .icon {
-  margin-left: 40px;
-  color: pink;
-}
-
-.comment-edit .create-form {
-  margin-top: 200px;
-}
-
-.comments-value .value-container {
-  display: flex;
 }
 
 .homes-index .card-style {

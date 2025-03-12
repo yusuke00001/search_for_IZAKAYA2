@@ -1,0 +1,64 @@
+.comment-list {
+
+  .title {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  .user-data-value-form{
+    margin: 0 auto;
+    width: 700px;
+    display: flex;
+
+    .user-data-card-style {
+      width: 400px;
+      height: 60px;
+      border-top: 1px solid black;
+      border-right: 1px solid black;
+      border-left: 1px solid black;
+      border-radius: 8px;
+      box-shadow: 0 4px 9px rgba(0,0,0,0.1);
+      padding: 5px;
+      
+      .user-data-container {
+        display: flex;
+
+        .user {
+          margin-left: 20px;
+        }
+      }
+    }
+    .icon-gray  {
+      color: gray;
+    }
+
+    .icon-yellow  {
+      color: yellow;
+    }
+  }
+  .comment-form-container {
+    display: flex;
+    width: 700px;
+    margin: 0 auto;
+
+    .comment-style {
+      margin: 0 auto;
+      width: 700px;
+      border: 1px solid black;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .edit-delete-link {
+      margin-left: auto;
+      margin-left: 10px;
+
+      .edit {
+        margin-right: 10px;
+      }
+    }
+  }
+  .no-comment {
+    margin: 50px;
+    text-align: center;
+  }
+}

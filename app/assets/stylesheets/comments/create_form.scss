@@ -1,0 +1,45 @@
+.comment-create {
+
+  .comment-style {
+    width: 700px;
+    margin: 0 auto;
+
+    .comment-create-container {
+      display: flex;
+
+      .icon-gray  {
+        color: gray;
+      }
+
+      .icon-yellow  {
+        color: yellow;
+      }
+    }
+
+    .content {
+      width: 100%;
+      height: 100px;
+    }
+
+    .submit-visit-day{
+      display: flex;
+      margin-bottom: 50px;
+    
+      .visit-day {
+        text-align: left;
+      }
+
+      .submit{
+        margin-left: auto;
+
+        .submit-botton{
+          background-color: #007bff;
+          color: white;
+          border: 1px solid #007bff;
+          border-radius: 4px;
+          font-size: 20px;
+        }
+      }
+    }
+  }
+}
