@@ -1,5 +1,7 @@
 <div class="comment-edit">
   <div class="create-form">
-    <%= render 'comments/create_form' %>
+    <turbo-frame id="value-frame">
+      <%= render 'comments/create_form', shop: @shop, comment: @comment, value: @value %>
+    </turbo-frame>
   </div>
 </div>
