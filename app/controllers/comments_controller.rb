@@ -13,8 +13,8 @@ class CommentsController < ApplicationController
   end
 
   def edit
-    @shop = Shop.find(params[:shop_id])
     @comment = Comment.find(params[:id])
+    @shop = @comment.shop
   end
 
   def update
@@ -30,8 +30,8 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    shop = Shop.find(params[:shop_id])
     comment = Comment.find(params[:id])
+    shop = comment.shop
     if comment.delete
       flash[:notice] = "コメントを削除しました"
       redirect_to shop_path(shop)
