@@ -15,6 +15,7 @@ class CommentsController < ApplicationController
   def edit
     @comment = Comment.find(params[:id])
     @shop = @comment.shop
+    # valueは1から始まるが、UIでは0から始めるため、-1とする
     @value = @comment.value - 1
   end
 
