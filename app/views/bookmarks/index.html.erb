@@ -4,7 +4,7 @@
    <div>
   <% if @shops.present? %>
     <div class="card-style">
-      <%= render "shared/shops_list"%>
+      <%= render "shared/shops_list", shops: @shops%>
       <div class="pagination">
         <% if @first_page %>
           <div class="page_link">

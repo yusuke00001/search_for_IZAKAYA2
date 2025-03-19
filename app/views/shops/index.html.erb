@@ -32,7 +32,7 @@
   <% end %>
   <% if @shops.present? %>
     <turbo-frame>
-      <%= render partial: 'shop', colletion: @shops %>
+      <%= render 'shop', first_page: @first_page, previous_page: @previous_page, start_page: @start_page, final_page: @final_page, current_page: @current_page, next_page: @next_page, last_page: @last_page, total_shops: @total_shops, keyword_filter_params: @keyword_filter_params %>
     </turbo-frame>
   <% else %>
     <div class="no-search">
