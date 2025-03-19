@@ -4,9 +4,10 @@ class BookmarksController < ApplicationController
     # ページネーション
     @current_page = (params[:page].to_i > 0) ? params[:page].to_i : 1
     @total_shops = shops.count
-    @total_page = (@total_shops.to_f / 10).ceil
+    @total_page = (@total_shops.to_f / Bookmark::PAGE_NUMBER).ceil
     @shops = shops.offset((@current_page - 1) * Bookmark::PAGE_NUMBER).limit(Bookmark::PAGE_NUMBER)
 
+    # これ以上検索結果がない場合
     if @shops.empty? && @current_page > 1
       @current_page = @total_page
       @shops = shops.offset((@current_page - 1) * Bookmark::PAGE_NUMBER).limit(Bookmark::PAGE_NUMBER)

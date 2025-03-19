@@ -47,7 +47,7 @@ class ShopsController < ApplicationController
     @keyword_filter_params = @filter_conditions.merge(keyword: @keyword.word, current_location: current_location_search, shop_ids: shop_ids, latitude: current_latitude, longitude: current_longitude)
     @current_page = (params[:page].to_i > 0) ? params[:page].to_i : 1
     @total_shops = shops.count
-    @total_page = (@total_shops.to_f / 10).ceil
+    @total_page = (@total_shops.to_f / Shop::PAGE_NUMBER).ceil
     @shops = shops.offset((@current_page - 1) * Shop::PAGE_NUMBER).limit(Shop::PAGE_NUMBER)
 
     if @shops.empty? && @current_page > 1
