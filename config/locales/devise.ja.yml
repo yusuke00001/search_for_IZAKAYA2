@@ -5,3 +5,5 @@ ja:
       unauthenticated: ログインしてください
     registrations:
       updated: ユーザー情報を更新しました
+    passwords:
+      send_instructions: パスワードリセットの手順を送信しました
