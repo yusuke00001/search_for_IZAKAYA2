@@ -1,4 +1,4 @@
-.users-registrations-new {
+.users-sessions-new {
   .card-style {
    margin: 0 auto;
    margin-top: 100px;
@@ -8,13 +8,12 @@
    border-radius: 8px;
    box-shadow: 0 4px 9px rgba(0,0,0,0.1);
   }
-  .title{
-    margin-top: 20px;
-    margin-bottom: 20px;
+  .title {
     text-align: center;
+    margin-bottom: 20px;
   }
   .form-group {
-    margin-bottom: 20px;
+   margin-bottom: 20px;
   }
   .text-field {
     width: 100%;
@@ -23,17 +22,18 @@
     border-radius: 4px;
   }
   .submit {
-    text-align: center;
-    margin-bottom: 10px;
+   text-align: center;
+   margin-top: 20px;
   }
-  .submit-botton{
+  .submit-botton {
     background-color: #007bff;
     color: white;
     border: 1px solid #007bff;
     border-radius: 4px;
-    font-size: 20px;
+    padding: 5px;
   }
-  .login {
-    text-align: center;
+  .link {
+   text-align: center;
+   margin-top: 10px;
   }
 }
