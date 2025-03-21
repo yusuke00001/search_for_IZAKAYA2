@@ -1,0 +1,42 @@
+.users-passwords-new {
+  .title {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+  }
+  .title p {
+    color: #666
+  }
+  .card-style {
+    margin: 0 auto;
+    margin-top: 150px;
+    padding: 15px;
+    width: 400px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 9px rgba(0,0,0,0.1);
+  }
+  .form-group {
+   margin-bottom: 5px;
+  }
+  .text-field {
+   width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  .submit {
+    text-align: center;
+  }
+  .submit-botton {
+   width: 100%;
+   background-color: #007bff;
+   color: white;
+   border: 1px solid #007bff;
+   border-radius: 4px;
+   padding: 5px;
+  }
+  .link {
+   margin-top: 20px;
+   text-align: center;
+  }
+}
