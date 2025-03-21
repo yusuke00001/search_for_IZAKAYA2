@@ -1,25 +1,29 @@
-<h2>Change your password</h2>
+<div class="users-passwords-edit">
+  <div class="card-style">
+    <div class="title">
+      <h2>パスワード変更</h2>
+    </div>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
-  <%= f.hidden_field :reset_password_token %>
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+      <%= render "users/shared/error_messages", resource: resource %>
+      <%= f.hidden_field :reset_password_token %>
 
-  <div class="field">
-    <%= f.label :password, "New password" %><br />
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em><br />
+      <div class="form-group">
+        <%= f.label :password, "新しいパスワード" %><br />
+        <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class:"password-field" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :password_confirmation, "パスワード確認" %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"password-field" %>
+      </div>
+
+      <div class="submit">
+        <%= f.submit "パスワード変更", class:"submit-botton" %>
+      </div>
     <% end %>
-    <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %>
+    <div class="link">
+      <%= render "users/shared/links" %>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation, "Confirm new password" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Change my password" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+</div>

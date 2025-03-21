@@ -21,3 +21,4 @@
  @use "users/registrations/new";
  @use "users/sessions/new" as sessions;
  @use "users/passwords/new" as passwords;
+ @use "users/passwords/edit" as passwordsl;
