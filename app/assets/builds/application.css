@@ -443,4 +443,45 @@
   margin-top: 10px;
 }
 
+.users-passwords-new .title {
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+.users-passwords-new .title p {
+  color: #666;
+}
+.users-passwords-new .card-style {
+  margin: 0 auto;
+  margin-top: 150px;
+  padding: 15px;
+  width: 400px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 9px rgba(0, 0, 0, 0.1);
+}
+.users-passwords-new .form-group {
+  margin-bottom: 5px;
+}
+.users-passwords-new .text-field {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+.users-passwords-new .submit {
+  text-align: center;
+}
+.users-passwords-new .submit-botton {
+  width: 100%;
+  background-color: #007bff;
+  color: white;
+  border: 1px solid #007bff;
+  border-radius: 4px;
+  padding: 5px;
+}
+.users-passwords-new .link {
+  margin-top: 20px;
+  text-align: center;
+}
+
 /*# sourceMappingURL=application.css.map */

@@ -20,3 +20,4 @@
  @use "homes/index" as homes;
  @use "users/registrations/new";
  @use "users/sessions/new" as sessions;
+ @use "users/passwords/new" as passwords;
