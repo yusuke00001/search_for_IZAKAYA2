@@ -8,4 +8,8 @@ class Filter < ApplicationRecord
   def self.find_or_create(filter)
     find_or_create_by!(filter)
   end
+
+  def self.insert_filter_condition(filter_conditions)
+    insert_all(filter_conditions)
+  end
 end

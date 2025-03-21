@@ -90,23 +90,61 @@ class ShopsController < ApplicationController
   end
 
   def shops_create(keyword, shop_ids)
+    filter_conditions = []
+    shops_data = []
     @API_shop_data.each do |shop_data|
       # APIから取得した絞り込み条件に対応するデータをtrue/falseに変換
-      filter_condition = {
-      free_drink: shop_data["free_drink"].to_s.include?("あり"),
-      free_food: shop_data["free_food"].to_s.include?("あり"),
-      private_room: shop_data["private_room"].to_s.include?("あり"),
-      course: shop_data["course"].to_s.include?("あり"),
-      midnight: shop_data["midnight"].to_s.include?("営業している"),
-      non_smoking: shop_data["non_smoking"].to_s.include?("ない")
+      # まとめてINSERTするためにデータを配列に格納
+      filter_conditions << {
+        free_drink: shop_data["free_drink"].to_s.include?("あり"),
+        free_food: shop_data["free_food"].to_s.include?("あり"),
+        private_room: shop_data["private_room"].to_s.include?("あり"),
+        course: shop_data["course"].to_s.include?("あり"),
+        midnight: shop_data["midnight"].to_s.include?("営業している"),
+        non_smoking: shop_data["non_smoking"].to_s.include?("ない")
       }
-      # 条件にあうデータがfiltersテーブルにあったらfilterに格納、なければ作成
-      filter = Filter.find_or_create(filter_condition)
-      # shopsテーブルにすでに保存してある場合は更新、なければ作成
-      shop = Shop.create_or_update_from_API_data(shop_data, filter)
-      # ShopsとKeywordsの組み合わせが存在しなかったら作成
-      ShopKeyword.find_or_create_association(shop, keyword)
-      shop_ids << shop.unique_number
     end
+    Filter.insert_filter_condition(filter_conditions)
+    filters = Filter.pluck(:free_drink, :free_food, :private_room, :course, :midnight, :non_smoking, :id)
+    # filter_mapの要素を2つに変更(キーとバリュー)
+    filter_map = filters.map { |filter| [ filter[0..5], filter[6] ] }.to_h
+    @API_shop_data.each do |shop_data|
+      filter_id = filter_map[
+        [
+         shop_data["free_drink"].to_s.include?("あり"),
+         shop_data["free_food"].to_s.include?("あり"),
+         shop_data["private_room"].to_s.include?("あり"),
+         shop_data["course"].to_s.include?("あり"),
+         shop_data["midnight"].to_s.include?("営業している"),
+         shop_data["non_smoking"].to_s.include?("ない")
+        ]
+      ]
+      # まとめてINSERTするためにデータを配列に格納
+      shops_data << {
+        unique_number: shop_data["id"],
+        name: shop_data["name"],
+        address: shop_data["address"],
+        phone_number: shop_data["tel"],
+        access: shop_data["access"],
+        closing_day: shop_data["close"],
+        budget: shop_data.dig("budget", "average"),
+        number_of_seats: shop_data["capacity"],
+        url: shop_data.dig("urls", "pc"),
+        logo_image: shop_data["logo_image"],
+        image: shop_data.dig("photo", "pc", "l"),
+        filter_id: filter_id
+      }
+      shop_ids << shop_data["id"]
+    end
+
+    # APIから取得した店舗情報を新規登録or更新
+    Shop.upsert_from_API_data(shops_data)
+    shops = Shop.where(unique_number: shop_ids).pluck(:id)
+    shop_keyword_data = shops.map do |shop| {
+      shop_id: shop,
+      keyword_id: keyword.id
+    }
+    end
+    ShopKeyword.bulk_insert(shop_keyword_data)
   end
 end
