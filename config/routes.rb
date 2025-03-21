@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     get "users/image_delete", to: "users/registrations#image_delete"
   end
 
-  get "root", to: "homes#index"
+  root "homes#index"
   get "homes", to: "homes#index"
   resources :shops do
     resources :comments do
