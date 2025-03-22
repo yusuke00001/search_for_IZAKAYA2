@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   def create
+    binding.pry
     shop = Shop.find(params[:shop_id])
     comment = shop.comments.new(comment_params)
     comment.user = current_user
@@ -27,7 +28,7 @@ class CommentsController < ApplicationController
       redirect_to shop_path(@shop)
     else
       flash.now[:alert] = @comment.errors.full_messages
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -46,7 +47,7 @@ class CommentsController < ApplicationController
   def value
     @value = params[:value].to_i
     @shop = Shop.find(params[:shop_id])
-    @comment = @shop.comments.new
+    @comment = @shop.comments.find_by(id: params[:id]) || @shop.comments.new
     @comments = @shop.comments.includes(:user)
 
     render "shops/show"
