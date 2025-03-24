@@ -78,8 +78,10 @@ document.addEventListener("turbo:load", function() {
       };
     })
   }
-   form.addEventListener("submit", function(event) {
-    console.log("フォーム送信時の緯度:", latitudeField.value, "経度:", longitudeField.value);
-  });
+   if (form) {
+    form.addEventListener("submit", function(event) {
+      console.log("フォーム送信時の緯度:", latitudeField.value, "経度:", longitudeField.value);
+    });
+   }
 });
 </script>
