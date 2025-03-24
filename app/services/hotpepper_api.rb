@@ -26,7 +26,6 @@ class HotpepperApi
 
       count: count = 100
   }.compact
-binding.pry
     uri.query = URI.encode_www_form(params)
 
     response = Net::HTTP.get_response(uri) # APIにリクエストを送信

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_22_030103) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_24_020008) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -114,6 +114,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_22_030103) do
     t.bigint "filter_id"
     t.integer "order"
     t.index ["filter_id"], name: "fk_rails_2a05a1f881"
+    t.index ["unique_number"], name: "index_shops_on_unique_number", unique: true
   end
 
   create_table "solid_queue_blocked_executions", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
