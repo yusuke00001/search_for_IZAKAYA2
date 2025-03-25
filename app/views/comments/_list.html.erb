@@ -2,46 +2,44 @@
   <div class="title">
     <h1><strong><%= t('.comment_title') %></strong></h1>
   </div>
-  <% if comments.present? %>
-    <% comments.each do |comment| %>
-      <div class="user-data-value-form">
-        <div class="user-data-card-style">
-          <div class="user-data-container">
-            <%= image_tag comment.user.get_user_avatar.variant(resize_to_fit: [50,50]) %>
-            <div class="user">
-                <%= t('.user_name') %>:<%= comment.user.name %><br>
-              <%= t('.visit_day') %>:<%= comment.visit_day %>
-            </div>
+  <% if comment.present? %>
+    <div class="user-data-value-form">
+      <div class="user-data-card-style">
+        <div class="user-data-container">
+          <%= image_tag comment.user.get_user_avatar.variant(resize_to_fit: [50,50]) %>
+          <div class="user">
+              <%= t('.user_name') %>:<%= comment.user.name %><br>
+            <%= t('.visit_day') %>:<%= comment.visit_day %>
           </div>
         </div>
-        <% 5.times do |i| %>
-          <% if i < comment.value %>
-            <div class="icon-yellow">
-              <i class="fa-solid fa-star fa-3x"></i>
-            </div>
-          <% else %>
-            <div class="icon-gray">
-              <i class="fa-regular fa-star fa-3x"></i>
-            </div>
+      </div>
+      <% 5.times do |i| %>
+        <% if i < comment.value %>
+          <div class="icon-yellow">
+            <i class="fa-solid fa-star fa-3x"></i>
+          </div>
+        <% else %>
+          <div class="icon-gray">
+            <i class="fa-regular fa-star fa-3x"></i>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="comment-form-container">
+      <div class="comment-style">
+        <%= comment.content %>
+      </div>
+      <% if comment.user.id == current_user.id %>
+        <div class="edit-delete-link">
+          <%= link_to edit_shop_comment_path(shop_id: comment.shop.id, id: comment.id), class:"edit" do %>
+            <i class="fa-solid fa-pen"></i>
           <% end %>
-        <% end %>
-      </div>
-      <div class="comment-form-container">
-        <div class="comment-style">
-          <%= comment.content %>
+          <%= link_to shop_comment_path(shop_id: comment.shop.id, id: comment.id), data:{ turbo_method: :delete } do %>
+            <i class="fa-solid fa-trash"></i>
+          <% end %>
         </div>
-        <% if comment.user.id == current_user.id %>
-          <div class="edit-delete-link">
-            <%= link_to edit_shop_comment_path(shop_id: comment.shop.id, id: comment.id), class:"edit" do %>
-              <i class="fa-solid fa-pen"></i>
-            <% end %>
-            <%= link_to shop_comment_path(shop_id: comment.shop.id, id: comment.id), data:{ turbo_method: :delete } do %>
-              <i class="fa-solid fa-trash"></i>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   <% else %>
     <div class="no-comment">
       <strong>まだコメントはついていません</strong>

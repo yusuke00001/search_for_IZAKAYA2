@@ -1,6 +1,6 @@
 <div class="shops-shop">
   <div class="card-style">
-    <%= render "shared/shops_list", shops: @shops %>
+    <%= render partial: "shared/shops_list", collection: @shops, :as => "shop" %>
     <div class="pagination">
       <% if first_page %>
         <div class="page_link">
