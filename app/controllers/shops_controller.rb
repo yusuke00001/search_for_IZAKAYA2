@@ -1,6 +1,6 @@
 class ShopsController < ApplicationController
   def index
-    shop_ids = params[:shop_ids].presence || []
+    @shop_ids = params[:shop_ids]
     keyword = params[:keyword].presence || "居酒屋"
     params[:record_start_index] = params[:record_start_index].to_i
     current_location_search = params[:current_location].to_i
@@ -21,7 +21,7 @@ class ShopsController < ApplicationController
     # params[:start] == 0(ページ遷移の時) または同じ条件で検索しているかつ次の100件じゃない時または現在地検索がONの時データベースから取得
     unless params[:record_start_index] == 0 || params[:record_start_index] == 1 && keyword_filter.present? && current_location_search == 0
       @API_shop_data = HotpepperApi.search_shops(**search_params(keyword))
-      shops_create(@keyword, shop_ids)
+      shops_create(@keyword)
       KeywordFilter.find_or_create_association(@keyword, filter)
     end
 
@@ -37,18 +37,19 @@ class ShopsController < ApplicationController
     filters = Filter.where(@filter_conditions)
     # @shopにデータベース内検索結果を格納
     if current_location_search == 1
-      placeholders = shop_ids.map { "?" }.join(", ")
-      query = ActiveRecord::Base.sanitize_sql_array([ "FIELD(unique_number, #{placeholders})", *shop_ids ])
-      shops = Shop.where(unique_number: shop_ids).order(Arel.sql(query))
+      placeholders = @shop_ids.map { "?" }.join(", ")
+      query = ActiveRecord::Base.sanitize_sql_array([ "FIELD(unique_number, #{placeholders})", *@shop_ids ])
+      shops = Shop.where(unique_number: @shop_ids).order(Arel.sql(query))
     else
       shops = Shop.filter_and_keyword_association(filters, @keyword)
     end
     # ページネーション
-    @keyword_filter_params = @filter_conditions.merge(keyword: @keyword.word, current_location: current_location_search, shop_ids: shop_ids, latitude: current_latitude, longitude: current_longitude)
+    @keyword_filter_params = @filter_conditions.merge(keyword: @keyword.word, current_location: current_location_search, shop_ids: @shop_ids, latitude: current_latitude, longitude: current_longitude)
     @current_page = (params[:page].to_i > 0) ? params[:page].to_i : 1
     @total_shops = shops.count
     @total_page = (@total_shops.to_f / Shop::PAGE_NUMBER).ceil
     @shops = shops.offset((@current_page - 1) * Shop::PAGE_NUMBER).limit(Shop::PAGE_NUMBER)
+
 
     if @shops.empty? && @current_page > 1
       @current_page = @total_page
@@ -89,26 +90,24 @@ class ShopsController < ApplicationController
           )
   end
 
-  def shops_create(keyword, shop_ids)
-    filter_conditions = []
-    shops_data = []
-    @API_shop_data.each do |shop_data|
-      # APIから取得した絞り込み条件に対応するデータをtrue/falseに変換
-      # まとめてINSERTするためにデータを配列に格納
-      filter_conditions << {
-        free_drink: shop_data["free_drink"].to_s.include?("あり"),
-        free_food: shop_data["free_food"].to_s.include?("あり"),
-        private_room: shop_data["private_room"].to_s.include?("あり"),
-        course: shop_data["course"].to_s.include?("あり"),
-        midnight: shop_data["midnight"].to_s.include?("営業している"),
-        non_smoking: shop_data["non_smoking"].to_s.include?("ない")
+  def shops_create(keyword)
+    # APIから取得した絞り込み条件に対応するデータをtrue/falseに変換
+    # まとめてINSERTするためにデータを配列に格納
+    filter_conditions = @API_shop_data.map do |shop_data| {
+      free_drink: shop_data["free_drink"].to_s.include?("あり"),
+      free_food: shop_data["free_food"].to_s.include?("あり"),
+      private_room: shop_data["private_room"].to_s.include?("あり"),
+      course: shop_data["course"].to_s.include?("あり"),
+      midnight: shop_data["midnight"].to_s.include?("営業している"),
+      non_smoking: shop_data["non_smoking"].to_s.include?("ない")
       }
     end
     Filter.insert_filter_condition(filter_conditions)
+    # Filterテーブルの指定したカラムデータをfiltersに格納
     filters = Filter.pluck(:free_drink, :free_food, :private_room, :course, :midnight, :non_smoking, :id)
     # filter_mapの要素を2つに変更(キーとバリュー)
     filter_map = filters.map { |filter| [ filter[0..5], filter[6] ] }.to_h
-    @API_shop_data.each do |shop_data|
+    shops_data = @API_shop_data.map do |shop_data|
       filter_id = filter_map[
         [
          shop_data["free_drink"].to_s.include?("あり"),
@@ -119,8 +118,7 @@ class ShopsController < ApplicationController
          shop_data["non_smoking"].to_s.include?("ない")
         ]
       ]
-      # まとめてINSERTするためにデータを配列に格納
-      shops_data << {
+      {
         unique_number: shop_data["id"],
         name: shop_data["name"],
         address: shop_data["address"],
@@ -134,16 +132,16 @@ class ShopsController < ApplicationController
         image: shop_data.dig("photo", "pc", "l"),
         filter_id: filter_id
       }
-      shop_ids << shop_data["id"]
     end
+    @shop_ids = @API_shop_data.map { |shop_data| shop_data["id"] }
 
     # APIから取得した店舗情報を新規登録or更新
     Shop.upsert_from_API_data(shops_data)
-    shops = Shop.where(unique_number: shop_ids).pluck(:id)
+    shops = Shop.where(unique_number: @shop_ids).pluck(:id)
     shop_keyword_data = shops.map do |shop| {
       shop_id: shop,
       keyword_id: keyword.id
-    }
+      }
     end
     ShopKeyword.bulk_insert(shop_keyword_data)
   end
