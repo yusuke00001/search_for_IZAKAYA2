@@ -15,8 +15,6 @@ class CommentsController < ApplicationController
   def edit
     @comment = Comment.find(params[:id])
     @shop = @comment.shop
-    # valueは1から始まるが、UIでは0から始めるため、-1とする
-    @value = @comment.value - 1
   end
 
   def update
@@ -41,15 +39,6 @@ class CommentsController < ApplicationController
       flash[:alert] = comment.errors.full_messages
       redirect_to shop_path(shop)
     end
-  end
-
-  def value
-    @value = params[:value].to_i
-    @shop = Shop.find(params[:shop_id])
-    @comment = @shop.comments.find_by(id: params[:id]) || @shop.comments.new
-    @comments = @shop.comments.includes(:user)
-
-    render "shops/show"
   end
 
   private
