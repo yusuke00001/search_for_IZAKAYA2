@@ -16,7 +16,7 @@
  @use "comments/edit";
  @use "comments/value";
  @use "comments/list";
- @use "comments/create_form";
+ @use "comments/_form";
  @use "homes/index" as homes;
  @use "users/registrations/new";
  @use "users/sessions/new" as sessions;

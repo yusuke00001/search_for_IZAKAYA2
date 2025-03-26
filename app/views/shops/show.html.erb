@@ -93,5 +93,5 @@
 </div>
 <%= render partial: 'comments/list', collection: @comments, as: "comment" %>
 <turbo-frame id="value-frame">
-  <%= render 'comments/create_form', shop: @shop, comment: @comment, value: @value %>
+  <%= render 'comments/form', shop: @shop, comment: @comment%>
 </turbo-frame>
