@@ -9,9 +9,10 @@ class HotpepperApi
     lat = nil if lat == 0
     lng = nil if lng == 0
     uri = URI(BASE_URL)
+    keyword = keyword.presence || "居酒屋"
     params = {
       key: ENV["HOTPEPPER_API_KEY"],
-      keyword:, # 検索に使うキーワード
+      keyword: keyword, # 検索に使うキーワード
       format: "json", # 受け取るデータの形式
       start: record_start_index,
       free_drink: free_drink,

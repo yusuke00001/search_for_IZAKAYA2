@@ -1,7 +1,7 @@
 class ShopsController < ApplicationController
   def index
     @shop_ids = params[:shop_ids]
-    keyword = params[:keyword].presence || "居酒屋"
+    keyword = params[:keyword]
     params[:record_start_index] = params[:record_start_index].to_i
     current_location_search = params[:current_location].to_i
     current_latitude = params[:latitude].to_f
@@ -37,6 +37,7 @@ class ShopsController < ApplicationController
     filters = Filter.where(@filter_conditions)
     # @shopにデータベース内検索結果を格納
     if current_location_search == 1
+      @shop_ids = params[:shop_ids] if @shop_ids == []
       placeholders = @shop_ids.map { "?" }.join(", ")
       query = ActiveRecord::Base.sanitize_sql_array([ "FIELD(unique_number, #{placeholders})", *@shop_ids ])
       shops = Shop.where(unique_number: @shop_ids).order(Arel.sql(query))
