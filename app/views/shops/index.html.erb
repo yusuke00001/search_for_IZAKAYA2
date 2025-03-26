@@ -22,7 +22,7 @@
         <%= f.check_box :current_location%>
       </div>
       <div class="search">
-        <%= f.text_field :keyword, placeholder: "検索キーワード" %>
+        <%= f.text_field :keyword, required: true, placeholder: "検索キーワード" %>
         <%= f.hidden_field :record_start_index, value: 1 %>
         <%= f.hidden_field :latitude, id: "latitude_field" %>
         <%= f.hidden_field :longitude, id: "longitude_field" %>
