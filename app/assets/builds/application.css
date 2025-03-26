@@ -241,6 +241,12 @@
 .comment-list .user-data-value-form .user-data-card-style .user-data-container .user {
   margin-left: 20px;
 }
+.comment-list .user-data-value-form .icon-gray {
+  color: gray;
+}
+.comment-list .user-data-value-form .icon-yellow {
+  color: yellow;
+}
 .comment-list .comment-form-container {
   display: flex;
   width: 700px;
