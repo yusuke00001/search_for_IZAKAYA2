@@ -71,6 +71,6 @@ ja:
       user_name: ユーザー名
       edit: 編集
       delete: 削除
-    create_form:
+    form:
       comment_create_title: コメント投稿
       submit: 送信

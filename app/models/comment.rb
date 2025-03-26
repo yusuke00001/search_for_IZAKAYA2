@@ -5,7 +5,7 @@ class Comment < ApplicationRecord
   validates :content, presence: true
   validates :value, presence: true
 
-  validate :data_before_today
+  validate :validate_data_before_today
 
   def validate_data_before_today
     return if visit_day <= Date.today

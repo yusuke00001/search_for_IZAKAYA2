@@ -3,16 +3,16 @@
     <%= form_with(model: [shop, comment]) do |form| %>
       <div class="comment-create-container">
         <h1><strong><%= t('.comment_create_title')%></strong></h1>
-        <%= render "comments/value", value: value, shop: shop, comment: comment %>
+        <%= render "comments/value", shop: shop, comment: comment, value_first: @value_first %>
       </div>
       <%= form.text_field :content, placeholder: "コメントを入力してください", class:"content" %>
       <div class="submit-visit-day">
         <div class="visit-day">
-          <%= form.label :visit_day %>
+          来店日
           <%= form.date_select :visit_day %>
         </div>
         <div class="submit">
-          <%= form.hidden_field :value, value: (value || 0 ) + 1 %>
+          <%= form.hidden_field :value, value: comment.value, id: "value-data" %>
           <%= form.submit t('.submit'), data: { turbo_frame: "_top" }, class:"submit-botton" %>
         <div>
       </div>
