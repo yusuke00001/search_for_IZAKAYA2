@@ -24,8 +24,8 @@ class CommentsController < ApplicationController
       flash[:notice] = "コメントを編集しました"
       redirect_to shop_path(@shop)
     else
-      flash.now[:alert] = @comment.errors.full_messages
-      render :edit, status: :unprocessable_entity
+      flash[:alert] = @comment.errors.full_messages
+      redirect_to edit_shop_comment_path(@shop)
     end
   end
 
