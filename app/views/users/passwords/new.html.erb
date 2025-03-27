@@ -4,7 +4,7 @@
       <h2>パスワードリセット</h2>
       <p>登録したメールアドレスを入力してください</p>
     </div>
-    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+    <%= form_with(model: resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
       <%= render "users/shared/error_messages", resource: resource %>
       
       <div class="form-group">
