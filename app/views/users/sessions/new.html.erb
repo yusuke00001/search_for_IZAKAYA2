@@ -1,7 +1,7 @@
 <%= render "users/shared/error_messages", resource: resource %>
 <div class="users-sessions-new">
   <div class="card-style">
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <%= form_with(model: resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="title">
         <h2><%= t('.title') %></h2>
       </div>
